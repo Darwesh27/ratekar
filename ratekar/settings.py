@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Custome user model
+AUTH_USER_MODEL = "social.User"
 
 # Application definition
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = (
 	'timeline',
 	'api',
 	'web',
+	'south', 
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,8 +65,12 @@ WSGI_APPLICATION = 'ratekar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ratekar',
+		'USER': 'root',
+		'PASSWORD': 'root',
+		'HOST' : 'localhost',
+		'PORT': '3306',
     }
 }
 

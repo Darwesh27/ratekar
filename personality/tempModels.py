@@ -4,10 +4,10 @@ from social.models import Friendship
 
 class Reputation(models.Model):
 	relation = models.OneToOneField(Friendship)
-	reputation = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(10)])
+	reputation = models.IntegerField(required=True, validators = [MinValueValidator(1), MaxValueValidator(10)])
 
 	created_on = models.DateField(auto_now_add = True)
-	updated_on = models.DateField(auto_now = True)
+	updated_on = modesl.DateField(auto_now = True)
 
 class Review(models.Model):
 	relation = models.OneToOneField(Friendship)
@@ -15,7 +15,7 @@ class Review(models.Model):
 	liked = models.BooleanField(default = False)
 
 	created_on = models.DateField(auto_now_add = True)
-	updated_on = models.DateField(auto_now = True)
+	updated_on = modesl.DateField(auto_now = True)
 
 class Trait(models.Model):
 	title  = models.CharField(max_length = 15)
@@ -23,7 +23,7 @@ class Trait(models.Model):
 
 class TraityQuestion(models.Model):
 	trait = models.ForeignKey(Trait)
-	text = models.CharField(max_length = 100)
+	text = models.CharField(max_lenght = 100)
 	min_cat = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
 
 class Feedback(models.Model):
