@@ -1,16 +1,17 @@
 from django.db import models
+from django.conf import settings 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from social.models import Friendship
 
+
 class Reputation(models.Model):
-	relation = models.OneToOneField(Friendship)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myRatings')
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsRatings')
 	reputation = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(10)])
 
-	created_on = models.DateField(auto_now_add = True)
-	updated_on = models.DateField(auto_now = True)
-
 class Review(models.Model):
-	relation = models.OneToOneField(Friendship)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myReviews')
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsReviews')
 	review = models.CharField(max_length = 200)
 	liked = models.BooleanField(default = False)
 
@@ -27,7 +28,8 @@ class TraityQuestion(models.Model):
 	min_cat = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
 
 class Feedback(models.Model):
-	relation = models.ForeignKey(Friendship)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myFeedbacks')
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsFeedbacks')
 	question = models.ForeignKey(TraityQuestion)
 	rating = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(5)])
 

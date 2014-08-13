@@ -10,8 +10,8 @@ class User(AbstractBaseUser):
 	lastname = models.CharField(max_length = 15)
 	username = models.CharField(max_length = 15, unique = True)
 	email = models.EmailField(unique = True)
-	phone_number = models.CharField(blank = True, unique = True, max_length = 15)
-	dob = models.DateField(blank = True)
+	phone_number = models.CharField(null=True, unique = True, max_length = 15)
+	dob = models.DateField(null = True)
 
 	USERNAME_FIELD = 'username'
 	REQUIRED_FIELDS = ['firstname', 'lastname', 'email']
@@ -27,4 +27,4 @@ class Friendship(models.Model):
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendOf')
 	lists = models.ManyToManyField(Friendslist)
 	category = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
-	nick = models.CharField(max_length=50, blank = True)
+	nick = models.CharField(max_length=50, null = True)
