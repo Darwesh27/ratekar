@@ -26,5 +26,5 @@ class Friendship(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friends')
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendOf')
 	lists = models.ManyToManyField(Friendslist)
-	category = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
+	circle = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
 	nick = models.CharField(max_length=50, null = True)
