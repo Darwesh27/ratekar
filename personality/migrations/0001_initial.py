@@ -11,17 +11,17 @@ class Migration(SchemaMigration):
         # Adding model 'Reputation'
         db.create_table(u'personality_reputation', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('relation', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['social.Friendship'], unique=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='myRatings', to=orm['social.User'])),
+            ('friend', self.gf('django.db.models.fields.related.ForeignKey')(related_name='friendsRatings', to=orm['social.User'])),
             ('reputation', self.gf('django.db.models.fields.IntegerField')()),
-            ('created_on', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
-            ('updated_on', self.gf('django.db.models.fields.DateField')(auto_now=True, blank=True)),
         ))
         db.send_create_signal(u'personality', ['Reputation'])
 
         # Adding model 'Review'
         db.create_table(u'personality_review', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('relation', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['social.Friendship'], unique=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='myReviews', to=orm['social.User'])),
+            ('friend', self.gf('django.db.models.fields.related.ForeignKey')(related_name='friendsReviews', to=orm['social.User'])),
             ('review', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('liked', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('created_on', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
@@ -49,7 +49,8 @@ class Migration(SchemaMigration):
         # Adding model 'Feedback'
         db.create_table(u'personality_feedback', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('relation', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.Friendship'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='myFeedbacks', to=orm['social.User'])),
+            ('friend', self.gf('django.db.models.fields.related.ForeignKey')(related_name='friendsFeedbacks', to=orm['social.User'])),
             ('question', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['personality.TraityQuestion'])),
             ('rating', self.gf('django.db.models.fields.IntegerField')()),
         ))
@@ -76,27 +77,28 @@ class Migration(SchemaMigration):
     models = {
         u'personality.feedback': {
             'Meta': {'object_name': 'Feedback'},
+            'friend': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'friendsFeedbacks'", 'to': u"orm['social.User']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'question': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['personality.TraityQuestion']"}),
             'rating': ('django.db.models.fields.IntegerField', [], {}),
-            'relation': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.Friendship']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'myFeedbacks'", 'to': u"orm['social.User']"})
         },
         u'personality.reputation': {
             'Meta': {'object_name': 'Reputation'},
-            'created_on': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'friend': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'friendsRatings'", 'to': u"orm['social.User']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'relation': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['social.Friendship']", 'unique': 'True'}),
             'reputation': ('django.db.models.fields.IntegerField', [], {}),
-            'updated_on': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'blank': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'myRatings'", 'to': u"orm['social.User']"})
         },
         u'personality.review': {
             'Meta': {'object_name': 'Review'},
             'created_on': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'friend': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'friendsReviews'", 'to': u"orm['social.User']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'liked': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'relation': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['social.Friendship']", 'unique': 'True'}),
             'review': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'updated_on': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'blank': 'True'})
+            'updated_on': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'myReviews'", 'to': u"orm['social.User']"})
         },
         u'personality.trait': {
             'Meta': {'object_name': 'Trait'},
@@ -111,31 +113,17 @@ class Migration(SchemaMigration):
             'text': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'trait': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['personality.Trait']"})
         },
-        u'social.friendship': {
-            'Meta': {'object_name': 'Friendship'},
-            'category': ('django.db.models.fields.IntegerField', [], {}),
-            'friend': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'friendOf'", 'to': u"orm['social.User']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'lists': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['social.Friendslist']", 'symmetrical': 'False'}),
-            'nick': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'friends'", 'to': u"orm['social.User']"})
-        },
-        u'social.friendslist': {
-            'Meta': {'object_name': 'Friendslist'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.User']"})
-        },
         u'social.user': {
             'Meta': {'object_name': 'User'},
-            'dob': ('django.db.models.fields.DateField', [], {'blank': 'True'}),
+            'dob': ('django.db.models.fields.DateField', [], {'null': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '75'}),
             'firstname': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'lastname': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'phone_number': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '15', 'blank': 'True'}),
+            'phone_number': ('django.db.models.fields.CharField', [], {'max_length': '15', 'unique': 'True', 'null': 'True'}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '15'})
         }
     }

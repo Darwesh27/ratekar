@@ -1,8 +1,7 @@
 from django.db import models
 from django.conf import settings 
 from django.core.validators import MaxValueValidator, MinValueValidator
-from social.models import Friendship
-
+#from social.models import Friendship
 
 class Reputation(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myRatings')
@@ -32,7 +31,6 @@ class Feedback(models.Model):
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsFeedbacks')
 	question = models.ForeignKey(TraityQuestion)
 	rating = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(5)])
-
 
 
 
