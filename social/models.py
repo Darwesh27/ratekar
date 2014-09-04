@@ -25,7 +25,21 @@ class User(AbstractBaseUser):
 	phone_number = models.CharField(null=True, unique = True, max_length = 15)
 	dob = models.DateField(null = True)
 	is_active = models.BooleanField(default = True)
+	is_staff = models.BooleanField(default = False)
 	objects = UserManager()
+
+	USERNAME_FIELD = 'username'
+	REQUIRED_FIELDS = ['firstname', 'lastname', 'email']
+
+	@property
+	def is_superuser(self):
+		return self.is_staff
+
+	def has_perm(self, perm, obj=None):
+		return self.is_staff
+
+	def has_module_perms(self, app_label):
+		return self.is_staff
 
 	def get_short_name(self):
 		return self.firstname
@@ -33,12 +47,21 @@ class User(AbstractBaseUser):
 	def get_full_name(self):
 		return self.firstname + " " + self.lastname
 
+	def is_friend_of(self, person):
+		try:
+			rel = Friendship.objects.get(user = self, friend = person)
+			if rel.status == 3:
+				return True
+			else:
+				return False
+
+		except Friendship.DoesNotExist:
+			return False
+
 	def __unicode__(self):
 		return self.get_full_name()
 
 
-	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['firstname', 'lastname', 'email']
 
 
 
