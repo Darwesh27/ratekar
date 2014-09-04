@@ -14,8 +14,13 @@ class Review(models.Model):
 	review = models.CharField(max_length = 200)
 	liked = models.BooleanField(default = False)
 
+class ReviewDraft(models.Model):
+	review = models.ForeignKey(Review)
+	text = models.CharField(max_length = 200)
+	liked = models.BooleanField(default = False)
 	created_on = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now = True)
+
 
 class Trait(models.Model):
 	title  = models.CharField(max_length = 15)
