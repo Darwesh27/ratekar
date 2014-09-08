@@ -44,6 +44,7 @@ INSTALLED_APPS = (
 	'api',
 	'web',
 	'south', 
+	'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

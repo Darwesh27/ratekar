@@ -5,14 +5,14 @@ class ReputationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Reputation 
-		fields = ('relation', 'reputation')
+		fields = ('reputation',)
 
 
 class ReviewSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Review 
-		fields = ('relation', 'review', 'liked')
+		fields = ('id', 'review', 'liked')
 
 class TraityQuestionSerializer(serializers.ModelSerializer):
 
@@ -25,6 +25,6 @@ class FeedbackSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Feedback
-		fields = ('relation', 'question', 'rating')
+		fields = ('question', 'rating')
 
 

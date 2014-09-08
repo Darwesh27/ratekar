@@ -1,3 +1,6 @@
 personality/migrations/
 social/migrations/
 */migrations/
+*.pyc
+*/*.pyc
+*/*/*.pyc

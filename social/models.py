@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Count,Avg
 
 # Create your models here.
 
@@ -60,6 +61,15 @@ class User(AbstractBaseUser):
 
 	def __unicode__(self):
 		return self.get_full_name()
+
+
+	# query helper function
+	def nicks(self):
+		return self.friends.values('nick').annotate(Count('nick'))
+		
+	
+	def repo(self):
+		return self.myRatings.aggregate(repo = Avg('reputation'))
 
 
 
