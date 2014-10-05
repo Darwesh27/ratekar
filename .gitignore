@@ -1,6 +1,4 @@
-personality/migrations/
-social/migrations/
-*/migrations/
-*.pyc
-*/*.pyc
-*/*/*.pyc
+*.[pyc]
+personality/migrations
+social/migrations
+api/static/bower_components

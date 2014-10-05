@@ -1,0 +1,26 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular-route/angular-route.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular/angular.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular/angular.min.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular-route/angular-route.min.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular-mocks/angular-mocks.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular-resource/angular-resource.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/angular-resource/angular-resource.min.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/Gruntfile.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/grunt/shrinkwrap.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/grunt/bs-raw-files-generator.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/grunt/bs-lessdoc-parser.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/grunt/bs-glyphicons-data-generator.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/js/app/directives/hello.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/dist/js/bootstrap.min.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/dist/js/bootstrap.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/button.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/collapse.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/dropdown.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/popover.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/affix.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/js/app/app.js",
+        "/home/darwesh/Kam Kam aur Bas Kam..!!/projects/ratekar/api/static/bower_components/bootstrap/js/transition.js"
+    ]
+}
