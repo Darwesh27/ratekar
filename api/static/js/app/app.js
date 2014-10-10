@@ -1,15 +1,25 @@
+(function  () {
+	
+	/**
+	* rateker Module
+	*
+	* The main module that will basically be acting as the namespace
+	*/
+	angular.module('rateker', [
+		'rateker.rkToolbar', 
+		'rateker.stream',
+		'ngRoute'
 
-var matApp= angular.module("app", ["ngRoute", "ngMaterial"]);
-var BaseTemplateUrl  = "/static/js/app/views/"
+	]).
+	config(['$routeProvider',function($routeProvider) {
+		$routeProvider.when('/',{
+			templateUrl: "/static/js/app/views/main.html",
 
-matApp.config(["$routeProvider",function($routeProvider){
-	$routeProvider.when("/", {
-		templateUrl: BaseTemplateUrl + "main.html",
-		controller: "MainCtrl"
-	})
-}])
+		});
 
-matApp.controller("MainCtrl", function ($scope) {
+	}]).
 
-});
-
+	controller('TestCtrl', ['$scope', function($scope){
+		$scope.noti = 1;
+	}])
+})();

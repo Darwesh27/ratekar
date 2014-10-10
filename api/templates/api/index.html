@@ -1,43 +1,19 @@
+{% load compressed %}
 <!DOCKTYPE html>
-<html lang = "en" ng-app = "app"> 
+<html lang = "en" ng-app = "rateker"> 
 	<head> 
 		<title> Basic Angular App </title> 
-		<style type="text/css">
-		/*
-		.buttonsDemo1 {
-
-		}
-
-		.buttonsDemo1 section {
-			background: #f7f7f7;
-			border-radius: 3px;
-			text-align: center;
-			margin: 1em;
-			position: relative !important;
-			padding-bottom: 10px;
-		}
-
-		.buttonsDemo1 material-content {
-			margin-right: 7px;
-		}
-
-		.buttonsDemo1 section material-button:not(.material-button-fab) {
-			width: 10em;
-		}
-		.buttonsDemo1 section material-button {
-			display: block-inline;
-			margin: 1em;
-			line-height: 25px;
-			width: 10em;
-		}
-		*/
-		</style>
 		{% load staticfiles %}
 		<link rel="stylesheet" href = "{% static 'bower_components/angular-material/angular-material.min.css' %}">
+		<link rel="stylesheet" href = "{% static 'css/app.css' %}">
+
+		<link rel="stylesheet" href = "{% static 'bower_components/angular-loading-bar/src/loading-bar.css' %}">
+
 	</head>
 
 	<body> 
 
+		<rk-toolbar></rk-toolbar>
 		<div ng-view></div>
 
 		{% load staticfiles %}
@@ -45,8 +21,13 @@
 		<script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bower_components/angular-animate/angular-animate.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bower_components/angular-aria/angular-aria.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bower_components/hammerjs/hammer.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bower_components/angular-material/angular-material.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/app/app.js' %}"></script>
+
+		<script type="text/javascript" src="{% static 'bower_components/angular-loading-bar/src/loading-bar.js' %}"></script>
+
+		{% compressed_js 'check' %}
 		
 <!--        <script type="text/javascript" src="{% static 'js/app/controllers.js' %}"></script>-->
 	</body>

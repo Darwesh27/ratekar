@@ -1,20 +1,14 @@
-<material-toolbar class = "toolbar toolbar-2 material-theme-green">
-	<div class="material-toolbar-tools">
-		<span> Rateker </span>
-		<span>
-		<material-input-group layout = "horizontal" class = "material-input-group-theme-green material-input-group-inverted">
-			<material-input id = "toolbar-search" type = "text" style="width:25em"></material-input>
-			<material-icon icon = "static/img/magnify/svg/magnify.svg"></material-icon>
-		</material-input-group>
-		</span>
-
-			<material-icon class = "material-button-raised" ng-click = "model.a=5" icon = "static/img/material-icons/social/person.svg"></material-icon>
-
-
+<div ng-controller="TestCtrl">
+	<div layout = "horizontal"> 
+		<div class="left-pane" flex = "20"></div>
+		<div class = "stream" flex = "40" ng-controller="StreamCtrl">
+			<div ng-repeat="post in posts">
+				<rk-post post = "post"></rk-post>
+				<rk-post post = "post"></rk-post>
+				<rk-post post = "post"></rk-post>
+				<rk-post post = "post"></rk-post>
+			</div>
+		</div>
+		<div class = "right-pane" flex></div>
 	</div>
-</material-toolbar>
-<material-content layout = "horizontal" layout-fill> 
-	<material-toolbar class = "material-theme-yellow" flex="20">Hello</material-toolbar>
-	<material-toolbar class = "material-theme-light-blue" flex="40">Hello</material-toolbar>
-	<material-toolbar class = "material-theme-light" flex>Hello</material-toolbar>
-</material-content>
+</div>

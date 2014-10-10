@@ -1,0 +1,195 @@
+
+
+body {
+	min-width: 995px;
+}
+
+
+.toolbar-logo {
+	min-width: 50px;
+	width: 100px;
+}
+
+.toolbar-notifications {
+	min-width:100px;
+	width: 100px;
+
+}
+
+.toolbar-settings {
+	min-width:100px;
+	width: 100px;
+}
+
+
+.stream {
+	min-width: 550px;
+	border-right: 1px solid rgb(226, 226, 226);
+	border-left: 1px solid rgb(226, 226, 226);
+}
+
+
+.noti-cntr {
+	position: relative;
+}
+
+.noti-boundry {
+	padding: 0px 5px 0px 5px;
+}
+.notification-count {
+	min-width: 15px;
+	height: 15px;
+	background-color: white;
+	position: absolute;
+	color: #0f9d58;
+	top: -9px;
+	left: 10px;
+	z-index: 10;
+	font-size: 13px;
+	font-weight: 700;
+	text-align: center;
+	padding-bottom: 9px;
+	line-height: 1;
+	border-radius: 2px;
+	box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+	padding: 1px;
+}
+
+.noti-icon {
+	opacity: 0.7;
+}
+
+.noti-icon-focused {
+	opacity: 1;
+}
+
+
+.left-pane {
+	min-width: 200px;
+}
+
+
+.right-pane {
+	min-width: 245px;
+}
+
+
+.stream-post {
+	margin: 10px;
+	padding: 10px;
+	margin-top: 50px;
+
+}
+
+.post-header {
+	height: 60px;
+
+}
+
+.post-header-info {
+	height: 60px;
+	padding-left: 10px;
+	position: absolute;
+}
+
+.post-avatar {
+	height: 50px;
+	width: 50px;
+	margin: 5px;
+	border-radius: 50%;
+}
+
+.post-avatar img {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.post-author-name {
+}
+
+a {
+	text-decoration: none;
+	color: #0f9d58;
+}
+
+.post-author-name a {
+	font-weight: bold;
+}
+
+.post-time {
+
+}
+
+.post-content {
+	margin-left: 70px;
+	font-weight: 300;
+
+}
+
+.post-feedback {
+	margin-top: 10px;
+}
+
+
+.comment-wrapper {
+	font-size: 12px;
+	font-weight: 300;
+	padding:5px;
+	background-color: rgb(245,245,245);
+	border-radius: 2px;
+}
+
+.comment-inner-wrapper {
+	padding-left: 10px;
+}
+
+.new-comment {
+	font-weight: 300;
+}
+
+input[type = "text"] {
+	font-weight: 300;
+}
+.comment {
+}
+
+.comment-avatar {
+	height: 30px;
+	width: 30px;
+	min-width: 30px	;
+	min-height: 30px	;
+	border-radius: 50%;
+}
+
+
+.toolbar-avatar {
+	height: 25px;
+	width: 25px;
+	margin: 5px;
+	min-height: 25px;
+	min-width: 25px	;
+	border-radius: 50%;
+}
+
+.toolbar-search {
+
+	font-size: 15px;
+}
+
+.toolbar-avatar img {
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+}
+
+
+.toolbar-nav {
+	min-width: 100px;
+	width: 100px;
+}
+
+.toolbar-nav .home {
+	margin: 5px;
+	font-size: 15px;
+}

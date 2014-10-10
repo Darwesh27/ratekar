@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 # Custome user model
 AUTH_USER_MODEL = "social.User"
@@ -45,6 +45,7 @@ INSTALLED_APPS = (
 	'web',
 	'south', 
 	'rest_framework',
+	'pipeline',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,4 +93,45 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'api/static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'api/static_final/')
+
 STATIC_URL = '/static/'
+
+STATIC_PATH = os.path.join(BASE_DIR, 'api/static/')
+
+
+# pipeline settings 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+PIPELINE_JS = {
+    'check': {
+        'source_filenames': (
+            'js/app/app.js',
+            'js/app/components/toolbar/toolbar-module.js',
+            'js/app/components/toolbar/notifications/toolbar-notifications-module.js',
+            'js/app/components/stream/post/post-module.js',
+            'js/app/components/stream/post/post-service.js',
+            'js/app/components/stream/stream-module.js',
+            'js/app/*.js',
+            'js/app/*/*.js',
+            'js/app/*/*/*.js',
+            'js/app/*/*/*/*.js',
+            'js/app/*/*/*/*/*.js',
+        ),
+        'output_filename': 'js/check.js',
+    }
+}
+
+
+PIPELINE_MIMETYPES = (
+  (b'text/coffeescript', '.coffee'),
+  (b'text/less', '.less'),
+  (b'text/javascript', '.js'),
+  (b'text/x-sass', '.sass'),
+  (b'text/x-scss', '.scss')
+)
+
+
