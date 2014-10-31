@@ -1,14 +1,5 @@
-<div class = "stream-post material-whiteframe-z1" layout = "vertical">
-	<div class="post-header" layout = "horizontal">
-		<div class="post-avatar">
-			<img ng-src="{{post.author.image_url}}">
-		</div>
-		<div class="post-header-info" layout = "vertical" layout-align = "center start">
-			<div class = "post-author-name" >
-				<a  ng-href="{{post.author.url}}">{{post.author.name}}</a>
-			</div>
-		</div>
-	</div>
+<div class = "stream-post md-whiteframe-z1" layout = "vertical">
+	<rk-post-author author = "post.author"></rk-post-author>
 	<div class = "post-content ">
 		{{post.content.text}}
 	</div>
@@ -16,18 +7,18 @@
 
 	<div class="post-feedback">
 		<div class="post-rating">
-			<material-linear-progress mode = "determinate" ng-value="{{post.rating * 10}}"></material-linear-progress>
+			<md-progress-linear mode = "determinate" ng-value="{{post.rating * 10}}"></md-progress-linear>
 		</div>
 
 		<div class="post-my-rating">
-			<material-slider ng-model="post.myRating" min="1" max="10"></material-slider>
+			<md-slider ng-model="post.myRating" min="1" max="10"></md-slider>
 		</div>
 
 		<new-comment post = "post"></new-comment>
 
 
 
-		<div class="comments" layout = "vertical" layout-align="start center">
+		<div class="comments" layout = "vertical" layout-align="start start">
 			<rk-comment ng-repeat = "comment in post.comments" comment = "comment"></rk-comment>
 		</div>
 

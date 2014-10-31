@@ -1,0 +1,48 @@
+
+<div class = "profile" ng-controller="profileController">
+
+<!-- Profile header -->
+	<div class = "profile-header-wrapper" layout = "horizontal">
+		<div class = "profile-avatar-wrapper" layout = "horizontal" layout-align = "end center">
+			<div class = "profile-avatar-inner-wrapper md-whiteframe-z1" >
+				<img  class = "profile-avatar" ng-src="{{profile.imageUrl}}">
+			</div>
+		</div>
+
+		<div class = "profile-header-info" layout = "vertical" layuot-align = "center center" flex>
+			<div flex></div>
+			<div class = "profile-header-name">
+				 {{profile.name}} 
+			</div>
+			<div layout = "vertical" layout-align = "start center" flex>
+				<div class = "profile-reputation">
+					<md-progress-linear mode = "determinate" 	ng-value = "{{profile.reputation * 10}}"></md-progress-linear>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Profile Content -->
+
+
+	<div class = "profile-content-wrapper" layout = "horizontal">
+		<div layout = "vertical" layout-fill class = "profile-left-pane">
+			<div class = "profile-left-pane-menu">
+				<div layout = "vertical" layout-align="center" class = "profile-left-pane-menu-item" >
+					<a ng-href = "{{profile.url}}">Timeline</a>
+				</div>
+				<div layout = "vertical" layout-align="center" class = "profile-left-pane-menu-item">
+					<a ng-href="{{profile.url}}/feedbacks">Profile</a>
+				</div>
+
+			</div>
+		</div>
+		<div class = "profile-inner-content-wrapper" flex>
+			<div ui-view>
+			</div>
+		</div>
+	</div>
+
+	</div>
+</div>

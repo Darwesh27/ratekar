@@ -9,8 +9,8 @@
 						id : 1,
 						author: {
 							name: 'Malik Junaid',
-							image_url: '/static/img/mj2.jpg',
-							url: '#/malik.junaid'
+							imageUrl: '/static/img/mj2.jpg',
+							url: '/#/malik.junaid'
 						},
 						time: 'Today',
 						rating: 5.6,

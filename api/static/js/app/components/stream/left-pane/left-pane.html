@@ -1,0 +1,53 @@
+<div ng-controller = "leftPaneController" class = "left-pane-inner-wrapper" layout = "vertical" layout-align = "start center">
+	<div class = "left-pane-avatar-wrapper md-whiteframe-z1">
+		<img ng-src="{{me.imageUrl}}" class = "left-pane-avatar">
+	</div>
+
+	<div class="left-pane-name">
+		<a ng-href="{{me.url}}">{{me.name}}</a>
+	</div>
+
+
+	<div class = "left-pane-reputation">
+		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "{{me.reputation * 10}}"></md-progress-linear>
+	</div>
+
+	<div class="left-pane-item">
+		<a ng-href="{{me.url}}">Thoughts</a>
+	</div>
+
+	<div class = "left-pane-reputation">
+		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "56"></md-progress-linear>
+	</div>
+
+	<div class="left-pane-item">
+		<a ng-href="{{me.url}}/photos">Photos</a>
+	</div>
+
+	<div class = "left-pane-reputation">
+		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "43"></md-progress-linear>
+	</div>
+
+	<div class="left-pane-separator"></div>
+
+
+	<div class="left-pane-item">
+		<a ng-href="{{me.url}}/feedbacks">
+			Feedbacks
+		</a>
+	</div>
+
+	<div class="left-pane-item">
+		<a ng-href="{{me.url}}/reviews">
+			Reviews
+		</a>
+	</div>
+
+	<div class="left-pane-item">
+		<a ng-href="{{me.url}}/nicks">
+			Nicks
+		</a>
+	</div>
+
+</div>
+
