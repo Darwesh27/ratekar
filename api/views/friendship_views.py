@@ -145,19 +145,16 @@ def friendslist(request):
 def profile(request, username):
 	if request.method == 'GET':
 		def cb(friend, relation):
-			user = relation.user
-			usr = UserSerializer(user).data
-			
-			repo = user.repo()
-			print repo
-			usr['repo'] = repo['repo']
 
-			return Response(usr)
+			return Response(relation.user.profile())
 
 		try:
 			print username
 			frnd = User.objects.get(username = username.lower())
-			print frnd.id
+
+			if frnd == request.user:
+				return Response(frnd.profile())
+				
 			return friend_info(request, frnd.id, cb)
 		except User.DoesNotExist:
 			return Response(no_resource_error())

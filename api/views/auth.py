@@ -2,6 +2,7 @@ from social.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
+from social.serializers import UserSerializer, FriendslistSerializer, FriendshipSerializer
 
 @api_view(['POST'])
 def signup(request):
@@ -40,9 +41,17 @@ def signin(request):
 
 	if user:
 		login(request, user)
-		return Response({"message" : "User logged in"})
+
+		user_data = UserSerializer(request.user).data 
+		user_data['reputation'] = request.user.repo()['repo']
+
+		res = {
+			"message": "User logged in",
+			"user": request.user.profile()
+		}
+		return Response(res)
 	else:
-		return Response({"error": "No such user"})
+		return Response({"error": "Sorry can't Login"})
 
 
 @api_view(['GET', 'POST'])
