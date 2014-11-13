@@ -11,16 +11,30 @@
 
 	</head>
 
-	<body ng-controller="appController"> 
-
-		<rk-toolbar ng-show = "isLoggedIn()"></rk-toolbar>
+	<body ng-controller="appController" layout = "vertical"> 
+		<rk-toolbar ng-show = "isLoggedIn"></rk-toolbar>
+		<md-toolbar class = "md-theme-green md-whiteframe-z1"></md-toolbar>
 		<div layout = "horizontal">
-
-			<div ui-view class = ""></div>
-			<div class = "right-pane" flex ng-show = "isLoggedIn()"></div>
+			<div ui-view ng-class="{'strech-vertical': !isLoggedIn}"></div>
+			<div class = "right-pane" flex ng-show = "isLoggedIn" ng-include="'/static/js/app/components/right-pane/right-pane.html'"></div>
 		</div>
 
 		{% compressed_js 'check' %}
+
+		<script>
+			// Add the CSRF Token
+			var app = angular.module('rateker'); // Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration
+			app.config(['$httpProvider', function($httpProvider) {
+			    $httpProvider.defaults.headers.common['X-CSRFToken'] = '{{ csrf_token|escapejs }}';
+			}]);
+
+			app.run(['Auth', function(Auth) {
+				console.log("Run");
+				{% if data %}
+				Auth.sessionLogIn('{{data.username}}');
+				{% endif %}
+			}]);
+		</script>
 		
 <!--        <script type="text/javascript" src="{% static 'js/app/controllers.js' %}"></script>-->
 	</body>
