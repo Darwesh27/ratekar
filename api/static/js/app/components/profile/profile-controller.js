@@ -1,12 +1,19 @@
 (function() {
 
 	angular.module("rateker.profile").
-	controller('profileController', ['profileConsts','$scope', function(profileConsts, $scope){
-		$scope.profile  = {
-			name : "Malik Junaid",
-			url: "/#/malik.junaid",
-			imageUrl : "static/img/mj2.jpg",
-			reputation: 6.7,
-		}
-	}])
+	controller('profileController', [
+		'profileConsts',
+		'$scope', 
+		'Me',
+		'Profile',
+		'$stateParams',
+		'$route',
+		'$interval',
+		'$timeout',
+		'profile',
+		function(profileConsts, $scope, Me, Profile, $stateParams, $route, $interval, $timeout, profile){
+
+			$scope.profile = profile;
+
+		}]);
 })();

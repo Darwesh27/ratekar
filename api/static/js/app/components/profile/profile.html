@@ -1,5 +1,5 @@
 
-<div class = "profile" ng-controller="profileController">
+<div class = "profile">
 
 <!-- Profile header -->
 	<div class = "profile-header-wrapper" layout = "horizontal">
@@ -16,7 +16,7 @@
 			</div>
 			<div layout = "vertical" layout-align = "start center" flex>
 				<div class = "profile-reputation">
-					<md-progress-linear mode = "determinate" 	ng-value = "{{profile.reputation * 10}}"></md-progress-linear>
+					<md-progress-linear mode = "determinate" ng-value = "{{profile.reputation * 10}}"></md-progress-linear>
 				</div>
 			</div>
 		</div>

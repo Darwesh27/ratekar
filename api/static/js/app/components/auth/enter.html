@@ -1,0 +1,28 @@
+<div layout = "horizontal" layout-fill class="enter">
+	<div class="login-panel-wrapper" ng-controller="loginController">
+		<md-input-group layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+			<label for = "login-form-cred">Email or username..</label>
+
+			<md-input  required id = "login-form-cred" flex type = "text" ng-model = "cred"></md-input>
+		</md-input-group>
+
+		<md-input-group layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+			<label for = "login-form-pass">Password..</label>
+			<md-input  required id = "login-form-pass" flex type = "password" ng-model = "pass"></md-input>
+		</md-input-group>
+
+		<span> {{error}} </span>
+
+		<div layout = "horizontal" layout-align="end center">
+			<md-button class= "md-theme-green md-button-raised login-button" ng-click="logIn()">Login</md-button>
+		</div>
+
+		<div class="social-login-panel">
+			<md-button class= "md-button-raised login-button-facebook">Facebook</md-button>
+			<md-button class= "md-theme-red md-button-raised login-button-google">Google</md-button>
+			
+		</div>
+	</div>
+	<div class="enter-center-pane" flex></div>
+	<div class="signup-panel-wrapper" ng-controller = "signupController" ng-include = "'/static/js/app/components/auth/signup-panel.html'"></div>
+</div>

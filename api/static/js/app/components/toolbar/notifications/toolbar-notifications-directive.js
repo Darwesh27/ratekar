@@ -1,14 +1,19 @@
 (function () {
 		
 	angular.module("rateker.rkToolbar.rkNotifications").
-	directive('toolbarNotifications', ['notiConsts', function(notiConsts){
+	directive('toolbarNotifications', ['notiConsts', 'notificationsService' , function(notiConsts, notificationsService){
 		// Runs during compile
 		return {
 			// name: '',
 			// priority: 1,
 			// terminal: true,
-			// scope: {}, // {} = isolate, true = child, false/undefined = no change
-			// controller: function($scope, $element, $attrs, $transclude) {},
+			scope: {}, // {} = isolate, true = child, false/undefined = no change
+			controller: function($scope, $element, $attrs, $transclude) {
+
+				$scope.notifications = notificationsService.notifications;
+				$scope.friendRequests = notificationsService.friendRequests;
+				$scope.messages = notificationsService.messages;
+			},
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',

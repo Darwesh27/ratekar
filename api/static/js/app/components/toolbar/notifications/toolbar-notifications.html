@@ -5,7 +5,7 @@
 				<div class="notification-icon-wrapper">
 					<md-icon icon = "/static/img/bell-outline/svg/bell-outline.svg"></md-icon>
 				</div>
-				<div class = "notification-count">6</div>
+				<div class = "notification-count" ng-show = "notifications.count > 0">{{notifications.count}}</div>
 			</div>	
 		</div>
 		<div class = "noti-boundry"> 
@@ -13,7 +13,7 @@
 				<div class="notification-icon-wrapper">
 					<md-icon icon = "/static/img/account-outline/svg/account-outline.svg"></md-icon>
 				</div>
-				<div class = "notification-count">4</div>
+				<div class = "notification-count">{{friendRequests.count}}</div>
 			</div>	
 		</div>
 
@@ -22,7 +22,7 @@
 				<div class="notification-icon-wrapper">
 					<md-icon icon = "/static/img/email/svg/email.svg"></md-icon>
 				</div>
-				<div class = "notification-count">4</div>
+				<div class = "notification-count">{{messages.count}}</div>
 			</div>	
 		</div>
 	</div>

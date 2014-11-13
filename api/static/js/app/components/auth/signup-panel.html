@@ -1,0 +1,36 @@
+		
+		<div layout = "horizontal">
+			<md-input-group flex class = " login-form-input md-input-group-theme-green" >
+				<label for = "signup-form-first-name">First Name</label>
+
+				<md-input  id = "signup-form-firstname" type = "text" ng-model = "signup.firstname"></md-input>
+			</md-input-group>
+
+			<md-input-group flex class = " login-form-input md-input-group-theme-green" >
+				<label for = "signup-form-cred">Last Name</label>
+
+				<md-input  id = "signup-form-lastname" type = "text" ng-model = "signup.lastname"></md-input>
+			</md-input-group>
+		</div>
+
+		<md-input-group layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+			<label for = "signup-form-username">Username..</label>
+			<md-input  id = "signup-form-username" flex type = "text" ng-model = "signup.username"></md-input>
+		</md-input-group>
+
+		<md-input-group layout = "vertical" class = "login-form-input md-input-group-theme-green" >
+			<label for = "signup-form-email">Email</label>
+			<md-input  id = "signup-form-email" flex type = "text" ng-model = "signup.email"></md-input>
+		</md-input-group>
+
+
+		<md-input-group layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+			<label for = "signup-form-password">Password</label>
+			<md-input  id = "signup-form-password" flex type = "password" ng-model = "signup.password"></md-input>
+		</md-input-group>
+
+		<span> {{error}} </span>
+
+		<div layout = "horizontal" layout-align="end center">
+			<md-button class= "md-theme-green md-button-raised login-button" ng-click="signUp()">Signup</md-button>
+		</div>
