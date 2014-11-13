@@ -72,6 +72,17 @@ class User(AbstractBaseUser):
 		return self.myRatings.aggregate(repo = Avg('reputation'))
 
 
+	def profile(self):
+		from social.serializers import UserSerializer
+		user_data = UserSerializer(self).data
+		user_data['reputation'] = self.repo()['repo']
+		user_data['url'] = "/#/" + self.username
+		user_data['imageUrl'] = "static/img/mj2.jpg"
+		user_data['name'] = self.firstname + " " + self.lastname
+
+		return user_data
+
+
 
 
 
