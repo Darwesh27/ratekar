@@ -1,6 +1,10 @@
-<div class="reviews">
+<div class="reviews-wrapper">
 
-	<div ng-repeat="review in reviews">
-		<review review="review"></review>
+	<my-review></my-review>
+	<div class="reviews">
+		<div ng-repeat="review in reviews">
+			<review review="review"></review>
+		</div>
+		
 	</div>
 </div>

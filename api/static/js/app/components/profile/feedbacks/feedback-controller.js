@@ -1,7 +1,12 @@
 (function() {
 
 	angular.module("rateker.profile").
-	controller('feedbacksController', ['$scope', function($scope){
+	controller('feedbacksController', [
+		'$scope', 
+		'data',
+		function($scope, data){
+
+			$scope.data = data;
 		$scope.feedbacks = [
 			{
 				trait: "Adventerous",

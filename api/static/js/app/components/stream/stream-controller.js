@@ -26,37 +26,6 @@
 							'some random text' + 
 							'some random text'
 						},
-
-						comments : [
-							{
-								text: "This is a nice comment"
-							},
-							{
-								text: "This is another nice comment"
-							},
-							{
-								text: "This is yet another nice comment" +
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text " + 
-								" Some random text "
-							},
-							{
-								text: "This is a bad comment"
-							},
-							{
-								text: "This is another bad comment"
-							},
-
-						]
 					},
 				]
 			}

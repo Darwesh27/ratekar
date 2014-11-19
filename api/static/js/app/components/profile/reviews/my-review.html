@@ -1,0 +1,30 @@
+<div class="my-review-wrapper md-whiteframe-z1" layout = "vertical" layout-align = "start center">
+
+	<div> Your views about {{profile.firstname}} </div>
+
+	<div class="my-review" ng-show = "canShow()" layout = "vertical" layout-align = "start center"> 
+
+		<div class="my-review-inner-wrapper md-whiteframe-z1">
+			{{myReview}}
+		</div>
+
+		<div>
+			<a href="" ng-click="edit()"> Change Views </a>
+		</div>
+	</div>
+
+	<div class="my-review" ng-show="onEdit">
+		
+		<textarea ng-model = "newReview" msd-elastic = "" class = "my-review-inner-wrapper md-whiteframe-z1">
+			
+		</textarea>
+
+		<div layout = "horizontal" layout-align = "center">
+			<md-button ng-click = "cancel()" class = "button-small md-button-raised">Cancel </md-button>
+
+			<md-button ng-click = "give()" class = "button-small md-button-raised md-theme-green">Done </md-button>
+		</div>
+
+	</div>
+
+</div>

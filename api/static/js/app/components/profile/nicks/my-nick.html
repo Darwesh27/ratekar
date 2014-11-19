@@ -1,0 +1,40 @@
+
+<div class="my-nick-wrapper md-whiteframe-z1" layout = "vertical" layout-align = "start center">
+	
+	<div class="my-nick" ng-show="canShow()" layout = "vertical" layout-align = "center center">
+		<span> You call {{profile.username}} </span>
+		<span class = "my-nick-name">{{myNick}}</span>
+
+		<div layout = "horizontal" layout-align = "end center">
+			<a href = "" ng-click = "edit()" >Change</a>
+		</div>
+	</div>
+
+
+
+	<div class="my-nick" ng-show="noNick()" layout = "vertical" layout-align = "center center">
+
+		<span> 
+		What do you call {{profile.firstname}}
+		</span>
+
+		<md-input-group layout = "vertical" class = "md-input-group-theme-green" >
+			<md-input  flex type = "text" ng-model = "newNick" suggest-nick></md-input>
+			<div ng-show = "suggestions.length > 0" flex class = "my-nick-suggestion-menu md-whiteframe-z1"	layout="vertical">
+				<div ng-repeat="suggestion in suggestions" class = "my-nick-suggestion-menu-item"> 
+					<a href = "" ng-click = "select(suggestion)"> {{suggestion}} </a> 
+				</div>
+			</div>
+		</md-input-group>
+
+
+		<div layout = "horizontal">
+
+			<md-button class = "md-button-raised button-small" ng-click="cancel()"> Cancel </md-button>
+
+			<md-button class = "md-theme-green md-button-raised button-small" ng-click="give()"> Give </md-button>
+
+		</div>
+
+	</div>
+</div>

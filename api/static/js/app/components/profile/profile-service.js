@@ -12,9 +12,34 @@
 		this.profile = null;
 
 
+		this.ready = function() {
+			var deffered = $q.defer();
+
+			$timeout(function(){
+				while(Profile.profile == null){
+				}
+
+				deffered.resolve(true);
+			},500);
+
+			return deffered.promise;
+		}
+
+
+		this.username = function() {
+			var deffered = $q.defer();
+
+			Profile.ready().
+			then(function() {
+				deffered.resolve(Profile.profile.username);
+			});
+
+			return deffered.promise;
+		}
+
+
 		this.check = function() {
 
-			console.log("Hello");
 			var deffered = $q.defer();
 
 			$timeout(function() {
@@ -26,8 +51,10 @@
 
 		this.init = function(username) {
 
+			console.log("In the init");
+
 			// First delete the preivous profile
-			this.profile = null;
+			Profile.profile = null;
 
 
 			var defer = $q.defer();

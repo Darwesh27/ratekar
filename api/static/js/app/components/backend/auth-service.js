@@ -3,9 +3,12 @@
 	service('Auth', [
 		'$http', 
 		'Me', 
-		function($http, Me){
+		'$location',
+		function($http, Me, $location){
 
 			var Auth = this;
+
+			this.beforeUrl = "/";
 
 			var loginStatus = false;
 
@@ -46,6 +49,10 @@
 
 						// User is logged in
 						loginStatus = true;
+
+						// Redirect to previous url or hoe
+						console.log(Auth.beforeUrl);
+						$location.path(Auth.beforeUrl);
 					}
 					else {
 						cb(data.error);
@@ -62,6 +69,7 @@
 					Me.destroy();
 
 					loginStatus = false;
+
 				});
 			};
 

@@ -1,11 +1,34 @@
 (function() {
 	angular.module('rateker.backend').
-	service('Urls', ['Profile', function(Profile){
+	service('Urls', [
+		'Profile', 
+		function(Profile){
 
-		var uPref = 'api/user/';
-		
-		this.thougts = function(username) {
-			return uPref + username + '/thoughts';
-		}
-	}])
+			var Urls = this;
+
+			var uPre = '/api/user/';
+
+
+			var pre = function(username) {
+				return uPre + username + "/";
+			}
+			
+			this.get = function(resource) {
+
+				return Profile.username().then(
+					function(u){
+						return pre(u) + resource + "/";
+					}
+				);
+			}
+
+			this.comments = function(postId) {
+				return "api/post/" + postId + "/comments/";
+			}
+
+			this.nick = function() {
+				return Urls.get('mynick');
+			}
+
+		}]);
 })();

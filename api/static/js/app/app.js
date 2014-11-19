@@ -7,8 +7,7 @@
 	*/
 
 	'use strict';
-
-	angular.module('rateker', [
+	var app = angular.module('rateker', [
 		'rateker.rkToolbar', 
 		'rateker.stream',
 		'rateker.profile',
@@ -16,9 +15,37 @@
 		'ngRoute',
 		'ui.router',
 		'ngCookies',
-		'angular-loading-bar'
+		'angular-loading-bar',
+		'monospaced.elastic',
 
-	]).
+	]);
+
+	var fetchData = function() {
+		var initInjector = angular.injector(["ng"]);
+		var $q = initInjector.get("$q");
+		var $timeout = initInjector.get("$timeout");
+
+
+		var d = $q.defer();
+
+
+
+		$timeout(function() {
+			d.resolve();
+		}, 200);
+
+		return d.promise;
+	}
+
+	var bootstrapApp = function() {
+		angular.element(document).ready(function() {
+			angular.bootstrap(document, ["rateker"]);
+		});
+	}
+
+	fetchData().then(bootstrapApp);
+
+	app.
 	run(['$http', '$cookies', '$cookieStore', 'Auth' , function($http, $cookies, $cookieStore, Auth) {
 		$http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
 	}]).
@@ -41,7 +68,6 @@
 				resolve: {
 					Profile: 'Profile',
 					profile: function($stateParams, Profile, $http) {
-						console.log("G G ");
 						// return Profile.check();
 						return Profile.init($stateParams.username);
 						// return $http.get('api/user/' + $stateParams.username + '/profile/');
@@ -64,24 +90,51 @@
 				url: '/feedbacks',
 				templateUrl: "static/js/app/components/profile/feedbacks/feedbacks.html",
 				controller: 'feedbacksController',
+				resolve: {
+					data: function(Feedbacks) {
+						return Feedbacks.get();
+					}
+				}
 			})
 			.state('profile.profile.reviews', {
 				url: '/reviews',
 				templateUrl: "static/js/app/components/profile/reviews/reviews.html",
 				controller: 'reviewsController',
+				resolve: {
+					data: function(Reviews) {
+						return Reviews.get();
+					}
+				}
 			})
 			.state('profile.profile.nicks', {
 				url: '/nicks',
 				templateUrl: "static/js/app/components/profile/nicks/nicks.html",
-				controller: 'nicksController'
+				controller: 'nicksController',
+				resolve: {
+					data: function(Nicks) {
+						return Nicks.get();
+					}
+				}
 			})
 			.state('profile.timeline.thoughts', {
 				url: '',
 				templateUrl: "static/js/app/components/profile/thoughts/thoughts.html",
+				controller: 'thoughtsController',
+				resolve: {
+					data: function(Thoughts) {
+						return Thoughts.get();
+					}
+				}
 			})
 			.state('profile.timeline.photos', {
 				url: '/photos',
 				templateUrl: "static/js/app/components/profile/photos/photos.html",
+				controller: 'photosController',
+				resolve: {
+					data: function(Photos) {
+						return Photos.get();
+					}
+				}
 			})
 
 		// $routeProvider.when('/',{
@@ -92,8 +145,11 @@
 		// })
 
 	}]).
-
 	controller('TestCtrl', ['$scope', 'searchService', function($scope, searchService){
 
 	}]);
+
+
+
+
 })();

@@ -1,6 +1,12 @@
 (function() {
 	angular.module("rateker.profile").
-	controller('reviewsController', ['$scope', '$timeout' , function($scope, $timeout){
+	controller('reviewsController', [
+		'$scope', 
+		'$timeout',
+		'data',
+		 function($scope, $timeout, data){
+			console.log("Reviews" + data);
+		 	$scope.data = data;
 		$scope.reviews = [
 			{
 				text: "Hello this is a review. And it is a very good review. It is a very assome " +
