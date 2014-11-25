@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
 from social.serializers import UserSerializer, FriendslistSerializer, FriendshipSerializer
+from api.errors import query_error
 
 @api_view(['POST'])
 def signup(request):
@@ -60,6 +61,43 @@ def signout(request):
 	return Response({"message": "logged out successfully"})
 	
 
+
+@api_view(['GET', 'POST']) 
+def check_username(request):
+	username = request.DATA.get('username', '')
+
+	res = {}
+
+	if(username != ''): 
+		users = User.objects.filter(username = username)
+
+		if(len(users) > 0):
+			res['exists'] = True
+		else:
+			res['exists'] = False
+
+		return Response(res)
+	else:
+		return Response(query_error())
+
+
+@api_view(['GET', 'POST']) 
+def check_email(request):
+	email = request.DATA.get('email', '')
+
+	res = {}
+
+	if(email != ''): 
+		users = User.objects.filter(email = email)
+
+		if(len(users) > 0):
+			res['exists'] = True
+		else:
+			res['exists'] = False
+
+		return Response(res)
+	else:
+		return Response(query_error())
 	
 	
 

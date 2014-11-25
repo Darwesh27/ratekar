@@ -28,10 +28,18 @@ profile_patterns = patterns('',
 
 urlpatterns = patterns('',
 
+	##########################################################
 	# Authentication
+	##########################################################
+
+	# The names suggest
 	url(r'^signup/$', views.signup),
 	url(r'^login/$', views.signin),
 	url(r'^logout/$', views.signout),
+
+	# Checking the availibility of username and email
+	url(r'^signup/check/username/$', views.check_username),
+	url(r'^signup/check/email/$', views.check_email),
 
 
 	# User data 
@@ -63,12 +71,15 @@ urlpatterns = patterns('',
 	url(r'^post/(?P<pid>\d+)/comments/$', views.comments),
 
 
-	#
+	###########################################################
 	# Different Types of suggestions
-	#
+	###########################################################
 
 	# Friend Suggestions 
 	url(r'^suggestions/friends/$', views.friend_suggestions),
+
+
+	###########################################################
 
 
 )
