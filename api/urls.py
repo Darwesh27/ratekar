@@ -27,25 +27,47 @@ profile_patterns = patterns('',
 )
 
 urlpatterns = patterns('',
+
+	# Authentication
 	url(r'^signup/$', views.signup),
 	url(r'^login/$', views.signin),
 	url(r'^logout/$', views.signout),
+
+
+	# User data 
+	url(r'^user/(?P<username>\w+)/', include(profile_patterns)),
+
+
+	# Social services like adding people to list and things
+	url(r'^user/(?P<uid>\d+)/', include(user_patterns)),
+	url(r'^friendslist/$', views.friendslist),
+
+	# Friend Request sending and approval 
 	url(r'^friendship/$', views.friendship),
 	url(r'^friendship/(?P<fid>\d+)/$', views.friendship_details),
-	url(r'^user/(?P<uid>\d+)/', include(user_patterns)),
-	url(r'^user/(?P<username>\w+)/', include(profile_patterns)),
-	url(r'^user/(?P<username>\w+)/check/$', views.profile),
 
-	url(r'^friendslist/$', views.friendslist),
 	#url(r'^friendslist/(?<pk>\d+)/$', views.friendslist_details),
+
+
+	# Liking a your reivew by someone
 	url(r'^review/(?P<rid>\d+)/like', views.like_review),
+
+
+	# This is chuss
 	url(r'^me/reviews/$', views.my_reviews),
 	url(r'^me/feedbacks/$', views.my_feedbacks),
 	url(r'^me/nicks/$', views.my_nicks),
 
+
+	# Comments endpoint.. Fetching comments of a post
 	url(r'^post/(?P<pid>\d+)/comments/$', views.comments),
 
 
+	#
+	# Different Types of suggestions
+	#
+
+	# Friend Suggestions 
 	url(r'^suggestions/friends/$', views.friend_suggestions),
 
 
