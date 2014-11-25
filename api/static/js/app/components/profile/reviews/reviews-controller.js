@@ -91,9 +91,10 @@
 		];
 
 
-		$timeout(initWookmark, 100);
+		$timeout(initWookmark, 1000);
 
 		function initWookmark () {
+			console.log("initWookmark");
 			angular.element(".review-wrapper").wookmark({
 				container: angular.element(".reviews"),
 				direction: "left",

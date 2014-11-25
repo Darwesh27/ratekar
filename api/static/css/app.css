@@ -1,59 +1,180 @@
 
+html {
+	min-width: 960px;
+}
+
 body {
-	min-width: 995px;
+	min-width: 960px;
 	font-weight: 300;
 }
 
-
-.toolbar-logo {
-	min-width: 50px;
-	width: 100px;
+.global-container {
+	min-height: 100%;
+	height: auto;
+	width: 100%;
+	min-width: 960px;
+	position: absolute;
+	background-color: #f5f5f5;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-.toolbar-notifications {
-	min-width:100px;
-	width: 100px;
 
+.logout {
+	font-size: 15px;
 }
 
-.toolbar-settings {
-	min-width:100px;
-	width: 100px;
+
+.aa {
+	min-width: 755px;
 }
+
+.avatar {
+	border-radius: 50%	;
+}
+
+
 
 
 .stream {
-	min-width: 550px;
-	width: 550px;
-	border-left: 1px solid rgb(226, 226, 226);
-	margin-left: 200px;
+	min-width: 500px;
+	width: 500px;
+	/*border-left: 1px solid rgb(226, 226, 226);*/
+	margin-left: 150px;
+}
+
+.main-right-pane {
+	width: 310px;
+	height: 500px;
+	padding-top:  
+}
+
+.main-right-pane-info {
+	margin-top: 15px;
+	margin-left: 15px;
+	background-color: white;
+	height: 200px;
+
 }
 
 
 
-.noti-cntr {
-	position: relative;
-}
 
 .notification-icon-wrapper {
 	opacity: 0.8;
+}
+
+.notification-icon-wrapper md-icon{
+	margin: 0px;
 }
 
 .notification-icon-wrapper:hover {
 	opacity: 1;
 }
 
+.notification-type {
+	font-size: 12px;
+}
+
+.noti-cntr {
+	position: relative;
+}
+
 .noti-boundry {
 	padding: 0px 5px 0px 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 64px;
+	position: relative;
+	cursor: pointer;
 }
-.notification-count {
+
+.timka{
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	width: 1px;
+	height: 1px;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 9px solid black;
+
+}
+
+.dropdown-caret {
+	position: absolute;
+	top: -10px;
+	left: 12px;
+	width: 18px;
+	height: 10px;
+	float: left;
+	overflow: hidden;
+}
+
+.dropdown-caret .caret-outer, .dropdown-caret .caret-inner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    margin-left: -1px;
+}
+
+.dropdown-caret .caret-outer {
+	border-bottom: 10px solid rgba(0, 0, 0, 0.1);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	height: auto;
+	left: 0px;
+	top: 0px;
+	width: auto;
+}
+
+.dropdown-caret .caret-inner {
+    top: 1px;
+    left: 1px;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid rgba(255, 255, 255, 0.98);
+}
+
+
+.rk-dropdown .dropdown-caret {
+	left: auto;
+	right: 30px;
+}
+
+.rk-dropdown {
+	display: none;
+	right: 0px;
+	position: absolute;
+}
+
+.rk-dropdown-menu {
+	background-color: white;
+	box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+	height: 100px;
+	width: 300px;
+}
+
+.rk-dropdown-toolbar {
+	top: 64px;
+}
+
+.show-menu {
+	display: block;
+}
+
+/*.noti-boundry:hover {
+	border-bottom: 1px solid #f1f1f1;
+}
+*/.notification-count {
 	min-width: 15px;
 	height: 15px;
 	background-color: white;
 	position: absolute;
 	color: #0f9d58;
-	top: -2px;
-	left: 10px;
+	top: -5px;
+	left: 15px;
 	z-index: 10;
 	font-size: 13px;
 	font-weight: 700;
@@ -75,9 +196,8 @@ body {
 
 
 .left-pane {
-	min-width: 200px;
-	padding: 20px;
-	position: fixed;
+	min-width: 150px;
+	position: absolute;
 }
 
 .left-pane-inner-wrapper {
@@ -131,22 +251,93 @@ body {
 
 .right-pane {
 	border-left: 1px solid rgb(226, 226, 226);
-	min-width: 210px;
-	position: fixed;
+	min-height: 100%;
+	position: absolute;
+}
+
+.rp-suggestions {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding-bottom: 15px;
+	background-color: white;
+
+}
+
+.friend-suggestion-wrapper {
+	width: 200px;
+	height: 60px;
+	margin-top: 15px;
+	margin-left: 15px;
+	background-color: white;
+}
+
+.friend-suggestion-wrapper ._left {
+	width: 60px;
+	min-width: 60px;
+}
+
+.friend-suggestion-wrapper ._right {
+	width: 120px;
+	min-width: 120px;
+	padding-left:15px;
+}
+
+
+.friend-suggestion-avatar {
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
+	min-height: 60px;
+	background-color: #0f9d58;
+	border-radius: 50%;
+}
+
+.friend-suggestion-avatar img{
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
+	min-height: 60px;
+	border-radius: 50%;
+}
+
+.friend-suggestion-rating {
 	width: 100%;
-	height: 100%;
-	z-index: 10;
+	padding-top: 5px;
+}
+
+.friend-suggestion-mutual {
+	font-size: 10px; 
+	padding-top: 9px;
+}
+
+.friend-suggestion-name {
+	font-weight: 400;
+	height: 20px;
+}
+
+.friend-suggestion-add {
+}
+
+.friend-suggestion {
+	width: 100px;
+	height: 50px;
+	background-color: #0f9d58;
 }
 
 
 
+.new-post {
+	min-height: 118px;
+	margin-left: 10px;
+	margin-top: 15px;
+	background-color: white;
+}
+
 .stream-post {
-	margin: 10px;
+	margin-top: 15px;
+	margin-left: 10px;
 	padding: 10px;
-	margin-top: 50px;
-
-
-
+	background-color: white;
 }
 
 .post-header {
@@ -288,12 +479,35 @@ input[type = "text"] {
 	border-radius: 50%;
 }
 
-
 .toolbar {
-	position: fixed;
+	min-width: 960px;
 	width: 100%;
+	height: 64px;
+	background-color: #0f9d58!important;
+	color: #f1f1f1!important;
+	position: absolute;
 	z-index: 1000;
 }
+
+.toolbar-logo {
+	min-width: 50px;
+}
+
+.toolbar-notifications {
+	width: 325px;
+	min-width: 325px;
+}
+
+.toolbar-settings {
+}
+
+.toolbar-adjust-right {
+	height: 1px;
+	padding: 0px;
+	margin: 0px;
+}
+
+
 
 .content-wrapper {
 	margin-top: 64px;
@@ -309,7 +523,6 @@ input[type = "text"] {
 }
 
 .toolbar-search {
-	min-width: 500px;
 	font-size: 15px;
 }
 
@@ -484,8 +697,76 @@ input[type = "text"] {
 }
 
 .feedbacks {
-	padding: 20px;
+	padding: 50px;
 }
+
+.my-feedback-wrapper {
+	margin: 50px;
+	margin-top: 0px;
+	padding: 10px;
+}
+
+.my-feedback-wrapper h3 {
+	margin: 0px;
+	margin-top: 20px;
+}
+
+.my-feedback-wrapper p {
+	margin: 0px;
+	margin-top: 20px;
+	font-size: 12px;
+}
+.my-feedback-icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #f2f2f2;
+}
+
+.my-feedback {
+	width: 100%;
+	padding: 10px;
+	background: #f1f1f1;
+	border-radius: 10px;
+	margin: 10px;
+	margin-top: 20px;
+
+
+
+}
+
+.my-feedback ._username {
+	font-size: 30px;
+}
+
+
+.vertical-separator {
+	min-height: 2px;
+	border-bottom: 1px solid #0f9d58;
+	margin: 10px;
+	width: 100%;
+}
+
+.my-feedback-inner-wrapper{
+	width: inherit;
+	padding: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.my-feedback-question {
+	text-align: center;
+}
+
+.my-feedback-answer {
+	width: 150px;
+}
+
+.my-feedback-skip {
+	width: inherit;
+	font-size: 12px;
+}
+
 
 .reviews-wrapper {
 	padding: 10px;

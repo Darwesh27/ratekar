@@ -23,6 +23,7 @@ profile_patterns = patterns('',
 	url(r'^mynick/$', views.my_nick),
 	url(r'^myreview/$', views.my_review),
 	url(r'^suggestnicks/$', views.suggest_nicks),
+	url(r'^feedback/$', views.feedback),
 )
 
 urlpatterns = patterns('',
@@ -43,6 +44,9 @@ urlpatterns = patterns('',
 	url(r'^me/nicks/$', views.my_nicks),
 
 	url(r'^post/(?P<pid>\d+)/comments/$', views.comments),
+
+
+	url(r'^suggestions/friends/$', views.friend_suggestions),
 
 
 )

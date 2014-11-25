@@ -12,6 +12,8 @@
 		'rateker.stream',
 		'rateker.profile',
 		'rateker.backend',
+		'rateker.right-pane',
+		'rateker.dropdown',
 		'ngRoute',
 		'ui.router',
 		'ngCookies',

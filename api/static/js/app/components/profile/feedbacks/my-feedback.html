@@ -1,0 +1,32 @@
+<div class="my-feedback-wrapper md-whiteframe-z1" layout = "vertical" layout-align = "start center">
+
+	<div class="my-feedback-icon"></div>
+
+	<h3> Give feedback about this person </h3>
+
+	<p> Feedbacks lets people improve their personality.. </p>
+
+
+	<div class="my-feedback" layout = "vertical" layout-align = "start center">
+
+		<div class="_username"> {{profile.name}} </div>
+
+		<div class="vertical-separator"></div>
+
+
+		<div class="my-feedback-inner-wrapper" flex layout = "vertical" layout-align = "start center">
+			<div class="my-feedback-question">
+				{{feedback.text}}
+			</div>
+
+			<div class="my-feedback-answer" flex>
+				<md-slider md-discrete ng-model="feedback.rating" step = "1" min="1" max="5"></md-slider>
+			</div>
+		</div>
+
+		<div class = "my-feedback-skip" layout = "horizontal" flex layout-align = "end">
+			<a href="" ng-click = "skip()">skip</a>
+		</div>
+	</div>
+
+</div>

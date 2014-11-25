@@ -13,10 +13,14 @@
 
 	<body ng-controller="appController" layout = "vertical"> 
 		<rk-toolbar ng-show = "isLoggedIn"></rk-toolbar>
-		<md-toolbar class = "md-theme-green md-whiteframe-z1"></md-toolbar>
-		<div layout = "horizontal">
-			<div ui-view ng-class="{'strech-vertical': !isLoggedIn}"></div>
-			<div class = "right-pane" flex ng-show = "isLoggedIn" ng-include="'/static/js/app/components/right-pane/right-pane.html'"></div>
+		<md-toolbar class = "md-theme-green "></md-toolbar>
+		<div class="global-container" layout = "horizontal" layout-align = "start start">
+			<div ui-view></div>
+ 			<div class = "right-pane" adjust-right-pane ng-show="isLoggedIn">
+				<ng-include src="'/static/js/app/components/right-pane/right-pane.html'"></ng-include>
+			</div>
+
+			<div class="right-pane-bro" flex></div>
 		</div>
 
 		{% compressed_js 'check' %}

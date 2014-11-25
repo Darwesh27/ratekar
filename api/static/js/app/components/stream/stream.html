@@ -1,7 +1,10 @@
-<div ng-controller="TestCtrl">
-	<div layout = "horizontal"> 
+	<div layout = "horizontal" ng-controller="TestCtrl"> 
 		<div class="left-pane" flex ng-include="'/static/js/app/components/stream/left-pane/left-pane.html'"></div>
 		<div class = "stream" ng-controller="StreamCtrl">
+
+			<new-post></new-post>
+
+
 			<div ng-repeat="post in posts">
 				<rk-post post = "post"></rk-post>
 				<rk-post post = "post"></rk-post>
@@ -9,5 +12,11 @@
 				<rk-post post = "post"></rk-post>
 			</div>
 		</div>
+
+		<div class="main-right-pane">
+			<friend-suggestions></friend-suggestions>
+			<rk-info></rk-info>
+		</div>
+
+
 	</div>
-</div>

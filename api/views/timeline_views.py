@@ -69,7 +69,7 @@ def comments(request, pid):
 def my_nick(request, username):
 
 
-	nick = request.DATA.get('nick', 'chotia');
+	nick = request.DATA.get('nick', 'Dummy');
 	data = {
 		"nick": nick,
 	}
@@ -99,3 +99,88 @@ def suggest_nicks(request, username):
 		'Chawal',
 	]
 	return Response(data);
+
+
+@api_view(['GET', 'POST'])
+def feedback(request, username):
+
+	feedbacks = [
+		{
+			'id': 0,
+			'text': "Punctual",
+			'rating': None,
+		},
+		{
+			'id': 1,
+			'text': "Looks nice in Long hair..",
+			'rating': None,
+		},
+		{
+			'id': 2,
+			'text': "Keeps his promise..",
+			'rating': None,
+		},
+	]
+
+	feedback = request.DATA.get('feedback', feedbacks[0])
+
+	feedback = feedbacks[(feedback['id'] + 1)%2]
+
+
+	return Response(feedback);
+
+
+@api_view(['GET', 'POST']) 
+def friend_suggestions(request):
+
+	if request.method == "POST":
+		print request.DATA['exclude']
+
+		return Response({
+			"name": "New",
+			"imgUrl": "/static/img/mj2.jpg",
+			"rating": 4.3,
+			"mutual": 5,
+			"username": "new",
+		})
+
+	data = [
+		{
+			"name": "Rafaqat Ali Raali",
+			"imgUrl": "/static/img/mj2.jpg",
+			"rating": 4.3,
+			"mutual": 5,
+			"username": "raali",
+		},
+		{
+			"name": "Ali Masood",
+			"imgUrl": "/static/img/mj2.jpg",
+			"rating": 5.8,
+			"mutual": 5,
+			"username": "ali",
+		},
+		{
+			"name": "Kamil Khitab",
+			"imgUrl": "/static/img/mj2.jpg",
+			"rating": 9.6,
+			"mutual": 5,
+			"username": "kamil",
+		},
+		{
+			"name": "Malik Junaid",
+			"imgUrl": "/static/img/mj2.jpg",
+			"rating": 6.8,
+			"mutual": 5,
+			"username": "darwesh",
+		},
+	]
+
+	return Response(data);
+
+
+
+
+
+
+
+

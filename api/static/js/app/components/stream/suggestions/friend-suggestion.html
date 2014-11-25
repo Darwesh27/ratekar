@@ -1,0 +1,19 @@
+
+<div class = "friend-suggestion-wrapper" layout = "horizontal">
+	<div class="friend-suggestion-avatar">
+		<img ng-src="{{suggestion.imgUrl}}">
+	</div>
+
+	<div class="_right" layout = "vertical" layout-align = "center start">
+
+		<div flex></div>
+
+		<div class="friend-suggestion-name">
+			{{suggestion.name | adjustLength:15}}
+		</div>
+
+		<div class="friend-suggestion-add" flex>
+			<a href="" ng-click="add()">Add Friend </a>
+		</div>
+	</div>
+</div>

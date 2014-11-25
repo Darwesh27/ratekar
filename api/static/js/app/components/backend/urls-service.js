@@ -30,5 +30,9 @@
 				return Urls.get('mynick');
 			}
 
+			this.friendSuggestions = function() {
+				return '/api/suggestions/friends/';
+			}
+
 		}]);
 })();

@@ -7,5 +7,10 @@
 			return "Sorry we are unable to fetch " + more + resource;
 		}
 
+
+		this.friendSuggestions = function() {
+			return "Some went wrong.. :P We are unable to fetch friend suggestions.. ";
+		}
+
 	}])
 })();

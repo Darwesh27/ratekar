@@ -22,20 +22,6 @@
 				// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 				link: function($scope, iElm, iAttrs, controller) {
 
-					var textarea = angular.element(iElm.children[2]);
-
-					console.log(textarea);
-					console.log(textarea.offset());
-
-					$scope.keyUp = function(e) {
-						console.log("Hello");
-
-						console.log(textarea.innerHeight());
-					}
-
-
-					console.log(iElm.children()[2]);
-
 
 					$scope.profile = Profile.profile;
 

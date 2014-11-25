@@ -127,6 +127,8 @@ PIPELINE_JS = {
             'js/app/components/stream/stream-module.js',
             'js/app/components/profile/profile-module.js',
             'js/app/components/backend/backend-module.js',
+            'js/app/components/right-pane/right-pane-module.js',
+            'js/app/helpers/dropdown-module.js',
             'js/app/*/*.js',
             'js/app/*/*/*.js',
             'js/app/*/*/*/*.js',
