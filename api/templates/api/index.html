@@ -18,7 +18,7 @@
 		<rk-toolbar ng-show = "isLoggedIn"></rk-toolbar>
 		<md-toolbar class = "md-theme-green "></md-toolbar>
 		<div class="global-container" layout = "horizontal" layout-align = "start start">
-			<div ui-view></div>
+			<ui-view></ui-view>
  			<div class = "right-pane" adjust-right-pane ng-show="isLoggedIn">
 				<ng-include src="'/static/js/app/components/right-pane/right-pane.html'"></ng-include>
 			</div>

@@ -7,6 +7,8 @@
 		'data',
 		 function($scope, Thoughts, Thought, data){
 
+		 	console.log("Chaliyae");
+
 		 	$scope.data = data;
 		
 		}]);

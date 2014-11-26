@@ -43,7 +43,7 @@ urlpatterns = patterns('',
 
 
 	# User data 
-	url(r'^user/(?P<username>\w+)/', include(profile_patterns)),
+	url(r'^user/(?P<username>[\w._-]+)/', include(profile_patterns)),
 
 
 	# Social services like adding people to list and things

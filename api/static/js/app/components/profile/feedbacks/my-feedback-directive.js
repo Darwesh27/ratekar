@@ -36,8 +36,6 @@
 						update = true;
 						recieving = false;
 						$scope.feedback = data;
-						console.log("Feedback updated");
-						console.log($scope.feedback);
 					}
 
 
@@ -64,12 +62,10 @@
 						}, 
 						function(value) {
 							if(!update) {
-								console.log("Feedback being changed");
 								Feedback.give($scope.feedback).then(showFeedback, showError);
 							}
 							else {
 								update = false;
-								console.log("Updated");
 							}
 						}
 					);

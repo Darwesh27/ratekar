@@ -5,7 +5,6 @@
 		'$timeout',
 		'data',
 		 function($scope, $timeout, data){
-			console.log("Reviews" + data);
 		 	$scope.data = data;
 		$scope.reviews = [
 			{
@@ -94,7 +93,6 @@
 		$timeout(initWookmark, 1000);
 
 		function initWookmark () {
-			console.log("initWookmark");
 			angular.element(".review-wrapper").wookmark({
 				container: angular.element(".reviews"),
 				direction: "left",

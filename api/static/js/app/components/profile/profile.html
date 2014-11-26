@@ -1,7 +1,10 @@
 
 <div class = "profile">
 
+	<div layout = "vertical" layout-align = "center" class = "no-content" ng-if = "!available" ng-include="errorPageUrl"> </div>
+
 <!-- Profile header -->
+	<div ng-if = "available">
 	<div class = "profile-header-wrapper" layout = "horizontal">
 		<div class = "profile-avatar-wrapper" layout = "horizontal" layout-align = "end center">
 			<div class = "profile-avatar-inner-wrapper md-whiteframe-z1" >

@@ -71,9 +71,7 @@
 				resolve: {
 					Profile: 'Profile',
 					profile: function($stateParams, Profile, $http) {
-						// return Profile.check();
 						return Profile.init($stateParams.username);
-						// return $http.get('api/user/' + $stateParams.username + '/profile/');
 					}
 				},
 				abstract: true,

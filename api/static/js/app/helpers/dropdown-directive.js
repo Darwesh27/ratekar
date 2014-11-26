@@ -40,12 +40,6 @@
 						},
 						post: function($scope, iElm, iAttrs, controller) {
 
-
-							iElm.ready(function(){
-								console.log(iElm.offset());
-								console.log(iElm.width());
-							});
-
 							iElm.click(function() {
 								var last = iElm.children().length - 1;
 								angular.element(iElm.children()[last]).toggleClass('show-menu');

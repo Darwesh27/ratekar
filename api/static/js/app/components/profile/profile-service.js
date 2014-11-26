@@ -62,14 +62,21 @@
 			// get data from server 
 			$http.get('api/user/' + username + '/profile/', {username: username}).
 			success(function(data) {
-				if(!data.error) {
-					Profile.profile = data;
 
-					defer.resolve(data);
-				}
-				else {
-					defer.reject(data);
-				}
+				Profile.profile = data;
+
+				defer.resolve(data);
+
+				// if(!data.error) {
+				// 	Profile.profile = data;
+
+				// 	defer.resolve(data);
+				// }
+				// else {
+
+				// 	console.log("Rejecting Data");
+				// 	defer.reject(data.error);
+				// }
 			});
 
 			return defer.promise;
