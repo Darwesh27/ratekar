@@ -14,6 +14,7 @@
 		'rateker.backend',
 		'rateker.right-pane',
 		'rateker.dropdown',
+		'rateker.auth',
 		'ngRoute',
 		'ui.router',
 		'ngCookies',

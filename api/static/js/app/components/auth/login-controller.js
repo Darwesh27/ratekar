@@ -1,5 +1,5 @@
 (function() {
-	angular.module("rateker.backend").
+	angular.module("rateker.auth").
 	controller('loginController', ['$scope', 'Auth', function($scope, Auth){
 
 		$scope.error  = "";

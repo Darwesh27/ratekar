@@ -52,7 +52,12 @@
 
 						// Redirect to previous url or hoe
 						console.log(Auth.beforeUrl);
-						$location.path(Auth.beforeUrl);
+
+						if(Auth.beforeUrl != "/enter") {
+							$location.path(Auth.beforeUrl);
+						}
+						else 
+							$location.path("/");
 					}
 					else {
 						cb(data.error);

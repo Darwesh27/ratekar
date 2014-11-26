@@ -1,5 +1,5 @@
 (function() {
-	angular.module("rateker.backend").
+	angular.module("rateker.auth").
 	controller('signupController', [
 		'$http', 
 		'$scope', 
@@ -11,6 +11,13 @@
 		$scope.signup.username = null;
 		$scope.signup.email = null;
 		$scope.signup.password = null;
+
+		$scope.uNameGood = false;
+		$scope.uNameBad = false;
+
+		$scope.emailGood = false;
+		$scope.emailBad = false;
+
 
 		var formValid = function() {
 			angular.forEach($scope.signup, function(value, key) {

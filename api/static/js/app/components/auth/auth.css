@@ -1,0 +1,84 @@
+.enter {
+	width: 100%;
+	min-width: 960px;
+}
+
+.login-panel-wrapper {
+	margin-top: 15px;
+	min-width: 300px;
+	width: 300px;
+	padding: 15px;
+	background-color: white;
+}
+
+.enter-center-pane {
+}
+
+.signup-panel-wrapper {
+	margin-top: 15px;
+	width: 400px;
+	min-width: 400px;
+	padding: 15px;
+	background-color: white;
+}
+
+.strech-vertical {
+	width: 100%;
+}
+
+.login-form-input {
+	margin-top: 25px;
+}
+
+.login-form-input label{
+	font-size: 15px;
+}
+
+#signup-form-firstname, #signup-form-lastname {
+	width: 185px;
+}
+
+.login-button {
+	margin-top: 30px;
+	height: 30px;
+	width: 100%;
+}
+
+.social-login-panel {
+	border-top: 1px solid grey;
+	margin-top: 30px;
+}
+
+.login-button-facebook {
+	margin-top: 30px;
+	height: 30px;
+	width: 100%;
+	background-color: #3b5998;
+}
+
+.login-button-google {
+	margin-top: 30px;
+	height: 30px;
+	width: 100%;
+}
+
+.signup-button-facebook {
+	
+}
+
+.signup-button-google {
+	
+}
+
+.button-small {
+	height: 30px;
+	margin: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+md-input-group .info-icon {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}

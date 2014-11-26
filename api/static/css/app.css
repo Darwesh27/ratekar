@@ -14,7 +14,7 @@ body {
 	width: 100%;
 	min-width: 960px;
 	position: absolute;
-	background-color: #f5f5f5;
+	background-color: #e5e5e5;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -878,85 +878,6 @@ input[type = "text"] {
 .my-nick-suggestion-menu-item {
 	margin-top: 5px;
 }
-
-.enter {
-	width: 100%;
-}
-
-.login-panel-wrapper {
-	min-width: 300px;
-	width: 300px;
-	padding: 10px;
-	padding-left: 40px;
-}
-
-.enter-center-pane {
-	min-width: 295px;
-}
-
-.signup-panel-wrapper {
-	width: 400px;
-	min-width: 400px;
-	padding: 10px;
-	padding-right: 40px;
-}
-
-.strech-vertical {
-	width: 100%;
-}
-
-.login-form-input {
-	margin-top: 25px;
-}
-
-.login-button {
-	margin-top: 30px;
-	height: 30px;
-	width: 100%;
-}
-
-.social-login-panel {
-	margin-top: 70px;
-	border: 1px solid #f1f1f1;
-}
-
-.login-button-facebook {
-	margin-top: 30px;
-	height: 30px;
-	width: 100%;
-	background-color: #3b5998;
-}
-
-.login-button-google {
-	margin-top: 30px;
-	height: 30px;
-	width: 100%;
-}
-
-.signup-button-facebook {
-	
-}
-
-.signup-button-google {
-	
-}
-
-.button-small {
-	height: 30px;
-	margin: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -106,6 +106,18 @@ STATIC_PATH = os.path.join(BASE_DIR, 'api/static/')
 
 # pipeline settings 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+PIPELINE_CSS = {
+    'core': {
+        'source_filenames' : (
+            'js/app/*/*.css',
+            'js/app/*/*/*.css',
+            'js/app/*/*/*/*.css',
+            'js/app/*/*/*/*/*.css',
+        ),
+        'output_filename': 'css/main.css',
+    }
+}
+
 PIPELINE_JS = {
     'check': {
         'source_filenames': (
@@ -128,6 +140,7 @@ PIPELINE_JS = {
             'js/app/components/profile/profile-module.js',
             'js/app/components/backend/backend-module.js',
             'js/app/components/right-pane/right-pane-module.js',
+            'js/app/components/auth/auth-module.js',
             'js/app/helpers/dropdown-module.js',
             'js/app/*/*.js',
             'js/app/*/*/*.js',

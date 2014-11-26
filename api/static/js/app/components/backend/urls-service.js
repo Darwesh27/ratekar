@@ -34,5 +34,13 @@
 				return '/api/suggestions/friends/';
 			}
 
+			this.checkUsername = function() {
+				return '/api/signup/check/username/';
+			}
+
+			this.checkEmail = function() {
+				return '/api/signup/check/email/';
+			}
+
 		}]);
 })();
