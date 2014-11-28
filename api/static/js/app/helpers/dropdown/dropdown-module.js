@@ -1,6 +1,6 @@
 (function() {
 	angular.module('rateker.dropdown', []).
 	constant('dropdownConsts', {
-		baseTempUrl: "/static/js/app/helpers/"
+		baseTempUrl: "/static/js/app/helpers/dropdown/"
 	});
 })();

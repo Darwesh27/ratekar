@@ -1,8 +1,9 @@
 (function() {
 	angular.module('rateker.dropdown').
-	directive('rkDropdown', [
+	directive('dropdown', [
 		'$timeout', 
-		function($timeout){
+		'dropdownConsts',
+		function($timeout, dropdownConsts){
 			// Runs during compile
 			return {
 				// name: '',
@@ -13,26 +14,11 @@
 				// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 				// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 				// template: '',
-				// templateUrl: '',
-				// replace: true,
-				// transclude: true,
+				templateUrl: dropdownConsts.baseTempUrl + "dropdown.html",
+				replace: true,
+				transclude: true,
 				// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 				compile: function(tElement, tAttrs) {
-
-					var caret = "";
-					caret += "<div class='dropdown-caret'>";
-					caret += "<span class='caret-outer'></span>";
-					caret += "<span class='caret-inner'></span>";
-					caret += "</div>";
-
-					var temp = "";
-					temp += "<div class='rk-dropdown rk-dropdown-toolbar'>";
-					temp += caret;
-					temp += "<div class='rk-dropdown-menu'>";
-					temp += "</div>";
-					temp += "</div>";
-
-					tElement.append(angular.element(temp));
 
 					return {
 						pre: function($scope, iElm, iAttrs, controller) {
@@ -40,10 +26,20 @@
 						},
 						post: function($scope, iElm, iAttrs, controller) {
 
-							iElm.click(function() {
-								var last = iElm.children().length - 1;
-								angular.element(iElm.children()[last]).toggleClass('show-menu');
+							var parent = angular.element(iElm.parent());
+
+							var elem = angular.element(parent.children()[0]);
+
+							elem.click(function(){
+								iElm.toggleClass('show-menu');
+							})
+
+							$(document).on('click', function(event) {
+							  if (!$(event.target).closest(parent).length) {
+							  	iElm.removeClass('show-menu');
+							  }
 							});
+
 						}
 					}
 				},
