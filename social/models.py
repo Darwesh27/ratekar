@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Count,Avg
+# from timeline.models import PostPrivacy
+
 
 # Create your models here.
 
@@ -19,34 +21,39 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+
+	# Identity	
 	firstname = models.CharField(max_length = 15)
 	lastname = models.CharField(max_length = 15)
 	username = models.CharField(max_length = 15, unique = True)
 	email = models.EmailField(unique = True)
 	phone_number = models.CharField(null=True, unique = True, max_length = 15)
 	dob = models.DateField(null = True)
-	is_active = models.BooleanField(default = True)
-	is_staff = models.BooleanField(default = False)
-	objects = UserManager()
 
-	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['firstname', 'lastname', 'email']
-
-	@property
-	def is_superuser(self):
-		return self.is_staff
-
-	def has_perm(self, perm, obj=None):
-		return self.is_staff
-
-	def has_module_perms(self, app_label):
-		return self.is_staff
-
-	def get_short_name(self):
-		return self.firstname
-
-	def get_full_name(self):
+	def name(self):
 		return self.firstname + " " + self.lastname
+
+	def url(self):
+		return "/#/" + self.username
+
+	def imageUrl(self):
+		return "/static/img/mj2.jpg"
+		
+	# Defualt post privacy
+	post_privacy = models.ForeignKey('timeline.PostPrivacy', null = True)
+
+	def __unicode__(self):
+		return self.get_full_name()
+
+	# Other helper functions
+
+	def data_for_post(self):
+		return {
+			"username": self.username,
+			"name" : self.name(),
+			"url": self.url(),
+			"imageUrl": self.imageUrl(),
+	}
 
 	def is_friend_of(self, person):
 		try:
@@ -59,8 +66,6 @@ class User(AbstractBaseUser):
 		except Friendship.DoesNotExist:
 			return False
 
-	def __unicode__(self):
-		return self.get_full_name()
 
 
 	# query helper function
@@ -82,8 +87,43 @@ class User(AbstractBaseUser):
 
 		return user_data
 
+	def get_friendslist(self, list_id):
+		try:
+			return self.friendslist_set.get(id=list_id) 
+		except:
+			pass
+
+	# Gives back the list of valid lists fo user from the provided list of list_ids :D
+	def get_valid_lists(self, list_ids):
+
+		return [flist for flist in [self.get_friendslist(list_id) for list_id in list_ids] if flist]
 
 
+
+	# For the django shit
+	is_active = models.BooleanField(default = True)
+	is_staff = models.BooleanField(default = False)
+
+	objects = UserManager()
+
+	USERNAME_FIELD = 'username'
+	REQUIRED_FIELDS = ['firstname', 'lastname', 'email']
+
+	@property
+	def is_superuser(self):
+		return self.is_staff
+
+	def has_perm(self, perm, obj=None):
+		return self.is_staff
+
+	def has_module_perms(self, app_label):
+		return self.is_staff
+
+	def get_short_name(self):
+		return self.firstname
+
+	def get_full_name(self):
+		return self.firstname + " " + self.lastname
 
 
 class Friendslist(models.Model):

@@ -78,8 +78,31 @@ urlpatterns = patterns('',
 	# Friend Suggestions 
 	url(r'^suggestions/friends/$', views.friend_suggestions),
 
-
+	###########################################################
+	# Privacy settings 
 	###########################################################
 
+	url(r'^post/privacy/$', views.post_privacy),
+
+
+
+	###########################################################
+	# Add a new Post 
+	###########################################################
+
+
+	url(r'post/status/$', views.post_status),
+
+	"""
+	Post a photo / Upload a photo 
+
+	Share a post
+
+	Make a review public 
+
+	"""
+
+	# Post a photo 
+	# url(r'post/photo/$', views.post_photo),
 
 )

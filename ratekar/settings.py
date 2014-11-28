@@ -141,7 +141,7 @@ PIPELINE_JS = {
             'js/app/components/backend/backend-module.js',
             'js/app/components/right-pane/right-pane-module.js',
             'js/app/components/auth/auth-module.js',
-            'js/app/helpers/dropdown-module.js',
+            'js/app/helpers/dropdown/dropdown-module.js',
             'js/app/*/*.js',
             'js/app/*/*/*.js',
             'js/app/*/*/*/*.js',

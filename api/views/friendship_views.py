@@ -23,7 +23,7 @@ def friendship(request):
 			return Response({error: "No such user"})
 
 		if friend == request.user:
-			return Response({"error": "Fuck off"})
+			return Response({"error": "Fuck off :) :P"})
 
 
 		try:
@@ -139,7 +139,9 @@ def friendslist(request):
 			friendslist.save()
 			return Response({'message': 'ok'})
 	elif request.method == 'GET':
-		return Response(FriendslistSerializer(Friendslist.objects.all(), many=True).data)
+		# This code is not doing what it should do 
+		lists = request.user.friendslist_set.all()
+		return Response(FriendslistSerializer(request.user.get_valid_lists([1,3]), many=True).data)
 
 @api_view(['GET'])
 def profile(request, username):

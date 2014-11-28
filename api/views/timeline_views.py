@@ -2,180 +2,90 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.utils import user_info, friend_info
 from api.errors import db_error, query_error, no_resource_error, unauthorized_error
+from timeline.models import Post, Node, ThoughtDraft, Status, PostPrivacy
+from api.helpers import create_parents
+from timeline.serializers import PostPrivacySerializer
 
-
-@api_view(['GET'])
-def thoughts(request, username):
-	data = {
-		'text': "From thoughts",
-		'next': None,
-	}
-
-	return Response(data);
-
-@api_view(['GET'])
-def photos(request, username):
-	data = {
-		'text': "From thoughts",
-		'next': None,
-	}
-
-	return Response(data);
-
-@api_view(['GET'])
-def feedbacks(request, username):
-	data = {
-		'text': "From thoughts",
-		'next': None,
-	}
-
-	return Response(data);
-
-@api_view(['GET'])
-def reviews(request, username):
-	data = {
-		'text': "From thoughts",
-		'next': None,
-	}
-
-	return Response(data);
-	
-@api_view(['GET'])
-def nicks(request, username):
-	data = {
-		'me': False,
-		'text': "From thoughts",
-		'next': None,
-	}
-
-	return Response(data);
-
-
-@api_view(['GET'])
-def comments(request, pid):
-
-	data = {
-		"comments": [
-			{"text": "This is a comment"},
-			{"text": "This is a comment"},
-			{"text": "This is a comment"},
-			{"text": "This is a comment"},
-		],
-	}
-
-	return Response(data);
-	
-@api_view(['GET', 'POST'])
-def my_nick(request, username):
-
-
-	nick = request.DATA.get('nick', 'Dummy');
-	data = {
-		"nick": nick,
-	}
-
-	return Response(data);
-
-@api_view(['GET', 'POST'])
-def my_review(request, username):
-
-	defualt_review = "Dum is a super is awsome person" 
-	defualt_review += " with really nice botha.. "
-
-
-	review = request.DATA.get('review', defualt_review);
-	data = {
-		"review": review,
-	}
-
-	return Response(data);
-
-@api_view(['GET'])
-def suggest_nicks(request, username):
-
-	data = [
-		'Cho',
-		'Chussar',
-		'Chawal',
-	]
-	return Response(data);
 
 
 @api_view(['GET', 'POST'])
-def feedback(request, username):
+def post_privacy(request):
 
-	feedbacks = [
-		{
-			'id': 0,
-			'text': "Punctual",
-			'rating': None,
-		},
-		{
-			'id': 1,
-			'text': "Looks nice in Long hair..",
-			'rating': None,
-		},
-		{
-			'id': 2,
-			'text': "Keeps his promise..",
-			'rating': None,
-		},
-	]
-
-	feedback = request.DATA.get('feedback', feedbacks[0])
-
-	feedback = feedbacks[(feedback['id'] + 1)%2]
+	if request.user.post_privacy == None:
+		p = PostPrivacy()
+		p.save()
+		request.user.post_privacy = p
+		request.user.save()
 
 
-	return Response(feedback);
+	if request.method == 'POST':
+		user = request.user
+		level = request.DATA.get('level')
+
+		if level == 3: 
+
+			included = request.DATA.get('included', None)
+			excluded = request.DATA.get('excluded', None)
+
+			if included == None or excluded == None:
+				return Response(query_error())
+
+			valid_included = user.get_valid_lists(included)
+			valid_excluded = user.get_valid_lists(excluded)
+
+			privacy = user.post_privacy
+
+			# First clear the previous selections
+			privacy.include.clear()
+			privacy.exclude.clear()
+
+			for flist in valid_included:
+				privacy.include.add(flist)
+
+			for flist in valid_excluded:
+				privacy.exclude.add(flist)
+
+			privacy.save()
+
+			return Response(PostPrivacySerializer(user.post_privacy).data)
+
+		else:
+			user.post_privacy.level = level
+			user.post_privacy.save()
+			return Response(PostPrivacySerializer(user.post_privacy).data)
+
+	else:
+		return Response(PostPrivacySerializer(request.user.post_privacy).data)
 
 
-@api_view(['GET', 'POST']) 
-def friend_suggestions(request):
 
-	if request.method == "POST":
-		print request.DATA['exclude']
 
-		return Response({
-			"name": "New",
-			"imgUrl": "/static/img/mj2.jpg",
-			"rating": 4.3,
-			"mutual": 5,
-			"username": "new",
-		})
 
-	data = [
-		{
-			"name": "Rafaqat Ali Raali",
-			"imgUrl": "/static/img/mj2.jpg",
-			"rating": 4.3,
-			"mutual": 5,
-			"username": "raali",
-		},
-		{
-			"name": "Ali Masood",
-			"imgUrl": "/static/img/mj2.jpg",
-			"rating": 5.8,
-			"mutual": 5,
-			"username": "ali",
-		},
-		{
-			"name": "Kamil Khitab",
-			"imgUrl": "/static/img/mj2.jpg",
-			"rating": 9.6,
-			"mutual": 5,
-			"username": "kamil",
-		},
-		{
-			"name": "Malik Junaid",
-			"imgUrl": "/static/img/mj2.jpg",
-			"rating": 6.8,
-			"mutual": 5,
-			"username": "darwesh",
-		},
-	]
 
-	return Response(data);
+@api_view(['GET', 'POST'])
+def post_status(request):
+	"""
+	"""
+	# Check for required params first
+
+	if request.method == 'POST':
+
+		thought = request.DATA.get('thought', '')
+
+		node = create_parents(owner = request.user, kind = 1, thought = thought)
+
+		print node
+
+		status = Status(node = node)
+		status.save()
+
+		return Response("oka")
+
+	else:
+
+		return Response([node.get_post(request.user) for node in Node.objects.all()])
+
+
 
 
 

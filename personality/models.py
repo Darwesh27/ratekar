@@ -1,22 +1,22 @@
 from django.db import models
 from django.conf import settings 
 from django.core.validators import MaxValueValidator, MinValueValidator
+from timeline.models import Node
 #from social.models import Friendship
 
 class Reputation(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myRatings')
-	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsRatings')
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myReputations')
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsReputations')
 	reputation = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(10)])
 
 class Review(models.Model):
+	node = models.ForeignKey(Node, primary_key = True)
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'myReviews')
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsReviews')
-	review = models.CharField(max_length = 200)
-	liked = models.BooleanField(default = False)
 
 class ReviewDraft(models.Model):
 	review = models.ForeignKey(Review)
-	text = models.CharField(max_length = 200)
+	text = models.TextField(max_length = 2000)
 	liked = models.BooleanField(default = False)
 	created_on = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now = True)
@@ -24,7 +24,7 @@ class ReviewDraft(models.Model):
 
 class Trait(models.Model):
 	title  = models.CharField(max_length = 15)
-	description  = models.CharField(max_length = 100)
+	description  = models.CharField(max_length = 255)
 
 class TraityQuestion(models.Model):
 	trait = models.ForeignKey(Trait)
