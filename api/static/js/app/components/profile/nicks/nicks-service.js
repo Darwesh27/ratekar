@@ -2,20 +2,15 @@
 	
 	angular.module('rateker.profile').
 	service('Nicks', [
-		'Fetch',
-		function(Fetch){
+		'ArrangeService',
+		'Urls',
+		function(ArrangeService, Urls){
 
-			this.next = null;
-
-			var Nicks = this;
-		
-			this.get = function() {
-				return Fetch.get(Nicks, 'nicks');
+			this.initUrl = function() {
+				this.url = Urls.nicks(this.username);
+				this.error = "Unable to Fetch Nicks";
 			}
 
-
-			this.next = function() {
-				return Fetch.next(Nicks, 'nicks');
-			}
+			ArrangeService.register(this);
 		}]);
 })();

@@ -1,16 +1,17 @@
-	<div layout = "horizontal" ng-controller="TestCtrl"> 
+	<div layout = "row" ng-controller="TestCtrl" class = "stream-container"> 
 		<div class="left-pane" flex ng-include="'/static/js/app/components/stream/left-pane/left-pane.html'"></div>
 		<div class = "stream" ng-controller="StreamCtrl">
 
 			<new-post></new-post>
 
 
-			<div ng-repeat="post in posts">
-				<rk-post post = "post"></rk-post>
-				<rk-post post = "post"></rk-post>
-				<rk-post post = "post"></rk-post>
+			<div ng-repeat="post in posts | orderBy:'time': true">
+				<a href = "" ng-click="showDialog($event, post.id)">SHOW</a>
 				<rk-post post = "post"></rk-post>
 			</div>
+			<detect-end end= "end" todo = "fetchPrevious()"></detect-end>
+
+			<end></end>
 		</div>
 
 		<div class="main-right-pane">

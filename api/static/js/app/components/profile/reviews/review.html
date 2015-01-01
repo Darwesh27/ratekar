@@ -1,14 +1,15 @@
-<div class="review-wrapper md-whiteframe-z1" layout="vertical" layout-align = "center">
+<div class="review-wrapper md-whiteframe-z1" layout="column" layout-align = "center">
 	<div class="review">
 		{{review.text}}
 	</div>
 
-	<div class="review-date" layout = "horizontal" layout-align = "end">
-		{{review.date}}
+	<div class="review-date" layout = "row" layout-align = "end">
+		{{review.time|date:'MMM, d, yyyy  h:mm a'}}
 	</div>
 
 	<div class="review-footer-separator"></div>
 
-	<div class = "review-footer">
+	<div layout = "column" layout-align = "end" class = "review-footer">
+		<md-icon icon = "/static/img/heart/svg/heart.svg"></md-icon>
 	</div>
 </div>

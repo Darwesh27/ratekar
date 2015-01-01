@@ -3,7 +3,8 @@
 	directive('friendSuggestions', [
 		'FriendSuggestions', 
 		'streamConsts',
-		function(FriendSuggestions, streamConsts){
+		'$timeout',
+		function(FriendSuggestions, streamConsts, $timeout){
 		// Runs during compile
 		return {
 			// name: '',
@@ -19,9 +20,12 @@
 					// remove the element
 					$scope.suggestions.splice(index, 1);
 
-					FriendSuggestions.next("Hello").then(
+					FriendSuggestions.next($scope.exclude).then(
 						function(data) {
-							$scope.suggestions.push(data);
+							angular.forEach(data, function(suggestion){
+								$scope.suggestions.push(suggestion);
+							});
+
 							$scope.exclude.push(data.username);
 
 						},

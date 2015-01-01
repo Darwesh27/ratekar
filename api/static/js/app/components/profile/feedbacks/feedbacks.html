@@ -1,6 +1,9 @@
-<div class="feedbacks">
-	<my-feedback></my-feedback>
+<div class="feedbacks" layout = "column">
+	<new-feedback ng-if = "!profile.friendship.exists"></new-feedback>
+	<my-feedback ng-if = "profile.friendship.exists"></my-feedback>
 	<div ng-repeat = "feedback in feedbacks|orderBy:'rating':true">
 		<feedback feedback="feedback"></feedback>
 	</div>
+
+	<end></end>
 </div>

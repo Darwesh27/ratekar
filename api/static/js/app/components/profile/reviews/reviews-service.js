@@ -2,20 +2,16 @@
 	
 	angular.module('rateker.profile').
 	service('Reviews', [
-		'Fetch',
-		function(Fetch){
+		'Urls',
+		'Errors',
+		'ArrangeService',
+		function(Urls, Errors, ArrangeService){
 
-			this.next = null;
-
-			var Reviews = this;
-		
-			this.get = function() {
-				return Fetch.get(Reviews, 'reviews');
+			this.initUrl = function() {
+				this.url = Urls.reviews(this.username);
+				this.error = "Unable to Fetch Reviews";
 			}
 
-
-			this.next = function() {
-				return Fetch.next(Reviews, 'reviews');
-			}
+			ArrangeService.register(this);
 		}]);
 })();

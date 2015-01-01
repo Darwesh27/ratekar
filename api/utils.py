@@ -4,10 +4,9 @@ from social.serializers import UserSerializer, FriendslistSerializer, Friendship
 from rest_framework.response import Response
 
 
-def g_info(request, uid , cb, own):
-	uid = int(uid)
+def g_info(request, username, cb, own):
 	try: 
-		friend = User.objects.get(pk = uid)
+		friend = User.objects.get(username = username)
 		try:
 			if own:
 				relation = Friendship.objects.get(user = request.user, friend = friend)
@@ -23,11 +22,11 @@ def g_info(request, uid , cb, own):
 	except User.DoesNotExist:
 		return Response({"error": "User does not exist"})
 
-def user_info(request, uid, cb):
-	return g_info(request, uid, cb, True)
+def user_info(request, username, cb):
+	return g_info(request, username, cb, True)
 
-def friend_info(request, uid, cb):
-	return g_info(request, uid, cb, False)
+def friend_info(request, username, cb):
+	return g_info(request, username, cb, False)
 
 def add_to_list(relation, list_id):
 	list_id = int(list_id)

@@ -1,8 +1,32 @@
-			<div layout = "horizontal" class="comment-wrapper">
-				<div class="comment-avatar md-theme-green"></div>
-				<div class="comment-inner-wrapper" layout="vertical" layout-align="center start">
+			<div layout = "row" class="comment-wrapper">
+				<div class="comment-avatar md-theme-green">
+					<img ng-if = "comment.author" ng-src = "{{comment.author.imageUrl}}">
+				</div>
+				<div class="comment-inner-wrapper" layout="column" layout-align="center start">
 					<div class="comment">
+						<b> <a ng-href = "{{comment.author.url}}"> {{comment.author.name}} </a></b>
 						{{comment.text}}
+					</div>
+					<div layout = "row" layout-align = "start">
+						<div class = "comment-time"> {{comment.time|date:'MMM, d, yyyy  h:mm a'}} </div>
+
+						<div class="comment-footer-space">-</div>
+
+						<div class="comment-condemn">
+							<a href="" ng-click="condemn.procedure()">
+									{{condemn.text}}
+								<md-tooltip> {{condemn.tooltip}} this comment </md-tooltip>
+							</a>
+						</div>
+						<div class="comment-footer-space" ng-if = "comment.condemns > 0">-</div>
+						<div class="comment-condemns-count" ng-if = "comment.condemns > 0">
+						Condemned by {{comment.condemns}}..
+							<md-tooltip> 
+								<div ng-repeat = "condemner in comment.condemners">
+									{{condemner}}
+								</div>
+							</md-tooltip>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,15 @@
-<div class="new-post md-whiteframe-z1">
+<div class="new-post md-whiteframe-z1" ng-controller="NewPostController">
+	<div class="new-post-header" layout = "row" layout-align = "start center">
+		<div class="new-post-header-thought">
+			<span> Share a thought.. </span>
+		</div>
+	</div>
+	<div class="new-post-content" flex>
+		<textarea class = "" ng-model = "thought" msd-elastic = ""></textarea>
+	</div>
+	<div class="new-post-footer" layout = "row" layout-align = "end center">
+		<!-- <md-button class = "md-raised button button-small" ng-click = "cancel()">Cancel</md-button> -->
+		<md-button md-theme = "green" class = "md-raised md-primary button button-small" ng-click="share()">Share</md-button>
+	</div>
 	
 </div>

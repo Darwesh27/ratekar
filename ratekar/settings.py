@@ -109,6 +109,9 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 PIPELINE_CSS = {
     'core': {
         'source_filenames' : (
+            'bower_components/angular-material/themes/green-theme.css',
+            'bower_components/angular-material/themes/red-theme.css',
+            'css/*.css',
             'js/app/*/*.css',
             'js/app/*/*/*.css',
             'js/app/*/*/*/*.css',

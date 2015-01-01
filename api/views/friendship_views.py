@@ -11,97 +11,129 @@ from api.errors import db_error, query_error, wrong_credentials_error, no_resour
 def friendship(request):
 	
 	if request.method == "POST":
+
 		try:
-			friend_id = request.DATA['user']
+			friend_username = request.DATA['user']
 			circle = int(request.DATA['circle'])
 		except:
-			return Response({'error': 'Query params required'})
+			return Response(query_error())
+
+		user = request.user
 
 		try:
-			friend = User.objects.get(pk = friend_id)
-		except User.DoesNotExist:
-			return Response({error: "No such user"})
-
-		if friend == request.user:
-			return Response({"error": "Fuck off :) :P"})
+			friend = User.objects.get(username = friend_username)
+		except:
+			return Response(no_resource_error())
 
 
-		try:
-			old = Friendship.objects.get(user = request.user, friend = friend)
-			#old = old[0]
-			old_req = Friendship.objects.get(user = friend, friend = request.user)
+		relation1, created = Friendship.objects.get_or_create(user = user, friend = friend)
 
-			if old.status == 1:
-				print "1"
-				if old_req and old_req.status == 2:
-					old.status = 3
-					old.save()
+		# A new request is being generated  
+		if created: 
+			relation2 = Friendship(user = friend , friend = user, status = 1)
 
-					old_req.status = 3
-					old_req.save()
+			relation1.circle = circle
 
-					return Response({"message" : "Request Accepted"})
-				
-				elif old_req and old_req.status == 1:
-					old.status = 2
-					old.save()
-					return Response({"message" : "Request Accepted"})
-			else: 
-				return Response({"error" : "Fuck off"})
-		except Friendship.DoesNotExist:
-		# Not an old friendship
-			try:
-				req = Friendship.objects.get(user = friend, friend = request.user)
-				req = req[0]
-				if req.status == 1:
-					new_fs = Friendship(user = request.user, friend = friend, circle = circle)
-					return Response({"message" : "Request Accepted"})
-			except: 
-			# Its a request
-				new_req = Friendship(user = request.user, friend = friend, circle = circle, status = 2)
-				new_req.save()
+			relation1.save()
+			relation2.save()
 
-				new_res = Friendship(user = friend, friend = request.user)
-				new_res.save()
-				return Response({"message" : "Request sent"})
-	
+		else:
+
+			relation2 = Friendship.objects.get(user__username = friend_username, friend = user)
+
+			# Accept the request 
+			if relation1.status == 1 and relation2.status == 2:
+				relation1.status = 3
+				relation2.status = 3
+
+				relation1.circle = circle
+
+				relation1.save()
+				relation2.save()
+
+			# Only change the circle in request
+			elif relation1.status == 2 and relation2.status == 1:
+
+				relation1.circle = circle
+
+				relation1.save()
+				relation2.save()
+
+			# Revoke an old Friendship, Send request..
+			elif relation1.status != 3 and relation2.status != 3:
+
+				relation1.status = 2
+				relation2.status = 1
+
+				relation1.circle = circle
+
+				relation1.save()
+				relation2.save()
+			else:
+
+				return Response(no_resource_error())
+
+
+		return Response({"status": 0, "friendship": request.user.friendship_status(friend_username)})
+
 	elif request.method == 'GET':
 		if len(Friendship.objects.all()) > 0:
 			return Response(FriendshipSerializer(Friendship.objects.all(), many = True).data)
 		else:
 			return Response({"message" : " No Friendships yet"})
 
+@api_view(['POST', 'GET'])
+def unfriend(request):
+
+	friend_username = request.DATA.get('user')
+
+	try: 
+		relation1 = Friendship.objects.get(user = request.user, friend__username = friend_username)
+		relation2 = Friendship.objects.get(user__username = friend_username, friend = request.user)
+
+		relation1.status = 4
+		relation2.status = 4
+
+		relation1.save()
+		relation2.save()
+	except:
+		return Response(no_resource_error())
+
+	return Response({"status": 0, "friendship": request.user.friendship_status(friend_username)})
+
+
 
 # ensure that both are friends 
 @api_view(['GET'])
-def friendship_details(request, fid):
-	fid = int(fid)
-	try:
-		serializer = FriendshipSerializer(Friendship.objects.get(pk = fid))
-		return Response(serializer.data)
-	except Friendship.DoesNotExist:
-		return Response({"error": "No such relation"})
+def friendship_details(request, username):
+	if request.method == 'GET':
+		return Response({"friendship": request.user.friendship_status(username)})
 
-@api_view(['GET', 'PUT'])
-def friendship_circle(request, uid):
-	if request.method == 'PUT':
-		def cb(friend, relation):
-			try: 
-				circle = request.DATA['circle']
-			except:
-				return Response({"error": "Query param required"})
-	
-			relation.circle = circle
-	
-			try:
-				relation.save()
-				return Response({"message": "ok"})
-			except:
-				return Response({"error": "Db error"})
-		
-		return user_info(request, uid, cb)
-	elif request.method == "GET":
-		return Response({"error": "Abi ni bacha..!!"})
+
+@api_view(['GET', 'POST'])
+def friendship_circle(request, username):
+	if request.method == 'POST':
+
+		try:
+			rel = request.user.friends.get(friend__username = username)
+		except:
+			return Response(no_resource_error())
+
+		circle = request.DATA.get('circle', 2)
+
+		rel.circle = circle
+		rel.save()
+
+		return Response({"status": 0, "circle": rel.circle})
+
+	else:
+		try:
+			rel = request.user.friends.get(friend__username = username)
+		except:
+			return Response(no_resource_error())
+
+		return Response({"status": 0, "circle": rel.circle})
+
 
 @api_view(['GET', 'POST'])
 def friendship_list(request, uid):
@@ -146,22 +178,35 @@ def friendslist(request):
 @api_view(['GET'])
 def profile(request, username):
 	if request.method == 'GET':
-		def cb(friend, relation):
-
-			return Response(relation.user.profile())
 
 		try:
-			print username
-			frnd = User.objects.get(username = username.lower())
-
-			if frnd == request.user:
-				return Response(frnd.profile())
-				
-			return friend_info(request, frnd.id, cb)
-		except User.DoesNotExist:
+			person = User.objects.get(username = username)
+		except:
 			return Response(no_resource_error())
 
+		return Response(person.profile(request.user))
 
-		
-	
+
+@api_view(['GET', 'POST'])
+def friend_requests(request):
+
+	if request.method == "POST":
+		exclude = request.DATA.get('exclude', [])
+
+	rels = request.user.friends.filter(status = 1)
+
+	print exclude
+
+	if len(exclude) > 0:
+		rels = rels.exclude(friend__username__in = exclude)
+
+
+	data = {
+		"requests": [rel.friend.data_for_post() for rel in rels],
+		"status": 0
+	}
+
+	return Response(data)
+
+
 	

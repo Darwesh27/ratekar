@@ -1,0 +1,52 @@
+.new-post {
+	min-height: 118px;
+	margin-left: 10px;
+	margin-top: 15px;
+	background-color: white;
+}
+
+.new-post-header {
+	min-height: 27px;
+	width: inherit;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.new-post-header-thought {
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.new-post-header-thought span {
+	padding-right: 15px;
+
+	/* After we add share a photo feature */
+	/*border-right: 1px solid #e5e5e5;*/
+}
+
+.new-post-content {
+	min-height: 56px;
+	width: inherit;
+	margin-left: 10px;
+	margin-right: 10px;
+
+}
+.new-post-content textarea {
+	min-height: 56px;
+	width: 100%;
+	resize: none;
+	font-size: 14px;
+	font-weight: 300;
+	border: None;
+	/*border-bottom: 1px solid #e5e5e5;*/
+}
+
+.new-post-footer {
+	min-height: 35px;
+	width: inherit;
+	/*background-color: blue;*/
+	margin-left: 10px;
+	margin-right: 10px;
+}

@@ -1,5 +1,5 @@
 		
-		<div layout = "horizontal">
+		<div layout = "row">
 <!-- 			Username: {{uNameGood}} , {{uNameBad}}
 			Email: {{emailGood}} , {{emailBad}}
  -->			<md-input-group flex class = " login-form-input md-input-group-theme-green" >
@@ -15,14 +15,14 @@
 			</md-input-group>
 		</div>
 
-		<md-input-group check-username layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+		<md-input-group check-username layout = "column" class = " login-form-input md-input-group-theme-green" >
 			<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "uNameGood" class = "info-icon"></md-icon>
 			<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "uNameBad" class = "info-icon"></md-icon>
 			<label for = "signup-form-username">Username..</label>
 			<md-input  id = "signup-form-username" flex type = "text" ng-model = "signup.username"></md-input>
 		</md-input-group>
 
-		<md-input-group check-email layout = "vertical" class = "login-form-input md-input-group-theme-green" >
+		<md-input-group check-email layout = "column" class = "login-form-input md-input-group-theme-green" >
 			<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "emailGood" class = "info-icon"></md-icon>
 			<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "emailBad" class = "info-icon"></md-icon>
 			<label for = "signup-form-email">Email</label>
@@ -30,13 +30,13 @@
 		</md-input-group>
 
 
-		<md-input-group layout = "vertical" class = " login-form-input md-input-group-theme-green" >
+		<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
 			<label for = "signup-form-password">Password</label>
 			<md-input  id = "signup-form-password" flex type = "password" ng-model = "signup.password"></md-input>
 		</md-input-group>
 
 		<span> {{error}} </span>
 
-		<div layout = "horizontal" layout-align="end center">
-			<md-button class= "md-theme-green md-button-raised login-button" ng-click="signUp()">Signup</md-button>
+		<div layout = "row" layout-align="end center">
+			<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="signUp()">Signup</md-button>
 		</div>

@@ -1,0 +1,39 @@
+
+.friend-status-button {
+	height: 25px;
+	background-color: #0f9d58;
+	color: white;
+	/*padding: 5px;*/
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.friend-status-tag {
+	font-size: 12px;
+	width: 150px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.friend-status-circle {
+	padding: 5px;
+}
+
+
+.friend-status-circle-checkbox md-checkbox{
+	margin: 0px;
+}
+
+
+.friend-status-circle-name {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.unfriend {
+	cursor: pointer;
+	height: 33px;
+	width: 100%;
+	padding-left: 33px;
+}

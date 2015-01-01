@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from timeline.models import Node, ThoughtDraft, PostPrivacy
+from timeline.models import Node, ThoughtDraft, PostPrivacy, CommentDraft
 
 class NodeSerializer(serializers.ModelSerializer):
 	"""
@@ -14,12 +14,21 @@ class ThoughtDraftSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = ThoughtDraft
-		fields = ('created_on', 'text')
+		fields = ('time', 'text')
 			
 class PostPrivacySerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = PostPrivacy
 		fields = ('id', 'level', 'include', 'exclude')
+		
+
+class CommentDraftSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = CommentDraft
+		fields = ('time', 'text')
+
+
 		
 

@@ -2,12 +2,17 @@
 	angular.module("rateker.profile").
 	controller('nicksController', [
 		'$scope', 
-		'data',
+		'Nicks',
 		'Nick',
-		function($scope, data, Nick){
-			$scope.data = data;
+		'username',
+		function($scope, Nicks, Nick, username){
 
-			$scope.nicks = [
+			Nicks.init(username);
+			Nick.init(username);
+
+			$scope.nicks = Nicks.items;
+
+			$scope.dicks = [
 				{
 					name: "Sunny", 
 					count: 20,

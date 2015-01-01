@@ -27,7 +27,7 @@
 							return $scope.newNick;
 						}, 
 						function(value) {
-							if(value != '' && value != $scope.selectedNick) {
+							if(value != '' && value != $scope.selectedNick && value.length > 3) {
 								Nick.suggest($scope.newNick).then(
 									function(suggestions) {
 										$scope.suggestions  = suggestions;

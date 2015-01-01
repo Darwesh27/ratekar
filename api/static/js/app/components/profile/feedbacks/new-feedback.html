@@ -1,0 +1,22 @@
+<div class="new-feedback-wrapper md-whiteframe-z1" layout = "column" layout-align = "start center">
+
+	<div class="my-feedback-icon"></div>
+
+	<h3> Ask people about some aspect of your personality </h3>
+
+	<p> e.g Handsome, Relegious or Broad Thinker.. </p>
+
+
+	<div class="new-feedback" layout = "column" layout-align = "center center">
+
+		<md-input-group layout = "column" class = "md-input-group-theme-green" >
+			<md-input  flex type = "text" ng-model = "newFeedback"></md-input>
+		</md-input-group>
+
+		<div ng-if = "error" class="new-feedback-error">{{error}}</div>
+
+		<md-button md-theme = "green" class = "md-primary button button-small" ng-click="ask()"> Ask </md-button>
+
+	</div>
+
+</div>

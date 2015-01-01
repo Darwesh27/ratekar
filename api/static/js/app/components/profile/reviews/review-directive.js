@@ -16,6 +16,7 @@
 					$scope.review.liked = !$scope.review.liked;
 				};
 
+
 				$scope.likeIcon = $scope.review.liked?"heart":"heart-outline";
 			},
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
@@ -26,6 +27,8 @@
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			link: function($scope, iElm, iAttrs, controller) {
+
+				console.log($scope.review);
 				
 			}
 		};

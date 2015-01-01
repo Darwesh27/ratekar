@@ -1,40 +1,39 @@
 (function  () {
 
-	var fuckService =  function() { 
-		return {
-			get: function  () {
-				// body...
-				return [
-					{
-						id : 1,
-						author: {
-							name: 'Malik Junaid',
-							imageUrl: '/static/img/mj2.jpg',
-							url: '/#/malik.junaid'
-						},
-						time: 'Today',
-						rating: 5.6,
-						myRating: 4,
-						content: {
-							text: 'hello this is my very first post' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text' + 
-							'some random text'
-						},
-					},
-				]
-			}
-		}
-	};
-	
 	angular.module("rateker.stream").
-	factory('fuck', fuckService).
-	controller('StreamCtrl', ['$scope', '$routeParams', 'fuck', function($scope, $routeParams, fuck){
-		$scope.posts = fuck.get();
-	}]);
+	controller('StreamCtrl', [
+		'$scope', 
+		'$routeParams', 
+		'Stream',
+		'$interval',
+		'Dialog',
+		function($scope, $routeParams, Stream, $interval, Dialog) {
+
+
+
+			$scope.posts = Stream.posts;
+
+			Stream.init();
+
+			var fetchNextPosts = $interval(function() {
+				Stream.fetchNext();
+			}, 10000);
+
+
+			$scope.$on('$destroy', function() {
+				$interval.cancel(fetchNextPosts);
+
+				Stream.destroy();
+			});
+
+			$scope.fetchPrevious = function() {
+				Stream.fetchPrevious();
+			}
+
+			$scope.showDialog = function(ev, postId) { 
+				Dialog.post(ev, postId);
+			}
+
+
+		}]);
 })();

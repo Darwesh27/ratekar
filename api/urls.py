@@ -4,26 +4,28 @@ from social import views as social_views
 from personality import views as personality_views
 
 user_patterns = patterns('',
-	url(r'^circle/$', views.friendship_circle),
-	url(r'^list/$', views.friendship_list),
-	url(r'^reputation/$', views.reputation),
-	url(r'^review/$', views.review),
-	url(r'^nick/$', views.nick),
-	url(r'^feedback/$', views.feedback),
 	#url(r'^feedback/(?<fbid>\d+)/$', views.feedback_details),
 )
 
 profile_patterns = patterns('',
+	url(r'^circle/$', views.friendship_circle),
+	url(r'^list/$', views.friendship_list),
+
+	# url(r'^review/$', views.review),
+	# url(r'^nick/$', views.nick),
+	# url(r'^feedback/$', views.feedback),
+
 	url(r'^profile/', views.profile),
 	url(r'^thoughts/$', views.thoughts),
 	url(r'^photos/$', views.photos),
 	url(r'^feedbacks/$', views.feedbacks),
 	url(r'^reviews/$', views.reviews),
 	url(r'^nicks/$', views.nicks),
-	url(r'^mynick/$', views.my_nick),
-	url(r'^myreview/$', views.my_review),
-	url(r'^suggestnicks/$', views.suggest_nicks),
+	url(r'^nick/$', views.nick),
 	url(r'^feedback/$', views.feedback),
+	url(r'^review/$', views.review),
+	url(r'^reputation/$', views.reputation),
+	url(r'^suggestnicks/$', views.suggest_nicks),
 )
 
 urlpatterns = patterns('',
@@ -52,23 +54,41 @@ urlpatterns = patterns('',
 
 	# Friend Request sending and approval 
 	url(r'^friendship/$', views.friendship),
-	url(r'^friendship/(?P<fid>\d+)/$', views.friendship_details),
+
+	url(r'^friendship/remove/$', views.unfriend),
+
+	url(r'^friendship/requests/$', views.friend_requests),
 
 	#url(r'^friendslist/(?<pk>\d+)/$', views.friendslist_details),
 
 
 	# Liking a your reivew by someone
-	url(r'^review/(?P<rid>\d+)/like', views.like_review),
+	url(r'^review/(?P<rid>\d+)/like$', views.like_review),
+
+	###########################################################
+	# Dialog related Urls
+	###########################################################
+
+	url(r'post/(?P<pid>\d+)/$', views.get_post),
 
 
-	# This is chuss
-	url(r'^me/reviews/$', views.my_reviews),
-	url(r'^me/feedbacks/$', views.my_feedbacks),
-	url(r'^me/nicks/$', views.my_nicks),
+	###########################################################
+	# Toolbar related Urls
+	###########################################################
 
+	url(r'^search/$', views.search),
 
-	# Comments endpoint.. Fetching comments of a post
-	url(r'^post/(?P<pid>\d+)/comments/$', views.comments),
+	###########################################################
+	# Profile Urls
+	###########################################################
+	url(r'^friendship/status/(?P<username>[\w._-]+)/$', views.friendship_details),
+
+	url(r'^feedbacks/new/$', views.new_feedback),
+
+	###########################################################
+	# Me related Urls
+	###########################################################
+	url(r'^me/thoughtsRating/$', views.my_thoughts_rating),
 
 
 	###########################################################
@@ -91,18 +111,32 @@ urlpatterns = patterns('',
 	###########################################################
 
 
-	url(r'post/status/$', views.post_status),
+	# Post a status
+	url(r'^post/status/$', views.post_status),
 
-	"""
-	Post a photo / Upload a photo 
+	# Rate a post
+	url(r'post/(?P<pid>\d+)/rate/$', views.rate_post),
 
-	Share a post
 
-	Make a review public 
+	# Comment on post 
+	url(r'post/(?P<pid>\d+)/comment/$', views.add_comment),
 
-	"""
+	# Comments endpoint.. Fetching comments of a post
+	url(r'^post/(?P<pid>\d+)/comments/$', views.comments),
+
+	# Condemnn a comment
+	url(r'^comment/(?P<cid>\d+)/condemn/$', views.condemn_comment),
+
+	# Fetch the names of people who condemned this comment
+	url(r'^comment/(?P<cid>\d+)/condemners/$', views.comment_condemners),
 
 	# Post a photo 
 	# url(r'post/photo/$', views.post_photo),
 
+
+	###########################################################
+	# Stream urls 
+	###########################################################
+
+	url(r'^stream/$', views.stream),
 )

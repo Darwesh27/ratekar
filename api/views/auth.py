@@ -43,12 +43,9 @@ def signin(request):
 	if user:
 		login(request, user)
 
-		user_data = UserSerializer(request.user).data 
-		user_data['reputation'] = request.user.repo()['repo']
-
 		res = {
 			"message": "User logged in",
-			"user": request.user.profile()
+			"user": request.user.profile(request.user)
 		}
 		return Response(res)
 	else:

@@ -1,6 +1,8 @@
 <div class="nicks">
 
-	<my-nick></my-nick>
+	<my-nick ng-if = "profile.friendship.exists"></my-nick>
 
 	<nick ng-repeat = "nick in nicks|orderBy:'count':true" nick = "nick"></nick>
+
+	<end></end>
 </div>

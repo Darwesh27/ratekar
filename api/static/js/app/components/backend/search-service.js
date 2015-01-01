@@ -1,9 +1,16 @@
 (function() {
 	angular.module("rateker.backend").
-	service('searchService', ['$http', function($http){
-		this.search = {
-			text: "",
-			items: []
+	service('searchService', [
+		'$http', 
+		'Urls',
+		'Fetch', 
+		function($http, Urls, Fetch){
+
+		this.query = function(input) {
+			url = Urls.search(input);
+			error = "Can't search";
+
+			return Fetch.fetch(url, error, function(data,q){q.resolve(data)});
 		}
 	}]);
 })();

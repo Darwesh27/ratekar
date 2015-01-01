@@ -1,8 +1,8 @@
-<div class = "feedback-wrapper" layout = "horizontal" layout-align = "start center"> 
+<div class = "md-whiteframe-z1 feedback-wrapper" layout = "row" layout-align = "start center"> 
 	<div class = "feedback-trait" flex>
-		You are {{feedback.trait}}.
+		{{feedback.question}}
 	</div>
-	<div class="feedback-rating" layout = "horizontal" layout-align = "center center">
-		<md-progress-linear mode = "determinate" ng-value = "{{feedback.rating * 10}}"></md-progress-linear>
+	<div class="feedback-rating" layout = "row" layout-align = "center center">
+		<md-progress-linear md-mode = "determinate" value = "{{feedback.rating * 10}}"></md-progress-linear>
 	</div> 
 </div>

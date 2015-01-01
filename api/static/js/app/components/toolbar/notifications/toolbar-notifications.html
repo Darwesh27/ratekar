@@ -1,47 +1,7 @@
 <div class = "toolbar-notifications"> 
-	<div layout = "horizontal">
-		<div class = "dropdown-wrapper">
-			<div class = "noti-boundry" layout = "vertical" layout-align = "center"> 
-				<div class = "noti-cntr" layout = "horizontal" >
-					<div class="notification-icon-wrapper">
-						<md-icon icon = "/static/img/bell-outline/svg/bell-outline.svg"></md-icon>
-					</div>
-
-					<div layout="vertical" layout-align = "center">
-						<div class="notification-type"> Notifications </div>
-					</div>
-
-					<div class = "notification-count" >{{notifications.count}}</div>
-				</div>	
-			</div>
-			
-			<dropdown class = "dropdown-toolbar dropdown-notifications">
-				<div> Hello </div>
-			</dropdown>
-		</div>
-		<div class = "noti-boundry" rk-dropdown layout = "vertical" layout-align = "center"> 
-			<div class = "noti-cntr" layout = "horizontal" >
-				<div class="notification-icon-wrapper">
-					<md-icon icon = "/static/img/account-outline/svg/account-outline.svg"></md-icon>
-				</div>
-				<div layout="vertical" layout-align = "center">
-					<div class="notification-type">New Friends</div>
-				</div>
-				<div class = "notification-count">{{friendRequests.count}}</div>
-			</div>	
-		</div>
-
-		<div class = "noti-boundry" rk-dropdown layout = "vertical" layout-align = "center"> 
-			<div class = "noti-cntr" layout = "horizontal" >
-				<div class="notification-icon-wrapper">
-					<md-icon icon = "/static/img/email/svg/email.svg"></md-icon>
-				</div>
-				<div layout="vertical" layout-align = "center">
-					<div class="notification-type">Messages</div>
-				</div>
-				<div class = "notification-count">{{friendRequests.count}}</div>
-			</div>	
-		</div>
-
+	<div layout = "row">
+		<notifications notifications = "notifications"></notifications>
+		<friend-requests friend-requests = "friendRequests"></friend-requests>
+		<toolbar-messages messages = "friendRequests"></toolbar-messages>
 	</div>
 </div>

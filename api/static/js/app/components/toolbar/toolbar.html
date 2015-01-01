@@ -1,23 +1,25 @@
-<div class="md-whiteframe-z1 toolbar" layout = "horizontal" layout-align = "start">
+<div class="md-whiteframe-z1 toolbar" layout = "row" layout-align = "start">
 		<div class="md-toolbar-tools">
 
-			<div class="toolbar-logo" layout = "horizontal" layout-align = "end">
-				<img src = "/static/img/instagram/png/36/instagram.png">
-			</div>
-
-			<toolbar-search></toolbar-search>
-
-			<div class="toolbar-nav" layout = "horizontal">
-				<toolbar-avatar></toolbar-avatar>
-
-				<div class="home" layout = "vertical" layout-align = "center"> 
-					<a ui-sref="stream">Home</a>
+			<div class = "md-toolbar-tools toolbar-tools-wrapper" layout = "row" layout-align = "start">
+				<div class="toolbar-logo" layout = "row" layout-align = "end">
+					<img src = "/static/img/instagram/png/36/instagram.png">
 				</div>
+
+				<toolbar-search></toolbar-search>
+
+				<div class="toolbar-nav" layout = "row">
+					<toolbar-avatar></toolbar-avatar>
+
+					<div class="home" layout = "column" layout-align = "center"> 
+						<a ui-sref="stream">Home</a>
+					</div>
+				</div>
+				<toolbar-notifications></toolbar-notifications>
+
+				<toolbar-settings></toolbar-settings>
 			</div>
-			<toolbar-notifications></toolbar-notifications>
 
-			<toolbar-settings></toolbar-settings>
-
-			<div class="toolbar-adjust-right"></div>
+				<div class="toolbar-adjust-right"></div>
 		</div>
 </div>

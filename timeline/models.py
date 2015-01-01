@@ -21,7 +21,7 @@ class Post(models.Model):
 	"""
 	owner = models.ForeignKey(settings.AUTH_USER_MODEL)
 	kind = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
-	created_on = models.DateTimeField(auto_now_add = True)
+	time = models.DateTimeField(auto_now_add = True)
 	privacy = models.ForeignKey(PostPrivacy)
 
 
@@ -36,14 +36,15 @@ class Node(models.Model):
 	owner = models.ForeignKey(settings.AUTH_USER_MODEL)
 	kind = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)])
 	privacy = models.ForeignKey(PostPrivacy)
+	# time = models.DateTimeField(null = True, auto_now_add = True)
 
 
 	# Rating of this node
 	def rating(self, viewer):
-		rating = self.rating_set.aggregate(rating = Avg('rating'))
+		rating = self.rating_set.aggregate(total = Avg('rating'))
 		rating['count'] = self.rating_set.count()
 		try:
-			rating['my'] = self.rating_set.get(friend = viewer)
+			rating['my'] = self.rating_set.get(friend = viewer).rating
 		except:
 			rating['my'] = None
 
@@ -81,20 +82,77 @@ class Node(models.Model):
 	def get_post(self, viewer):
 		from timeline.serializers import NodeSerializer
 		post = NodeSerializer(self).data
-		post['date'] = self.post.created_on
+		post['time'] = self.post.time
 		post['thought'] = self.thought()
 		post['author'] = self.owner.data_for_post()
 		post['rating'] = self.rating(viewer)
+		post['mine'] = True if self.owner == viewer else False
 
 		return self.get_data(post)
 
 class Rating(models.Model):
 	node = models.ForeignKey(Node)
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL)
-	rating = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(10)])
+	rating = models.IntegerField(null = True, validators = [MinValueValidator(1), MaxValueValidator(10)])
+
+
+class Comment(models.Model):
+	node = models.ForeignKey(Node)
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL)
+	edited = models.BooleanField(default = False)
+	time = models.DateTimeField(auto_now_add = True)
+
+
+	def condemns(self):
+		return self.commentcondemn_set.filter(condemned = True)
 
 
 
+
+	def data(self, viewer):
+		draft = self.commentdraft_set.all().order_by('time')[0]
+		from timeline.serializers import CommentDraftSerializer
+		ser = CommentDraftSerializer(draft).data
+		ser['edited'] = self.edited 
+		ser['id'] = self.id
+		ser['time'] = self.time
+
+
+		if self.friend == viewer:
+			ser['author'] = viewer.data_for_post()
+
+		if self.node.owner == self.friend: 
+			ser['author'] = self.friend.data_for_post()
+
+		try:
+			condemn = self.commentcondemn_set.get(friend = viewer)
+			ser['condemned'] = condemn.condemned
+		except:
+			ser['condemned'] = False
+
+
+		ser['condemns'] = self.condemns().count()
+
+		ser['condemners'] = [condemn.friend.name() for condemn in self.condemns()]
+
+		return ser
+
+
+class CommentCondemn(models.Model):
+	comment = models.ForeignKey(Comment)
+	friend = models.ForeignKey(settings.AUTH_USER_MODEL)
+	condemned = models.BooleanField(default = True)
+
+
+
+
+class CommentDraft(models.Model):
+	"""Different edits of a comment"""
+
+	comment = models.ForeignKey(Comment)
+	time = models.DateTimeField(auto_now_add = True)
+	text = models.TextField()
+		
 
 class ThoughtDraft(models.Model):
 	"""
@@ -102,7 +160,7 @@ class ThoughtDraft(models.Model):
 	"""
 
 	node = models.ForeignKey(Node)
-	created_on = models.DateField(auto_now_add = True)
+	time = models.DateTimeField(auto_now_add = True)
 	text = models.TextField()
 
 

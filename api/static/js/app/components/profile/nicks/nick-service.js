@@ -6,17 +6,24 @@
 		'Fetch',
 		'Urls',
 		'Errors',
-		function($http, Profile, Fetch, Urls, Errors){
+		'http',
+		function($http, Profile, Fetch, Urls, Errors, http){
 
-			this.suggest = function() {
-				return Urls.get('suggestnicks').then(
-					function(url) {
-						var error = "Unable to fetch suggestions..";
-						return Fetch.fetch(url, error, function(data, q) {
-							q.resolve(data);
-						});
-					}
-				);
+			var Nick = this;
+
+			this.init = function(username) {
+				this.username = username;
+			}
+
+			this.suggest = function(text) {
+				url = Urls.suggestNicks(Nick.username);
+				var error = "Unable to fetch suggestions..";
+
+				data = {
+					text: text,
+				}
+
+				return http.post(url, data, error);
 			}
 
 			this.get = function() {

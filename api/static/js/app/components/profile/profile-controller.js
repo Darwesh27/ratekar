@@ -22,6 +22,7 @@
 			// 	}
 			// );
 
+
 			$scope.available = true;
 
 			if(profile.error) {
@@ -32,7 +33,13 @@
 				$scope.profile = profile;
 			}
 
-
+			$scope.$watch(function() {
+				return $scope.profile.reputation.my;
+			}, function(n, o) {
+				if(n!=o) {
+					Profile.rate($scope.profile, n);
+				}
+			});
 
 			$scope.errorPageUrl = "/static/js/app/components/profile/error.html";
 

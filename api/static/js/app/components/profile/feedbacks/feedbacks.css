@@ -1,0 +1,113 @@
+.feedback-wrapper {
+	margin-top: 15px;
+	margin-left: 15px;
+	height: 70px;
+	padding: 10px;
+	background-color: white;
+}
+
+.feedback-rating {
+	width: 100px;
+	font-size: 20px;
+}
+
+.feedbacks {
+}
+
+/* New feedback styles */
+
+
+.new-feedback-wrapper {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding: 10px;
+	background-color: white;
+}
+
+.new-feedback-wrapper h3 {
+	margin: 0px;
+	margin-top: 20px;
+}
+
+.new-feedback-wrapper p {
+	margin: 0px;
+	margin-top: 20px;
+	font-size: 12px;
+}
+
+.new-feedback-error {
+	margin-top: 10px;
+	font-size: 12px;
+	color: red;
+}
+
+
+/* My Feedback Styles */
+
+.my-feedback-wrapper {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding: 10px;
+	background-color: white;
+}
+
+.my-feedback-wrapper h3 {
+	margin: 0px;
+	margin-top: 20px;
+}
+
+.my-feedback-wrapper p {
+	margin: 0px;
+	margin-top: 20px;
+	font-size: 12px;
+}
+.my-feedback-icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #f2f2f2;
+}
+
+.my-feedback {
+	width: 100%;
+	padding: 10px;
+	background: #f1f1f1;
+	border-radius: 10px;
+	margin: 10px;
+	margin-top: 20px;
+
+
+
+}
+
+.my-feedback ._username {
+	font-size: 30px;
+}
+
+
+.vertical-separator {
+	min-height: 2px;
+	border-bottom: 1px solid #0f9d58;
+	margin: 10px;
+	width: 100%;
+}
+
+.my-feedback-inner-wrapper{
+	width: inherit;
+	padding: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.my-feedback-question {
+	text-align: center;
+}
+
+.my-feedback-answer {
+	width: 150px;
+}
+
+.my-feedback-skip {
+	width: inherit;
+	font-size: 12px;
+}

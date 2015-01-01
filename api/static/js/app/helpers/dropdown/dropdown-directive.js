@@ -26,13 +26,34 @@
 						},
 						post: function($scope, iElm, iAttrs, controller) {
 
+							$timeout(function() {
+								
+							})
+
 							var parent = angular.element(iElm.parent());
 
 							var elem = angular.element(parent.children()[0]);
 
-							elem.click(function(){
-								iElm.toggleClass('show-menu');
-							})
+							var bindToClick = function() {
+								elem.click(function(){
+									iElm.toggleClass('show-menu');
+								});
+							}
+
+							var bindToHover = function() {
+								elem.hover(function(){
+									iElm.toggleClass('show-menu');
+								});
+							}
+
+							var trigger = iAttrs.trigger;
+
+							if (trigger == "click") {
+								bindToClick();
+							}
+							else if (trigger == "hover") {
+								bindToHover();
+							}
 
 							$(document).on('click', function(event) {
 							  if (!$(event.target).closest(parent).length) {

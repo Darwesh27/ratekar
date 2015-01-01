@@ -16,6 +16,7 @@
 		'rateker.dropdown',
 		'rateker.auth',
 		'rateker.dropdown',
+		'rateker.helper',
 		'ngRoute',
 		'ui.router',
 		'ngCookies',
@@ -50,94 +51,107 @@
 	fetchData().then(bootstrapApp);
 
 	app.
-	run(['$http', '$cookies', '$cookieStore', 'Auth' , function($http, $cookies, $cookieStore, Auth) {
-		$http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
+	run([
+		'$http', 
+		'$cookies', 
+		'$cookieStore', 
+		'Auth', 
+		function($http, $cookies, $cookieStore, Auth) {
+			$http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
 	}]).
-	config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-		console.log("Main config");
-		$urlRouterProvider.otherwise("/");
+	config([
+		'$stateProvider', 
+		'$urlRouterProvider', 
+		'$httpProvider',
+		function($stateProvider, $urlRouterProvider, $httpProvider) {
+			
+			$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+		    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-		$stateProvider
-			.state('auth', {
-				url: "/enter",
-				templateUrl: "static/js/app/components/auth/enter.html",
-			})
-			.state('stream', {
-				url: "/",
-				templateUrl: "/static/js/app/components/stream/stream.html",
-			})
-			.state('profile', {
-				url: "/:username",
-				templateUrl: "static/js/app/components/profile/profile.html",
-				resolve: {
-					Profile: 'Profile',
-					profile: function($stateParams, Profile, $http) {
-						return Profile.init($stateParams.username);
+			console.log("Main config");
+			$urlRouterProvider.otherwise("/");
+
+			$stateProvider
+				.state('auth', {
+					url: "/enter",
+					templateUrl: "static/js/app/components/auth/enter.html",
+				})
+				.state('stream', {
+					url: "/",
+					templateUrl: "/static/js/app/components/stream/stream.html",
+				})
+				.state('profile', {
+					url: "/:username",
+					templateUrl: "static/js/app/components/profile/profile.html",
+					resolve: {
+						Profile: 'Profile',
+						profile: function($stateParams, Profile, $http) {
+							return Profile.init($stateParams.username);
+						}
+					},
+					abstract: true,
+					controller: 'profileController'
+				})
+				.state('profile.timeline', {
+					url: '',
+					templateUrl: "static/js/app/components/profile/timeline.html",
+					abstract: true,
+				})
+				.state('profile.profile', {
+					url: '',
+					templateUrl: "static/js/app/components/profile/profile-content.html",
+					abstract: true,
+				})
+				.state('profile.profile.feedbacks', {
+					url: '/feedbacks',
+					templateUrl: "static/js/app/components/profile/feedbacks/feedbacks.html",
+					controller: 'feedbacksController',
+					resolve: {
+						username: function($stateParams) {
+							return $stateParams.username;
+						}
 					}
-				},
-				abstract: true,
-				controller: 'profileController'
-			})
-			.state('profile.timeline', {
-				url: '',
-				templateUrl: "static/js/app/components/profile/timeline.html",
-				abstract: true,
-			})
-			.state('profile.profile', {
-				url: '',
-				templateUrl: "static/js/app/components/profile/profile-content.html",
-				abstract: true,
-			})
-			.state('profile.profile.feedbacks', {
-				url: '/feedbacks',
-				templateUrl: "static/js/app/components/profile/feedbacks/feedbacks.html",
-				controller: 'feedbacksController',
-				resolve: {
-					data: function(Feedbacks) {
-						return Feedbacks.get();
+				})
+				.state('profile.profile.reviews', {
+					url: '/reviews',
+					templateUrl: "static/js/app/components/profile/reviews/reviews.html",
+					controller: 'reviewsController',
+					resolve: {
+						username: function($stateParams) {
+							return $stateParams.username;
+						}
 					}
-				}
-			})
-			.state('profile.profile.reviews', {
-				url: '/reviews',
-				templateUrl: "static/js/app/components/profile/reviews/reviews.html",
-				controller: 'reviewsController',
-				resolve: {
-					data: function(Reviews) {
-						return Reviews.get();
+				})
+				.state('profile.profile.nicks', {
+					url: '/nicks',
+					templateUrl: "static/js/app/components/profile/nicks/nicks.html",
+					controller: 'nicksController',
+					resolve: {
+						username: function($stateParams) {
+							return $stateParams.username;
+						}
 					}
-				}
-			})
-			.state('profile.profile.nicks', {
-				url: '/nicks',
-				templateUrl: "static/js/app/components/profile/nicks/nicks.html",
-				controller: 'nicksController',
-				resolve: {
-					data: function(Nicks) {
-						return Nicks.get();
+				})
+				.state('profile.timeline.thoughts', {
+					url: '',
+					templateUrl: "static/js/app/components/profile/thoughts/thoughts.html",
+					controller: 'thoughtsController',
+					resolve: {
+						username: function($stateParams) {
+							return $stateParams.username;
+						}
 					}
-				}
-			})
-			.state('profile.timeline.thoughts', {
-				url: '',
-				templateUrl: "static/js/app/components/profile/thoughts/thoughts.html",
-				controller: 'thoughtsController',
-				resolve: {
-					data: function(Thoughts) {
-						return Thoughts.get();
+				})
+				.state('profile.timeline.photos', {
+					url: '/photos',
+					templateUrl: "static/js/app/components/profile/photos/photos.html",
+					controller: 'photosController',
+					resolve: {
+						data: function(Photos) {
+							return Photos.get();
+						}
 					}
-				}
-			})
-			.state('profile.timeline.photos', {
-				url: '/photos',
-				templateUrl: "static/js/app/components/profile/photos/photos.html",
-				controller: 'photosController',
-				resolve: {
-					data: function(Photos) {
-						return Photos.get();
-					}
-				}
-			})
+				})
 
 		// $routeProvider.when('/',{
 		// 	templateUrl: "/static/js/app/views/main.html",

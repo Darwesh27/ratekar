@@ -3,13 +3,45 @@
 	controller('thoughtsController', [
 		'$scope',
 		'Thoughts', 
-		'Thought',
-		'data',
-		 function($scope, Thoughts, Thought, data){
+		'username',
+		'$interval',
+		 function($scope, Thoughts, username, $interval){
 
-		 	console.log("Chaliyae");
 
-		 	$scope.data = data;
-		
+			Thoughts.init(username);
+
+			$scope.thoughts = Thoughts.items;
+
+			var fetchNextPosts = $interval(function() {
+				Thoughts.fetchNext();
+			}, 10000);
+
+
+			$scope.$on('$destroy', function() {
+				$interval.cancel(fetchNextPosts);
+				Thoughts.destroy();
+			});
+
+			$scope.fetchPrevious = function() {
+				$scope.end.hasNext = Thoughts.fetchPrevious();
+			}
+
+			$scope.end = {};
+			$scope.end.message = "No more posts..";
+			$scope.end.hasNext = true;
+
+			$scope.$watch(function() {
+				return Thoughts.previous;
+			}, function(value) {
+				if(value == null) {
+					if(Thoughts.items.length > 0) {
+						$scope.end.hasNext = false;
+					}
+				}
+				else {
+					$scope.end.hasNext = true;
+				}
+			});
+
 		}]);
 })();

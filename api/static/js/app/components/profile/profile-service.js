@@ -2,10 +2,10 @@
 	angular.module('rateker.profile').
 	service('Profile', [
 		'$http', 
-		'Auth', 
 		'$q',
 		'$timeout',
-		function($http, Auth, $q, $timeout){
+		'http',
+		function($http, $q, $timeout, http){
 		
 		var Profile = this;
 
@@ -51,8 +51,6 @@
 
 		this.init = function(username) {
 
-			console.log("In the init");
-
 			// First delete the preivous profile
 			Profile.profile = null;
 
@@ -81,5 +79,23 @@
 
 			return defer.promise;
 		}
+
+
+		this.rate = function(profile, rating) {
+
+			var url = "/api/user/" + profile.username + "/reputation/";
+			var error = "Error while giving reputation";
+
+			http.post(url, {reputation: rating}, error).then(
+				function(data) {
+					profile.reputation = data.reputation;
+				},
+				function(error) {
+					//TODO 
+				}
+			);
+
+		}
+
 	}]);
 })();

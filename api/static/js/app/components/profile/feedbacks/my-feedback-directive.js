@@ -25,48 +25,97 @@
 
 					$scope.feedback = null;
 
+					var exclude = [];
 
-					$scope.myRating = null;
+					prevIds = [];
 
+
+					// Indicates that the new feedback's rating is same as the old one..
+					// due to which the $watch didn't catch it..
+					var masla = false;
+
+
+					// Indicates that recent change in rating is due to arrival of new question 
 					var update = true;
+
+					// This is the flag to prevent calling $watch for rating before the first get call
 					var recieving = true;
 
 					var showFeedback = function(data) {
 
 						update = true;
-						recieving = false;
-						$scope.feedback = data;
-					}
 
+						if(!recieving) {
+							masla = data.feedback.rating == $scope.feedback.rating;
+						}
+						else {
+							update = false;
+						}
+
+						$scope.feedback = data.feedback;
+						recieving = false;
+					}
 
 					var showError = function(error) {
 						$scope.error = error;
 					}
 
 					$scope.skip = function() {
-						Feedback.skip($scope.feedback).then(showFeedback, showError);
-					}
 
+						console.log(exclude);
+						if(!($scope.feedback.id in exclude))
+							exclude.push($scope.feedback.id);
+
+						Feedback.skip(exclude).then(showFeedback, showError);
+
+
+					}
 
 					$scope.$watch(
 						function() {
-							if(recieving) {
-
-								// return zero beacuse feedback is 1-5 so it will change and event 
-								// will be fired..
-								return 0;
-							}
-							else {
+							if(!recieving)
 								return $scope.feedback.rating;
-							}
 						}, 
-						function(value) {
-							if(!update) {
-								Feedback.give($scope.feedback).then(showFeedback, showError);
+						function(n, o) {
+
+							// console.log("From ");
+							// console.log(o);
+							// console.log(" to ");
+							// console.log(n);
+
+							if (o != undefined) {
+
+								if(!update) {
+									if($scope.feedback.id in exclude) {
+										exclude.splice(exclude.indexOf($scope.feedback.id, 1));
+									}
+
+									Feedback.give($scope.feedback).then(showFeedback, showError);
+
+									console.log("rating is changed");
+								}
+								else if (update) {
+									if(masla) {
+										if($scope.feedback.id in exclude) {
+											exclude.splice(exclude.indexOf($scope.feedback.id, 1));
+										}
+
+										Feedback.give($scope.feedback).then(showFeedback, showError);
+
+										console.log("New rating was same.. Now changed..");
+									}
+
+									else {
+										console.log("this is due to new arrival");
+										update = false;
+									}
+								}
 							}
 							else {
-								update = false;
+								console.log("Old was undefined");
 							}
+
+
 						}
 					);
 

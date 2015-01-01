@@ -1,0 +1,76 @@
+.rp-suggestions {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding-bottom: 10px;
+	background-color: white;
+	position: relative;
+
+}
+
+.friend-suggestion-wrapper {
+	/*width: 100px;*/
+	/* height: 70px;*/
+	margin-top: 10px;
+	margin-left: 10px;
+	background-color: white;
+}
+
+.friend-suggestion-wrapper ._left {
+	width: 60px;
+	min-width: 60px;
+}
+
+.friend-suggestion-wrapper ._right {
+	/*width: 120px;*/
+	min-width: 120px;
+	padding-left:10px;
+}
+
+
+.friend-suggestion-avatar {
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
+	min-height: 60px;
+	background-color: #0f9d58;
+	/*border-radius: 50%;*/
+}
+
+.friend-suggestion-avatar img{
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
+	min-height: 60px;
+	/*border-radius: 50%;*/
+}
+
+.friend-suggestion-rating {
+	width: 100%;
+	padding-top: 5px;
+}
+
+.friend-suggestion-mutual {
+	font-size: 12px; 
+	color: #a0a0a0;
+}
+
+.friend-suggestion-name {
+	font-weight: bold;
+	height: 20px;
+}
+.friend-suggestion-decision-button {
+	padding-right: 10px;
+
+}
+.friend-suggestion-decision-button md-icon{
+	margin: 0px;
+}
+
+.friend-suggestion-add {
+}
+
+.friend-suggestion {
+	width: 100px;
+	height: 50px;
+	background-color: #0f9d58;
+}

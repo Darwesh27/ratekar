@@ -4,7 +4,8 @@
 		'$http', 
 		'Me', 
 		'$location',
-		function($http, Me, $location){
+		'$cookies',
+		function($http, Me, $location, $cookies){
 
 			var Auth = this;
 
@@ -21,6 +22,8 @@
 			};
 
 			this.sessionLogIn = function(username) {
+				$http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
+
 				Me.sessionInit(username);
 
 				loginStatus = true;
@@ -29,6 +32,7 @@
 			}
 
 			this.signUpLogIn = function(user) {
+				$http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
 				Me.init(user);
 
 				loginStatus = true;
@@ -51,7 +55,6 @@
 						loginStatus = true;
 
 						// Redirect to previous url or hoe
-						console.log(Auth.beforeUrl);
 
 						if(Auth.beforeUrl != "/enter") {
 							$location.path(Auth.beforeUrl);

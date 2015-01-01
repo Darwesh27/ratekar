@@ -1,0 +1,41 @@
+		<div class = "dropdown-wrapper"> 
+			<div class = "noti-boundry" rk-dropdown layout = "column" layout-align = "center"> 
+				<div class = "noti-cntr" layout = "row" >
+					<div class="notification-icon-wrapper">
+						<md-icon icon = "/static/img/account-outline/svg/account-outline.svg"></md-icon>
+					</div>
+					<div layout="column" layout-align = "center">
+						<div class="notification-type">New Friends</div>
+					</div>
+					<div ng-if = "friendRequests.count > 0" class = "notification-count">{{friendRequests.count}}</div>
+				</div>	
+			</div>
+
+			<dropdown trigger = "click" class = "dropdown-toolbar dropdown-toolbar-requests">
+				<div layout = "column" layout-align = "start" class = "toolbar-requests-tag">
+					<div ng-if = "friendRequests.count <= 0" class = "no-requests">
+						<span> No new Friend Requests. </span>
+					</div>
+					<div ng-repeat="request in friendRequests.items" layout = "row" class = "friend-request">
+						<div class="post-avatar">
+							<img ng-src="{{request.imageUrl}}">
+						</div>
+						<div class="post-header-info" layout = "column" layout-align = "center start">
+							<div class = "post-author-name" >
+								<a  ng-href="{{request.url}}">{{request.name}}</a>
+							</div>
+						</div>
+
+						<div flex></div>
+
+						<div layout = "column" layout-align = "center start" class = "request-decision-wrapper">
+							<friend-status-button hurrah = "done($index)" username = "{{request.username}}"></friend-status-button>
+
+						</div>
+
+
+					</div>
+				</div>
+			</dropdown>
+
+		</div>

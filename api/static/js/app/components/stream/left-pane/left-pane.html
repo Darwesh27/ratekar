@@ -1,4 +1,4 @@
-<div ng-controller = "leftPaneController" class = "left-pane-inner-wrapper" layout = "vertical" layout-align = "start center">
+<div ng-controller = "leftPaneController" class = "left-pane-inner-wrapper" layout = "column" layout-align = "start center">
 	<div class = "left-pane-avatar-wrapper md-whiteframe-z1">
 		<img ng-src="{{me.imageUrl}}" class = "left-pane-avatar">
 	</div>
@@ -9,7 +9,7 @@
 
 
 	<div class = "left-pane-reputation">
-		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "{{me.reputation * 10}}"></md-progress-linear>
+		<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.reputation * 10}}"></md-progress-linear>
 	</div>
 
 	<div class="left-pane-item">
@@ -17,17 +17,18 @@
 	</div>
 
 	<div class = "left-pane-reputation">
-		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "56"></md-progress-linear>
+		<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.thoughtsRating * 10}}"></md-progress-linear>
+		
 	</div>
 
-	<div class="left-pane-item">
+<!-- 	<div class="left-pane-item">
 		<a ng-href="{{me.url}}/photos">Photos</a>
 	</div>
 
 	<div class = "left-pane-reputation">
-		<md-progress-linear md-theme = "yellow" mode = "determinate" ng-value = "43"></md-progress-linear>
+		<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.photosRating}}"></md-progress-linear>
 	</div>
-
+ -->
 	<div class="left-pane-separator"></div>
 
 

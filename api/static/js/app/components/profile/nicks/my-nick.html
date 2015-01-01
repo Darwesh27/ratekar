@@ -1,26 +1,28 @@
 
-<div class="my-nick-wrapper md-whiteframe-z1" layout = "vertical" layout-align = "start center">
+<div class="my-nick-wrapper md-whiteframe-z1" layout = "column" layout-align = "start center">
+
+	<div class="my-feedback-icon"></div>
+
+	<h3> Share the Nick Name with which you call this person </h3>
+
+	<p> Nick Names are a way to show your love for someone </p>
 	
-	<div class="my-nick" ng-show="canShow()" layout = "vertical" layout-align = "center center">
-		<span> You call {{profile.username}} </span>
+	<div class="my-nick" ng-show="canShow()" layout = "column" layout-align = "center center">
+	
 		<span class = "my-nick-name">{{myNick}}</span>
 
-		<div layout = "horizontal" layout-align = "end center">
+		<div layout = "row" layout-align = "end center">
 			<a href = "" ng-click = "edit()" >Change</a>
 		</div>
 	</div>
 
 
 
-	<div class="my-nick" ng-show="noNick()" layout = "vertical" layout-align = "center center">
+	<div class="my-nick" ng-show="noNick()" layout = "column" layout-align = "center center">
 
-		<span> 
-		What do you call {{profile.firstname}}
-		</span>
-
-		<md-input-group layout = "vertical" class = "md-input-group-theme-green" >
+		<md-input-group layout = "column" class = "md-input-group-theme-green" >
 			<md-input  flex type = "text" ng-model = "newNick" suggest-nick></md-input>
-			<div ng-show = "suggestions.length > 0" flex class = "my-nick-suggestion-menu md-whiteframe-z1"	layout="vertical">
+			<div ng-show = "suggestions.length > 0" flex class = "my-nick-suggestion-menu md-whiteframe-z1"	layout="column">
 				<div ng-repeat="suggestion in suggestions" class = "my-nick-suggestion-menu-item"> 
 					<a href = "" ng-click = "select(suggestion)"> {{suggestion}} </a> 
 				</div>
@@ -28,11 +30,11 @@
 		</md-input-group>
 
 
-		<div layout = "horizontal">
+		<div layout = "row">
 
-			<md-button class = "md-button-raised button-small" ng-click="cancel()"> Cancel </md-button>
+			<md-button class = "button button-small" ng-click="cancel()"> Cancel </md-button>
 
-			<md-button class = "md-theme-green md-button-raised button-small" ng-click="give()"> Give </md-button>
+			<md-button md-theme = "green" class = "md-primary button button-small" ng-click="give()"> Give </md-button>
 
 		</div>
 

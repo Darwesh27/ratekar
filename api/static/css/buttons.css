@@ -1,0 +1,39 @@
+
+.button button {
+	padding: 0px;
+}
+
+.button-mini {
+	font-size: 10px;
+	height: 16px;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin: 3px;
+}
+
+.button-small {
+	font-size: 12px;
+	height: 19px;
+	padding: 0px;
+	border-radius: 0px;
+	padding-left: 3.5px;
+	padding-right: 3.5px;
+	margin: 3.5px;
+}
+
+.button-normal {
+	font-size: 14px;
+	height: 23px;
+	padding-left: 4.5px;
+	padding-right: 4.5px;
+	margin: 4.5px;
+}
+
+.button-large {
+	font-size: 16px;
+	height: 26px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 5px;
+
+}

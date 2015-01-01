@@ -8,7 +8,7 @@
 		function($http, Profile, Urls, Fetch){
 
 			this.get = function() {
-				return Urls.get('myreview').then(
+				return Urls.get('review').then(
 					function(url){
 						var error = "Unable to fetch the Review.. ";
 						return Fetch.fetch(url, error, function(data, q) {
@@ -20,7 +20,7 @@
 
 			this.give = function(review) {
 
-				return Urls.get('myreview').then(
+				return Urls.get('review').then(
 					function(url){
 						data = {
 							review : review,

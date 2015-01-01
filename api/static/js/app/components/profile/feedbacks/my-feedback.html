@@ -1,4 +1,4 @@
-<div class="my-feedback-wrapper md-whiteframe-z1" layout = "vertical" layout-align = "start center">
+<div class="my-feedback-wrapper md-whiteframe-z1" layout = "column" layout-align = "start center">
 
 	<div class="my-feedback-icon"></div>
 
@@ -7,16 +7,16 @@
 	<p> Feedbacks lets people improve their personality.. </p>
 
 
-	<div class="my-feedback" layout = "vertical" layout-align = "start center">
+	<div class="my-feedback" layout = "column" layout-align = "start center">
 
 		<div class="_username"> {{profile.name}} </div>
 
 		<div class="vertical-separator"></div>
 
 
-		<div class="my-feedback-inner-wrapper" flex layout = "vertical" layout-align = "start center">
+		<div class="my-feedback-inner-wrapper" flex layout = "column" layout-align = "start center">
 			<div class="my-feedback-question">
-				{{feedback.text}}
+				{{feedback.question}}
 			</div>
 
 			<div class="my-feedback-answer" flex>
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class = "my-feedback-skip" layout = "horizontal" flex layout-align = "end">
+		<div class = "my-feedback-skip" layout = "row" flex layout-align = "end">
 			<a href="" ng-click = "skip()">skip</a>
 		</div>
 	</div>

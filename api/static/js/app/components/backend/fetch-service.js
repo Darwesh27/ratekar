@@ -14,6 +14,7 @@
 
 
 			this.http = function(method, url, data, serverError,cb) {
+
 				var deffered = $q.defer();
 
 				$http({method: method, url: url, data: data}).
@@ -75,45 +76,6 @@
 
 				return getResource(caller, url, error);
 			}
-
-
-			this.getComments = function(postId) {
-
-				url = Urls.comments(postId);
-				error = Errors.profileError('comments', false);
-
-				return Fetch.fetch(url, error, function(data, q) {
-					q.resolve(data);
-				});
-			}
-
-			this.nextComments = function(next) {
-				error = Errors.profileError('comments', true);
-
-				return Fetch.fetch(next, error, function(data, q) {
-					q.resolve(data);
-				})
-			}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		}]);
 })();

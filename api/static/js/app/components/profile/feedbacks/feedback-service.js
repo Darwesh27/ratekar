@@ -1,12 +1,23 @@
 (function() {
 	angular.module('rateker.profile').
 	service('Feedback', [
-		'$http',
+		'http',
 		'Profile', 
 		'Fetch',
 		'Urls',
 		'Errors',
-		function($http, Profile, Fetch, Urls, Errors){
+		function(http, Profile, Fetch, Urls, Errors){
+
+
+			this.create = function(question) {
+				var url = Urls.newFeedback();
+
+				data = {
+					text: question
+				}
+
+				return http.post(url,data, "Too short or already exists..");
+			}
 
 			this.get = function() {
 				return Urls.get('feedback').then(
@@ -24,7 +35,8 @@
 				return Urls.get('feedback').then(
 					function(url){
 						var data = {
-							feedback: feedback,
+							id: feedback.id,
+							rating: feedback.rating
 						}
 						var error = "Something went wrong here ";
 						return Fetch.http('post', url, data, error, function(data, q) {
@@ -34,12 +46,11 @@
 				);
 			}
 
-			this.skip = function(feedback) {
+			this.skip = function(exclude) {
 				return Urls.get('feedback').then(
 					function(url){
 						var data = {
-							feedback: feedback,
-							skip: true,
+							exclude: exclude,
 						}
 						var error = "Something went wrong here ";
 						return Fetch.http('post', url, data, error, function(data, q) {

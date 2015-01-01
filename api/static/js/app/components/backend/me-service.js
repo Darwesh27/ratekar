@@ -1,14 +1,34 @@
 (function() {
 	angular.module("rateker.backend").
-	service('Me', ['$http', function($http){
+	service('Me', [
+		'$http',
+		'Urls',
+		'Fetch',
+		function($http, Urls, Fetch){
 
 		this.user = null;
 		var Me = this;
 
 
 
+		var getThoughtsRating = function() {
+			url = Urls.myThoughtsRating();
+
+			Fetch.fetch(url, '', function(data, q) {q.resolve(data);}).then(
+				function(data) {
+					Me.user.thoughtsRating = data.rating;
+				},
+				function(error) {
+					console.log(error);
+				}
+			);
+
+		}
+
 		var initUser = function(data) {
 			Me.user = data;
+			Me.user.thoughtsRating = null;
+			getThoughtsRating();
 		}
 
 

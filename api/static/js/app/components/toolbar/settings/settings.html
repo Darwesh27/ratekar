@@ -1,6 +1,25 @@
-<div  class = "toolbar-settings" layout = "horizontal" layout-align = "start"> 
-	<div>
-		<md-icon icon = "/static/img/menu-down/svg/menu-down.svg"></md-icon>
+<div  class = "toolbar-settings" layout = "row" layout-align = "start"> 
+	<div class = "dropdown-wrapper">
+		<div class="toolbar-settings-caret-wrapper" layout = "column" layout-align = "center">
+			<div class = "toolbar-settings-caret"> 
+				<md-icon icon = "/static/img/menu-down/svg/menu-down.svg"></md-icon>
+			</div>
+		</div>
+
+		<dropdown trigger = "click" class = "dropdown-toolbar dropdown-toolbar-settings">
+			<div class="toolbar-settings-tag">
+				<a href = "">
+					<div class = "dropdown-list-item toolbar-settings-item">
+						Settings
+					</div>
+				</a>
+				<a href = "" ng-click="logOut()">
+					<div class = "dropdown-list-item toolbar-settings-item">
+						Log Out
+					</div>
+				</a>
+			</div>
+		</dropdown>
 	</div>
 
 	<div>

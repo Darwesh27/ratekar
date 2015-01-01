@@ -1,20 +1,15 @@
 (function() {
 	angular.module('rateker.profile').
 	service('Feedbacks', [
-		'Fetch',
-		function(Fetch){
+		'ArrangeService',
+		'Urls',
+		function(ArrangeService, Urls){
 
-			this.next = null;
-
-			var Feedbacks = this;
-
-			this.get = function() {
-				return Fetch.get(Feedbacks, 'feedbacks');
+			this.initUrl = function() {
+				this.url = Urls.feedbacks(this.username);
+				this.error = "Unable to Fetch Feedbacks";
 			}
 
-
-			this.next = function() {
-				return Fetch.next(Feedbacks, 'feedbacks');
-			}
+			ArrangeService.register(this);
 		}]);
 })();

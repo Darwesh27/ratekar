@@ -1,9 +1,11 @@
 <div class="reviews-wrapper">
 
-	<my-review></my-review>
+	<my-review ng-if = "profile.friendship.exists"></my-review>
 	<div class="reviews">
 		<div ng-repeat="review in reviews">
 			<review review="review"></review>
 		</div>
 	</div>
+	<detect-end end= "end" todo = "fetchPrevious()"></detect-end>
+	<end></end>
 </div>

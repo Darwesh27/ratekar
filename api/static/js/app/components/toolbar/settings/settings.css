@@ -1,0 +1,25 @@
+
+.toolbar-settings-caret {
+	cursor: pointer;
+}
+
+.toolbar-settings-caret-wrapper {
+	height: 100%;
+}
+
+.toolbar-settings-tag {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 150px;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.toolbar-settings-item {
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+}
+.toolbar-settings-item a{
+	width: 100%;
+}

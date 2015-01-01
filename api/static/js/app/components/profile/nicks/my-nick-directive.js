@@ -69,6 +69,8 @@
 
 					var yes = function(data) {
 
+						console.log(data);
+
 						$scope.available = true;
 						$scope.onEdit = false;
 						$scope.myNick = data.nick;
@@ -77,6 +79,7 @@
 
 					var no = function(data) {
 						$scope.available = false;
+						$scope.onEdit = true;
 					}
 
 					Nick.get().then(yes, no);

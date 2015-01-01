@@ -1,25 +1,27 @@
-<div class = "stream-post md-whiteframe-z1" layout = "vertical">
+<div class = "stream-post md-whiteframe-z1" layout = "column">
 	<rk-post-author author = "post.author"></rk-post-author>
 	<div class = "post-content ">
-		{{post.content.text}}
+		{{post.thought.text}}
 	</div>
 
 
 	<div class="post-feedback">
 		<div class="post-rating">
-			<md-progress-linear mode = "determinate" ng-value="{{post.rating * 10}}"></md-progress-linear>
+			<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{post.rating.total * 10}}" ></md-progress-linear>
 		</div>
+
 
 		<div class="post-my-rating">
-			<md-slider ng-model="post.myRating" min="1" max="10"></md-slider>
+			<md-slider ng-if = "!post.mine" ng-model="post.rating.my" min="1" max="10" aria-label = "Post rating"></md-slider>
 		</div>
 
-		<new-comment post = "post"></new-comment>
 
 
 
-		<div class="comments" layout = "vertical" layout-align="start start">
-			<rk-comment ng-repeat = "comment in post.comments" comment = "comment"></rk-comment>
+		<div class="comments" layout = "column" layout-align="start start">
+			<a class = "previous-comments" href="" ng-click="fetchPrevCom()" ng-if = "previousComments">Fetch previous comments..</a>
+			<rk-comment ng-repeat = "comment in post.comments|orderBy:'time'" comment = "comment"></rk-comment>
+			<new-comment post = "post"></new-comment>
 		</div>
 
 

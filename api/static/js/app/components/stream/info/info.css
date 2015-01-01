@@ -1,0 +1,19 @@
+.main-right-pane-info {
+	margin-top: 15px;
+	margin-left: 15px;
+	width: 275px;
+	min-width: 275px;
+	text-align: justify;
+}
+
+.info-section {
+	color: #a0a0a0;
+	font-size: 12px;
+	padding-right: 5px;
+}
+
+a.info-section {
+	text-decoration: default;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+

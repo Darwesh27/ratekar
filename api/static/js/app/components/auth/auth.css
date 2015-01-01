@@ -45,7 +45,7 @@
 }
 
 .social-login-panel {
-	border-top: 1px solid grey;
+	border-top: 1px solid #e5e5e5;
 	margin-top: 30px;
 }
 
@@ -68,13 +68,6 @@
 
 .signup-button-google {
 	
-}
-
-.button-small {
-	height: 30px;
-	margin: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
 }
 
 md-input-group .info-icon {

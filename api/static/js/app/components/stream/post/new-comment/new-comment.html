@@ -1,8 +1,13 @@
-		<div class="new-commnet">
-			<md-input-group class = "md-input-group-theme-green">
-				<label for = "com-{{post.id}}">Add a comment..</label>
-				<div layout = "horizontal">
-					<md-input id = "com-{{post.id}}" flex type = "text" ng-model = "newCom"></md-input>
+		<div class="new-comment">
+			<div layout = 'row' layout-align = "start">
+
+				<div layout = "column" layout-align = "center">
+					<div class = "comment-avatar">
+						<img ng-src="{{me.imageUrl}}">
+					</div>
 				</div>
-			</md-input-group>
+
+				<md-text-float flex md-theme = "green" class = "new-comment-text" label = "Add a comment.." ng-model =  "newCom"></md-text-float>
+
+ 			</div>
 		</div>

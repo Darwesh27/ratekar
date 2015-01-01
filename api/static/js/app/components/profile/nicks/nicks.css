@@ -1,0 +1,53 @@
+
+.nicks {
+	min-height: 200px;
+}
+
+.nick-wrapper {
+	margin-top: 15px;
+}
+
+.nick-name {
+	font-size: 50px;
+	
+}
+
+.nick-count {
+	
+}
+
+.my-nick-wrapper {
+	margin-top: 15px;
+	margin-left: 15px;
+	background: white;
+	padding: 20px;
+}
+
+.my-nick-wrapper h3 {
+	margin: 0px;
+	margin-top: 20px;
+}
+
+.my-nick-wrapper p {
+	margin: 0px;
+	margin-top: 20px;
+	font-size: 12px;
+}
+
+.my-nick-name {
+	font-size: 50px;
+	color: #0f9d58;
+}
+
+.my-nick-suggestion-menu {
+	width: 100%;
+	position: absolute;
+	background-color: white;
+	padding: 5px;
+	z-index: 1;
+}
+
+.my-nick-suggestion-menu-item {
+	margin-top: 5px;
+}
+

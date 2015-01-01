@@ -11,7 +11,9 @@
 				// name: '',
 				// priority: 1,
 				// terminal: true,
-				scope: {}, // {} = isolate, true = child, false/undefined = no change
+				scope: {
+					username: "@",
+				}, // {} = isolate, true = child, false/undefined = no change
 				// controller: function($scope, $element, $attrs, $transclude) {},
 				// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 				restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
@@ -47,8 +49,14 @@
 					}
 
 
+					var isOk = function() {
+						return ($scope.newReview != null) && ($scope.newReview != '');
+					}
+
+
 					$scope.give = function() {
-						Review.give($scope.newReview).then(yes, no);
+						if(isOk()) 
+							Review.give($scope.newReview).then(yes, no);
 					}
 
 
@@ -56,15 +64,22 @@
 						return $scope.available && !$scope.onEdit;
 					}
 
-					var yes = function(data) {
+					var yes = function(review) {
 
-						$scope.available = true;
-						$scope.onEdit = false;
-						$scope.myReview = data.review;
+						if(review.text != "") {
+							$scope.available = true;
+							$scope.onEdit = false;
+							$scope.myReview = review.text;
+						}
+						else {
+							no();
+						}
+
 					}
 
 					var no = function(data) {
 						$scope.available = false;
+						$scope.edit();
 					}
 
 					Review.get().then(yes, no);

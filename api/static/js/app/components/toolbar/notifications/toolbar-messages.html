@@ -1,0 +1,19 @@
+		<div class = "dropdown-wrapper">
+			<div class = "noti-boundry" rk-dropdown layout = "column" layout-align = "center"> 
+				<div class = "noti-cntr" layout = "row" >
+					<div class="notification-icon-wrapper">
+						<md-icon icon = "/static/img/email/svg/email.svg"></md-icon>
+					</div>
+					<div layout="column" layout-align = "center">
+						<div class="notification-type">Messages</div>
+					</div>
+					<div ng-if = "messages.count > 0" class = "notification-count">{{messages.count}}</div>
+				</div>	
+			</div>
+
+			<dropdown trigger = "click" class = "dropdown-toolbar dropdown-toolbar-messages">
+				<div layout = "column" layout-align = "center" class = "toolbar-messages-tag">
+					<span> Coming Soon.. </span>
+				</div>
+			</dropdown>
+		</div>

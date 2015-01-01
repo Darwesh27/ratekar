@@ -54,28 +54,83 @@
 }
 
 .dropdown-toolbar {
-	top: 64px;
+	top: 50px;
 }
 
-.dropdown-notifications .dropdown-caret {
+.dropdown-add-friend {
+	top: 35px;
+}
+
+
+/*Setting the caret for different dropdowns*/
+
+.dropdown-toolbar-notifications .dropdown-caret {
 	left: auto;
 	right: 30px;
+}
+
+.dropdown-toolbar-messages .dropdown-caret {
+	left: auto;
+	right: 35px;
+}
+
+.dropdown-toolbar-requests .dropdown-caret {
+	left: auto;
+	right: 45px;
+}
+
+.dropdown-toolbar-requests .dropdown-menu {
+	border-radius: 0px 0px 5px 5px;
+}
+
+.dropdown-toolbar-messages .dropdown-menu {
+	border-radius: 0px 0px 5px 5px;
+}
+
+.dropdown-toolbar-settings .dropdown-caret {
+	left: auto;
+	right:3px;
+}
+
+.dropdown-add-friend .dropdown-caret {
+	left: auto;
+	right: 25px;
+}
+
+.dropdown-toolbar-settings {
+}
+
+.dropdown-toolbar-settings .dropdown-menu {
+	border-radius: 0px 0px 5px 5px;
 }
 
 .dropdown {
 	display: none;
 	right: 0px;
 	position: absolute;
+	z-index: 1;
 }
 
 .dropdown-menu {
 	background-color: white;
 	box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
-	height: 100px;
+/*	height: 100px;
 	width: 300px;
-}
+*/}
 
 
 .show-menu {
 	display: block;
 }
+
+
+.dropdown-list-item {
+	background-color: white;
+	color: #0f9d58;
+}
+
+.dropdown-list-item:hover {
+	background-color: #0f9d58;
+	color: white;
+}
+
