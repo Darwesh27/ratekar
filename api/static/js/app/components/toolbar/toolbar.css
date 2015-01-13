@@ -13,6 +13,11 @@
 	min-width: 940px;
 	max-width: 940px;
 	padding: 0px;
+	margin: 0px;
+}
+
+.md-toolbar-tools > * {
+	margin: 0px;
 }
 
 .toolbar .md-toolbar-tools {
@@ -21,7 +26,7 @@
 }
 
 .toolbar-logo {
-	min-width: 50px;
+	min-width: 36px;
 }
 
 .toolbar-notifications {
@@ -53,9 +58,6 @@
 	border-radius: 50%;
 }
 
-.toolbar-search {
-	font-size: 15px;
-}
 
 
 .toolbar-avatar img {
@@ -68,6 +70,7 @@
 .toolbar-nav {
 	min-width: 100px;
 	width: 100px;
+	padding-left: 8px;
 }
 
 .toolbar-nav .home {

@@ -33,12 +33,30 @@
 			}
 
 
+
+			/************************************************
+			* Welcome Urls
+			************************************************/
+
+			this.suggestPlaces = function() {
+				return api() + "/suggestions/places/";
+			}
+
+			this.updatePlaces = function() {
+				return api() + "update/places/";
+			}
+
+
 			/************************************************
 			* Dialog Urls
 			************************************************/
 
 			this.getPost = function(postId) {
 				return api() + 'post/' + postId + "/";
+			}
+
+			this.getReview = function(reviewId) {
+				return api() + 'review/' + reviewId + "/";
 			}
 
 			/************************************************
@@ -101,6 +119,10 @@
 
 			this.suggestNicks = function(username) {
 				return userUrl(username) + "suggestnicks/";
+			}
+
+			this.rankings = function() {
+				return api() + 'rankings/';
 			}
 
 			/************************************************

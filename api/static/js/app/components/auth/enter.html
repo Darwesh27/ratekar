@@ -1,28 +1,27 @@
-<div layout = "row" layout-fill class="enter">
-	<div class="login-panel-wrapper md-whiteframe-z1" ng-controller="loginController">
-		<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
-			<label for = "login-form-cred">Email or username..</label>
-
-			<md-input  required id = "login-form-cred" flex type = "text" ng-model = "cred"></md-input>
-		</md-input-group>
-
-		<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
-			<label for = "login-form-pass">Password..</label>
-			<md-input  required id = "login-form-pass" flex type = "password" ng-model = "pass"></md-input>
-		</md-input-group>
-
-		<span> {{error}} </span>
-
-		<div layout = "row" layout-align="end center">
-			<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="logIn()">Login</md-button>
+<div layout = "column" layout-fill class="enter">
+		<div layout = "row" layout-align = "start center" class = "enter-header md-whiteframe-z1">
+			<div flex ></div>
+			<div class = "enter-header-inner-wrapper" layout = "row" layout-align = "start center">
+				<div class="enter-header-logo-wrapper"> Rateker </div>
+				<div class = "enter-header-buttons-wrapper" flex layout = "row" layout-align = "end center">
+					<div layout = "row" layout-align = "center center" class = "login-panel-trigger" ng-click = "showLoginPanel($event)">
+						<span> Log In </span>
+					 </div>
+					<div class = "signup-panel-trigger" layout = "row" layout-align = "start center" ng-click="showSignUpPanel($event)"> 
+						<span> Join Now </span>
+					</div>
+				</div>
+			</div>
+			<div flex ></div>
 		</div>
+		<div class="enter-center-pane" layout = "column" layout-align = "center center" flex>
 
-		<div class="social-login-panel">
-			<md-button class= "md-raised md-primary login-button-facebook">Facebook</md-button>
-			<md-button md-theme = "red" class= "md-raised md-primary login-button-google">Google</md-button>
-			
+			<h1> Who you are? </h1>
+
+			<div class = "center-pane-signup-panel-trigger" layout = "row" layout-align = "start center" ng-click="showSignUpPanel($event)"> 
+				<span> Let you friends tell you..</span>
+			</div>
+
 		</div>
-	</div>
-	<div class="enter-center-pane" flex></div>
-	<div class="signup-panel-wrapper md-whiteframe-z1" ng-controller = "signupController" ng-include = "'/static/js/app/components/auth/signup-panel.html'"></div>
+		<div class = "enter-footer"></div>
 </div>

@@ -1,0 +1,20 @@
+<div class="welcome-address">
+
+
+	<div class="welcome-address-inner-content" layout = "column" layout-align = "start center">
+
+		<p> Tell us about three places where most of your friends will be.. i.e Name of Your College, Your current or previous Work Place.. This will help us to fetch friend suggestion for you.. </p>
+
+		<suggest-place ng-repeat = "place in address.places" place = "place" tab-index = "{{$index}}"></suggest-place>
+
+	</div>
+
+
+
+	<div class="welcome-inner-footer" layout = "row" layout-align = "end center">
+		<div  ng-class = "{'disabled': !address.updated(), }" class = "intro-next" layout = "row" layout-align = "center center" ng-click = "welcome.next()"> 
+			<span> Next </span>
+		</div>
+	</div>	
+	
+</div>

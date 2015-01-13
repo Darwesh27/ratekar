@@ -1,0 +1,23 @@
+md-content.rankings {
+	background-color: #e5e5e5;
+}
+.rankings {
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	/*background-color: white;*/
+	right: 0px;
+	margin-right: 15px;
+}
+
+
+.ranking {
+	/*border-bottom: 1px solid #e5e5e5;*/
+	padding: 5px;
+	font-weight: 400;
+	font-size: 12px;
+}
+
+.ranking-name {
+	margin-left: 5px;
+}

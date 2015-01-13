@@ -1,0 +1,13 @@
+	<div class = "welcome-address-wrapper">
+		<md-input-group layout = "column" class = "welcome-address-input-wrapper">
+			<label for = "login-form-cred">First Place </label>
+
+			<md-input id = "welcome-address-home" flex type = "text" ng-model = "tempName"></md-input>
+
+		</md-input-group>
+		<div class="suggestions md-whiteframe-z1">
+			<div class="suggestion" ng-repeat = "suggestion in place.suggestions" ng-click = "setPlace(suggestion)">{{suggestion}} </div>
+
+			<div class="suggestion auto-complete" ng-click = "place.name = tempName"> {{tempName}} </div>
+		</div>
+	</div>

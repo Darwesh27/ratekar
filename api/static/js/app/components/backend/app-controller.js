@@ -11,6 +11,25 @@
 
 			var urlBeforeLogin = null;
 			$scope.isLoggedIn = Auth.isLoggedIn();
+			$scope.isReady = Me.ready;
+
+			$scope.$watch(function() {
+				return Me.ready;
+			},
+			function(newVal, oldVal) {
+
+				console.log(newVal);
+				console.log(oldVal);
+
+				if(newVal == false) {
+					$location.path('/welcome');
+				}
+				else if(newVal == true && oldVal == false) {
+					$location.path('/');
+				}
+
+				$scope.isReady = newVal;
+			})
 
 
 			// Me.checkReadiness().

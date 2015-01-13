@@ -17,6 +17,7 @@
 		'rateker.auth',
 		'rateker.dropdown',
 		'rateker.helper',
+		'rateker.welcome',
 		'ngRoute',
 		'ui.router',
 		'ngCookies',
@@ -75,6 +76,12 @@
 				.state('auth', {
 					url: "/enter",
 					templateUrl: "static/js/app/components/auth/enter.html",
+					controller: "EnterController",
+				})
+				.state('welcome', {
+					url: "/welcome",
+					templateUrl: "static/js/app/components/welcome/welcome.html",
+					// controller: "WelcomeController",
 				})
 				.state('stream', {
 					url: "/",

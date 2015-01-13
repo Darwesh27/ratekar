@@ -1,4 +1,60 @@
 
+.stream-post {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding: 10px;
+	background-color: white;
+}
+
+.post-header {
+	height: 60px;
+
+}
+
+.post-header-info {
+	height: 60px;
+	padding-left: 10px;
+	position: absolute;
+}
+
+.post-avatar {
+	height: 50px;
+	width: 50px;
+	margin: 5px;
+	border-radius: 50%;
+}
+
+.post-avatar img {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	-webkit-animation: expandOut 0.4s;
+	animation: expandOut 0.4s;
+}
+
+.post-author-name {
+}
+
+.post-author-name a {
+	font-weight: bold;
+}
+
+.post-time {
+
+}
+
+.post-content {
+	margin-left: 70px;
+	font-weight: 300;
+
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
+}
+
+.post-feedback {
+	margin-top: 10px;
+}
+
 .previous-comments {
 	font-size: 10px;
 	margin-left: 5px;

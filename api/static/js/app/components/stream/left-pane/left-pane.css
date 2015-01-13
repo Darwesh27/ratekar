@@ -1,0 +1,94 @@
+
+.left-pane {
+	min-width: 150px;
+	position: absolute;
+	color: black;
+}
+
+.left-pane-inner-wrapper {
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+
+.left-pane-me-outer-wrapper {
+	margin-bottom: 15px;
+}
+
+.left-pane-me-wrapper {
+	padding-left: 10px;
+}
+
+
+
+.left-pane-avatar-wrapper {
+	min-width: 50px;
+	min-height: 50px;
+	width: 50px;
+	height: 50px;
+}
+
+.left-pane-avatar {
+	width: 50px;
+	height: 50px;
+
+	-webkit-animation: expandOut 0.4s;
+	animation: expandOut 0.4s;
+}
+
+.left-pane-name {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 15px;
+	/*font-weight: 600;*/
+}
+
+.left-pane-name a {
+	color: black;
+}
+
+.left-pane-name a:hover {
+	text-decoration: underline;
+}
+
+
+.left-pane-me-reputation {
+	padding-left: 5px;
+	padding-bottom: 10px;
+}
+
+.left-pane-reputation {
+	width: 100px;
+}
+
+.left-pane-items-wrapper {
+	position: absolute;
+	left: -5px;
+	width: 155px;
+}
+
+.left-pane-item {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.left-pane-item a {
+	width: 100%;
+	color: #333;
+}
+
+.left-pane-item:hover {
+	background-color: #d5d5d5;
+}
+
+.left-pane-separator {
+	width: 100%;
+	min-height: 2px;
+	height: 2px;
+	border-top: 1px solid #CCCCCC;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}

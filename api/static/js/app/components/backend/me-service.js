@@ -9,6 +9,8 @@
 		this.user = null;
 		var Me = this;
 
+		this.ready = true;
+
 
 
 		var getThoughtsRating = function() {
@@ -25,10 +27,12 @@
 
 		}
 
-		var initUser = function(data) {
-			Me.user = data;
+		var initUser = function(user) {
+			Me.user = user;
 			Me.user.thoughtsRating = null;
 			getThoughtsRating();
+
+			Me.ready = user.imageUrl != null && user.places;
 		}
 
 
@@ -52,6 +56,10 @@
 
 		this.init = function(user) {
 			initUser(user);
+		}
+
+		this.reload = function() {
+			Me.sessionInit(Me.user.username);
 		}
 
 		this.destroy = function() {

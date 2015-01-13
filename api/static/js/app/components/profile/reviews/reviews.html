@@ -3,6 +3,7 @@
 	<my-review ng-if = "profile.friendship.exists"></my-review>
 	<div class="reviews">
 		<div ng-repeat="review in reviews">
+			<a href = "" ng-click = "show($event, review.id)"> SHOW </a>
 			<review review="review"></review>
 		</div>
 	</div>

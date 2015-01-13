@@ -65,11 +65,22 @@ urlpatterns = patterns('',
 	# Liking a your reivew by someone
 	url(r'^review/(?P<rid>\d+)/like$', views.like_review),
 
+
+	###########################################################
+	# Welcome related Urls
+	###########################################################
+	url(r'suggestions/places/$', views.suggest_places),
+
+	url(r'update/places/$', views.places),
+
+
+
 	###########################################################
 	# Dialog related Urls
 	###########################################################
 
 	url(r'post/(?P<pid>\d+)/$', views.get_post),
+	url(r'review/(?P<rid>\d+)/$', views.get_review),
 
 
 	###########################################################
@@ -84,6 +95,10 @@ urlpatterns = patterns('',
 	url(r'^friendship/status/(?P<username>[\w._-]+)/$', views.friendship_details),
 
 	url(r'^feedbacks/new/$', views.new_feedback),
+
+	url(r'rankings/$', views.rankings),
+
+	url(r'upload/profile/$', views.upload_profile),
 
 	###########################################################
 	# Me related Urls

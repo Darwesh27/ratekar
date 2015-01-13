@@ -5,7 +5,9 @@
 		'Me', 
 		'$location',
 		'$cookies',
-		function($http, Me, $location, $cookies){
+		'$rootScope',
+		'$mdDialog',
+		function($http, Me, $location, $cookies, $rootScope, $mdDialog){
 
 			var Auth = this;
 
@@ -48,6 +50,9 @@
 				success(function(data, status, headers, config){
 					if(!data.error) {
 
+						// hide the login panel dialog
+						$mdDialog.hide();
+
 						// Initialize the me service to fetch user data
 						Me.init(data.user);
 
@@ -78,6 +83,9 @@
 
 					loginStatus = false;
 
+					$rootScope.$broadcast('logOut');
+					$rootScope.$emit('logOut');
+
 				});
 			};
 
@@ -85,6 +93,10 @@
 				$http.post('/api/signup/', userData).
 				success(function(data) {
 					if(!data.error) {
+
+						// hide the signup panel dialog
+						$mdDialog.hide();
+
 						Auth.signUpLogIn(data);
 					}
 					else {

@@ -1,0 +1,13 @@
+
+<div ng-controller = "WelcomeController" layout = "column" layout-fill layout-align = "start center" class="welcome">
+	<div class="welcome-inner-wrapper md-whiteframe-z1">
+		<div class="welcome-header" layout = "row" layout-align = "center center"> 
+			<span> Rateker </span>
+		</div>
+
+		<ng-include src="welcome.urls[welcome.step]"></ng-include>
+
+		<div class="welcome-footer"></div>
+	</div>
+	
+</div>

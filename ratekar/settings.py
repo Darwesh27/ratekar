@@ -29,6 +29,9 @@ ALLOWED_HOSTS = ['localhost']
 # Custome user model
 AUTH_USER_MODEL = "social.User"
 
+# from .backends import CustomAuth
+# AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', CustomAuth)
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -90,6 +93,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'api/media')
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -144,6 +151,7 @@ PIPELINE_JS = {
             'js/app/components/backend/backend-module.js',
             'js/app/components/right-pane/right-pane-module.js',
             'js/app/components/auth/auth-module.js',
+            'js/app/components/welcome/welcome-module.js',
             'js/app/helpers/dropdown/dropdown-module.js',
             'js/app/*/*.js',
             'js/app/*/*/*.js',

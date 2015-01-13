@@ -72,9 +72,14 @@
 				Noti.getRequests();
 				Noti.getMessages();
 
-				$interval(function() {
+				var updatingRequests = $interval(function() {
 					Noti.getRequests();
 				}, 60000);
+
+
+				$rootScope.$on('logOut', function() {
+					$interval.cancel(updatingRequests);
+				})
 			}
 
 	}]);

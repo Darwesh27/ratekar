@@ -20,15 +20,63 @@
 			link: function($scope, iElm, iAttrs, controller) {
 
 				var adjust = function() {
+
+
+					var globalContainer = angular.element('.global-container');
 					var rightPaneBro = angular.element('.right-pane-bro');
 
-					iElm.width(rightPaneBro.width());
+					var adjusts = angular.element('.adjust-width');
+
+					var width = globalContainer.width()
+
+					// console.log(width);
+
+					if( width >= 1210) {
+						var space = width - 960;
+						var offset = (space - 190) / 2;
+						var rightPaneWidth = 200 + offset;
 
 
-					// Adjust toolbar's right side
-					var toolbarRight = $('.toolbar-adjust-right');
+						angular.forEach(adjusts, function(adjust) {
+							angular.element(adjust).width(offset);
+						});
+						rightPaneBro.width(rightPaneWidth);
+						iElm.width(rightPaneWidth);
+						
+						// Adjust toolbar's right side
+						var toolbarRight = $('.toolbar-adjust-right');
 
-					toolbarRight.width(rightPaneBro.width());
+						toolbarRight.width(rightPaneWidth);
+
+						var rankings = angular.element('.rankings');
+						rankings.show();
+
+					}
+					else {
+
+						var offset = width - 960;
+
+						// Set the width of right pane bro.. right pane and adjusts
+						angular.forEach(adjusts, function(adjust) {
+							console.log(adjust);
+							angular.element(adjust).width(offset / 2);
+						});
+
+						iElm.width(offset / 2);
+						rightPaneBro.width(offset / 2);
+
+						// Adjust toolbar's right side
+						var toolbarRight = $('.toolbar-adjust-right');
+
+						toolbarRight.width(offset / 2);
+
+						var rankings = angular.element('.rankings');
+						rankings.hide();
+
+					}
+
+
+
 				}
 
 				$scope.$on("$stateChangeSuccess" , function() {

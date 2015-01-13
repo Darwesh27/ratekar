@@ -5,9 +5,44 @@ from api.errors import db_error, query_error, no_resource_error, unauthorized_er
 from api.helpers import create_parents, post_params_required, get_params_required
 from api.helpers import fetch_user_posts
 from api.helpers import paginate
+from personality.models import *
 from social.models import *
 
 
+
+
+@api_view(['GET'])
+def rankings(request):
+
+	if request.method == "GET":
+
+		friends = [rel.friend for rel in request.user.friends.filter(status = 3)]
+		friends.append(request.user)
+
+		return Response({"status": 0, "rankings": [friend.ranking(request.user) for friend in friends]})
+
+
+
+@api_view(['GET'])
+def get_review(request, rid):
+
+	if request.method == "GET":
+
+
+		try: 
+			review = Review.objects.get(pk = rid)
+		except Review.DoesNotExist:
+			return Response(no_resource_error())
+
+
+		if(review.user == request.user or review.friend == request.user):
+			review = review.data(request.user)
+
+			return Response({"review": review})
+		else:
+			return Response(unauthorized_error())
+	else:
+		return Response()
 
 
 @api_view(['GET'])
@@ -127,109 +162,4 @@ def nicks(request, username):
 	data['items'] = friend.nicks() if request.user == friend else []
 
 	return Response(data);
-
-	
-@api_view(['GET', 'POST'])
-def suggest_nicks(request, username):
-
-	if request.method == 'POST':
-
-		try:
-			friend = User.objects.get(username = username)
-		except:
-			return(no_resource_error())
-
-		if friend.is_friend_of(request.user):
-			text = request.DATA.get('text', '')
-
-			if len(text) > 3:
-				relations = friend.friends.filter(nick__istartswith = text)
-
-				if relations.count > 0:
-					data = [stat['nick'] for stat in relations.values('nick').annotate()]
-			else:
-				return Response([])
-
-		else:
-			return Response(unauthorized_error())
-
-		return Response(data);
-
-	else:
-		return Response([])
-
-
-# @api_view(['GET', 'POST'])
-# def feedback(request, username):
-
-# 	feedbacks = [
-# 		{
-# 			'id': 0,
-# 			'text': "Punctual",
-# 			'rating': None,
-# 		},
-# 		{
-# 			'id': 1,
-# 			'text': "Looks nice in Long hair..",
-# 			'rating': None,
-# 		},
-# 		{
-# 			'id': 2,
-# 			'text': "Keeps his promise..",
-# 			'rating': None,
-# 		},
-# 	]
-
-# 	feedback = request.DATA.get('feedback', feedbacks[0])
-
-# 	feedback = feedbacks[(feedback['id'] + 1)%2]
-
-
-# 	return Response(feedback);
-
-
-@api_view(['GET', 'POST']) 
-# @post_params_required(['exclude'])
-def friend_suggestions(request):
-
-	friends = [relation.friend for relation in request.user.my_friends()]
-	print friends 
-
-	final = {}
-
-	for friend in friends:
-		if request.method == 'POST':
-			exclude = request.DATA.get('exclude')
-			print exclude
-			ff = [relation.friend for relation in friend.friends.exclude(friend = request.user).exclude(friend__in = friends).exclude(friend__username__in = exclude)]
-		else:
-			ff = [relation.friend for relation in friend.friends.exclude(friend = request.user).exclude(friend__in = friends)]
-
-		for f in ff:
-			if request.user.friends.filter(friend = f).exclude(status = 4).count == 0:
-				if f.id in final:
-					final[f.id]['count'] += 1
-				else:
-					final[f.id] = {}
-					final[f.id]['count'] = 1
-					final[f.id]['friend'] = f
-
-	import operator
-
-	result = [l['friend'].data_for_post() for l in sorted(final.values(), key = operator.itemgetter('count'))]
-
-
-	if request.method == "POST":
-		result = result[0:1]
-
-	return Response(result)
-
-
-
-
-
-
-
-
-
 

@@ -1,25 +1,167 @@
 .enter {
-	width: 100%;
-	min-width: 960px;
+
+	position: absolute;
+
+	background-color: white;
+
+	top: -50px;
+	left: 0px;
+
+	padding-right: 10px;
+	padding-left: 10px;
+
 }
 
-.login-panel-wrapper {
-	margin-top: 15px;
+.enter-header {
+	min-height: 80px;
+	background-color: #0f9d58;
+	position: absolute;
+	width: 100%;
+	left: 0px;
+}
+
+.enter-header-inner-wrapper {
+	min-width: 940px;
+	padding-right: 5px;
+}
+
+.enter-header-logo-wrapper {
+	min-width: 200px;
+	color: white;
+	/*text-align: center;*/
+	vertical-align: middle;
+	font-size: 50px;
+
+	font-family: 'Indie Flower', cursive;
+}
+
+.enter-header-buttons-wrapper {
+	vertical-align: middle;
+}
+
+.login-panel-trigger {
+	height: 40px;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	border: 1px solid white;
+	color: white;
+	border-radius: 5px;
+	margin-left: 10px;
+	cursor: pointer;
+	text-align: center;
+	min-width: 80px;
+	font-family: cursive;
+	font-weight: bold;
+}
+
+.login-panel-trigger:hover {
+	background-color: white;
+	color: #848484;
+}
+
+.signup-panel-trigger {
+	height: 40px;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	border: 1px solid white;
+	color: white;
+	border-radius: 5px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-family: cursive;
+	font-weight: bold;
+}
+
+.signup-panel-trigger:hover {
+	background-color: white;
+	color: #0f9d58;
+}
+
+.center-pane-signup-panel-trigger {
+	height: 40px;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	background-color: #0f9d58;
+	color: white;
+	border-radius: 5px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-family: cursive;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.center-pane-signup-panel-trigger:hover {
+	box-shadow: 1px 1px 3px 0px rgb(153, 153, 153);
+}
+
+.enter-footer {
+	min-height: 100px;
+	background-color: #0f9d58;
+}
+
+.enter-panel-header {
+	background-color: white;
+	color: #059d58;
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+	font-size: 30px;
+
+	border-radius: 20px 20px 0px 0px;
+	height: 75px;
+
+	border-bottom: 1px solid #d5d5d5;
+}
+
+.enter-panel-footer {
+	background-color: white;
+	color: #059d58;
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+	font-size: 30px;
+
+	border-radius: 0px 0px 20px 20px;
+	height: 50px;
+
+	border-top: 1px solid #d5d5d5;
+}
+
+md-dialog.md-default-theme.login-panel-wrapper {
 	min-width: 300px;
 	width: 300px;
-	padding: 15px;
-	background-color: white;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+}
+
+.login-panel-inner-wrapper {
+	padding: 20px 30px;
+}
+
+.signup-panel-inner-wrapper {
+	padding: 20px 30px;
 }
 
 .enter-center-pane {
+	margin-top: 80px;
+	text-align: center;
+	background-image: url('/static/img/first-draft-1.png');
+	background-position: center;
 }
 
-.signup-panel-wrapper {
-	margin-top: 15px;
-	width: 400px;
-	min-width: 400px;
-	padding: 15px;
-	background-color: white;
+.enter-center-pane h1 {
+	max-width: 400px;
+	font-size: 50px;
+	margin: 0px;
+	margin-bottom: 15px;
+	font-weight: 100;
+}
+
+md-dialog.md-default-theme.signup-panel-wrapper {
+	border-radius: 20px;
+	background-color: #f0f0f0;
 }
 
 .strech-vertical {
@@ -27,7 +169,11 @@
 }
 
 .login-form-input {
-	margin-top: 25px;
+
+}
+
+.login-form-input input {
+	border-bottom: 1px solid #d5d5d5;
 }
 
 .login-form-input label{
@@ -38,9 +184,39 @@
 	width: 185px;
 }
 
+.forgot-password {
+	font-size: 12px;
+	color: #6f6f6f;
+	margin: 5px 0px;
+}
+
+.signup-instead {
+	padding: 10px 0px;
+	font-size: 12px;
+	color: #6f6f6f;
+	margin: 5px 0px;
+	text-align: center;
+}
+
+.signup-instead a {
+	color: #6f6f6f;
+	font-weight: 400;
+}
+
+.login-instead {
+	padding: 10px 0px;
+	font-size: 12px;
+	color: #6f6f6f;
+	margin: 5px 0px;
+	text-align: center;
+}
+
+.login-instead a {
+	color: #6f6f6f;
+	font-weight: 400;
+}
+
 .login-button {
-	margin-top: 30px;
-	height: 30px;
 	width: 100%;
 }
 

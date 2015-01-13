@@ -1,0 +1,20 @@
+<div class="welcome-photo" layout = "column" layout-align = "start center">
+
+	<div class="welcome-photo-inner-wrapper" layout = "column" layout-align = "center center">
+		<h3> Add a profile picture. </h3>
+
+		<div class="photo-upload">
+			<img class="welcome-uploaded-photo" ng-if = "photo.uploaded" ng-src="{{photo.url}}">
+			<input type = 'file' fileread = "photo.data">
+		</div>
+		
+	</div>
+
+
+	<div class="welcome-inner-footer" layout = "row" layout-align = "end center">
+		<div  ng-class = "{'disabled': !photo.uploaded, }" class = "intro-next" layout = "row" layout-align = "center center" ng-click = "welcome.next()"> 
+			<span> Next </span>
+		</div>
+	</div>	
+	
+</div>

@@ -1,0 +1,13 @@
+<div class="intro">
+	<ng-include src="intro.urls[intro.step]"></ng-include>
+	<div class="intro-footer" layout = "row" layout-align = "end center">
+		<div class="intro-navigation" layout = "row" layout-align = "start center">
+			<div class="intro-navigation-item-wrapper" ng-repeat="url  in intro.urls" layout = 'row' layout-align = "center center" ng-click="intro.setPage($index)">
+				<div class="intro-navigation-item" ng-class="{'selected': $index == intro.step}"></div>
+			</div>
+		</div>
+		<div class = "intro-next" layout = "row" layout-align = "center center" ng-click = "intro.next()"> 
+			<span> Next </span>
+		</div>
+	</div>	
+</div>

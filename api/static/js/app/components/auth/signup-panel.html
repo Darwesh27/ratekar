@@ -1,42 +1,61 @@
 		
-		<div layout = "row">
-<!-- 			Username: {{uNameGood}} , {{uNameBad}}
-			Email: {{emailGood}} , {{emailBad}}
- -->			<md-input-group flex class = " login-form-input md-input-group-theme-green" >
-				<label for = "signup-form-first-name">First Name</label>
-
-				<md-input  id = "signup-form-firstname" type = "text" ng-model = "signup.firstname"></md-input>
-			</md-input-group>
-
-			<md-input-group flex class = " login-form-input md-input-group-theme-green" >
-				<label for = "signup-form-cred">Last Name</label>
-
-				<md-input  id = "signup-form-lastname" type = "text" ng-model = "signup.lastname"></md-input>
-			</md-input-group>
+	<md-dialog class = "signup-panel-wrapper md-whiteframe-z1" layout = "column" >
+		<div class="enter-panel-header" layout = "row" layout-align = "center center">
+			<span> Rateker </span>
 		</div>
 
-		<md-input-group check-username layout = "column" class = " login-form-input md-input-group-theme-green" >
-			<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "uNameGood" class = "info-icon"></md-icon>
-			<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "uNameBad" class = "info-icon"></md-icon>
-			<label for = "signup-form-username">Username..</label>
-			<md-input  id = "signup-form-username" flex type = "text" ng-model = "signup.username"></md-input>
-		</md-input-group>
 
-		<md-input-group check-email layout = "column" class = "login-form-input md-input-group-theme-green" >
-			<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "emailGood" class = "info-icon"></md-icon>
-			<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "emailBad" class = "info-icon"></md-icon>
-			<label for = "signup-form-email">Email</label>
-			<md-input  id = "signup-form-email" flex type = "text" ng-model = "signup.email"></md-input>
-		</md-input-group>
+		<div class="signup-panel-inner-wrapper">
+
+			<div layout = "row">
+				<md-input-group flex class = " login-form-input md-input-group-theme-green" >
+					<label for = "signup-form-first-name">First Name</label>
+
+					<md-input  id = "signup-form-firstname" type = "text" ng-model = "signup.firstname"></md-input>
+				</md-input-group>
+
+				<md-input-group flex class = " login-form-input md-input-group-theme-green" >
+					<label for = "signup-form-cred">Last Name</label>
+
+					<md-input  id = "signup-form-lastname" type = "text" ng-model = "signup.lastname"></md-input>
+				</md-input-group>
+			</div>
+
+			<md-input-group check-username layout = "column" class = " login-form-input md-input-group-theme-green" >
+				<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "uNameGood" class = "info-icon"></md-icon>
+				<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "uNameBad" class = "info-icon"></md-icon>
+				<label for = "signup-form-username">Username..</label>
+				<md-input  id = "signup-form-username" flex type = "text" ng-model = "signup.username"></md-input>
+			</md-input-group>
+
+			<md-input-group check-email layout = "column" class = "login-form-input md-input-group-theme-green" >
+				<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "emailGood" class = "info-icon"></md-icon>
+				<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "emailBad" class = "info-icon"></md-icon>
+				<label for = "signup-form-email">Email</label>
+				<md-input  id = "signup-form-email" flex type = "text" ng-model = "signup.email"></md-input>
+			</md-input-group>
 
 
-		<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
-			<label for = "signup-form-password">Password</label>
-			<md-input  id = "signup-form-password" flex type = "password" ng-model = "signup.password"></md-input>
-		</md-input-group>
+			<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
+				<label for = "signup-form-password">Password</label>
+				<md-input  id = "signup-form-password" flex type = "password" ng-model = "signup.password"></md-input>
+			</md-input-group>
 
-		<span> {{error}} </span>
+			<span> {{error}} </span>
 
-		<div layout = "row" layout-align="end center">
-			<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="signUp()">Signup</md-button>
+			<div layout = "row" layout-align="end center">
+				<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="signUp()">Signup</md-button>
+			</div>
+
+			<div class = "signup-instead">
+				Already have an account? 
+				<a href = "" ng-click = "loginInstead()"> Login</a>
+			</div>
+			
 		</div>
+
+
+		<div class="enter-panel-footer"></div>
+
+
+	</md-dialog>

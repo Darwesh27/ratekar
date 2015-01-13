@@ -1,10 +1,12 @@
 (function() {
 	angular.module("rateker.auth").
-	controller('signupController', [
+	controller('SignUpController', [
 		'$http', 
 		'$scope', 
 		'Auth', 
-		function($http, $scope, Auth){
+		'$mdDialog',
+		'Dialog',
+		function($http, $scope, Auth, $mdDialog, Dialog){
 		$scope.signup = {};
 		$scope.signup.firstname = null;
 		$scope.signup.lastname = null;
@@ -39,6 +41,13 @@
 			else {
 				$scope.error = "Fill all the info please";
 			}
+		}
+
+		$scope.loginInstead = function() {
+
+			$mdDialog.hide();
+
+			Dialog.login();
 		}
 	}]);
 })();

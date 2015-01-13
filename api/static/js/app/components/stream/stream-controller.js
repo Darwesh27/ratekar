@@ -21,19 +21,20 @@
 
 
 			$scope.$on('$destroy', function() {
+
 				$interval.cancel(fetchNextPosts);
 
 				Stream.destroy();
 			});
 
 			$scope.fetchPrevious = function() {
+				console.log("Fetching previous for Stream");
 				Stream.fetchPrevious();
 			}
 
 			$scope.showDialog = function(ev, postId) { 
 				Dialog.post(ev, postId);
 			}
-
 
 		}]);
 })();

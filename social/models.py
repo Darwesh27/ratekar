@@ -8,7 +8,15 @@ from django.db.models import Count,Avg, Q
 
 from random import randint
 
-# Create your models here.
+
+class Location(models.Model):
+	address = models.CharField(max_length = 100)
+	residents = models.IntegerField(default = 0)
+
+class Place(models.Model):
+	name = models.CharField(max_length = 100)
+	location = models.ForeignKey(Location, null = True)
+	employees = models.IntegerField(default = 0)
 
 class UserManager(BaseUserManager):
 	def create_user(self, username, email, firstname, lastname, password = None):
@@ -22,6 +30,13 @@ class UserManager(BaseUserManager):
 		return user
 
 
+
+import os
+def profile_pic_path(instance, filename):
+	return os.path.join('profile-pics/%d' % instance.id ,'std', filename)
+
+
+
 class User(AbstractBaseUser):
 
 	# Identity	
@@ -31,6 +46,10 @@ class User(AbstractBaseUser):
 	email = models.EmailField(unique = True)
 	phone_number = models.CharField(null=True, unique = True, max_length = 15)
 	dob = models.DateField(null = True)
+	home = models.ForeignKey(Location, null = True)
+	work = models.ForeignKey(Place, null = True, related_name = "current_workers")
+	places = models.ManyToManyField(Place)
+	profile_pic = models.ImageField(upload_to = profile_pic_path, null = True)
 
 	def my_friends(self):
 		return self.friends.filter(status = 3)
@@ -42,7 +61,7 @@ class User(AbstractBaseUser):
 		return "/#/" + self.username
 
 	def imageUrl(self):
-		return "/static/img/mj2.jpg"
+		return self.profile_pic.url if self.profile_pic else None
 
 	def thoughts_rating(self):
 		ratings = [(node.rating_set.aggregate(rat = Avg('rating'))['rat']) for node in self.node_set.all()]
@@ -182,6 +201,19 @@ class User(AbstractBaseUser):
 		else:
 			return []
 
+	def ranking(self, viewer): 
+
+		data = self.data_for_post()
+		data['rating'] = self.myReputations.aggregate(repo = Avg('reputation'))['repo']
+
+		if self == viewer: 
+			data['me'] = True
+		else:
+			data['me'] = False
+
+		return data
+
+
 
 	# query helper function
 	def nicks(self):
@@ -234,9 +266,12 @@ class User(AbstractBaseUser):
 		from social.serializers import UserSerializer
 		user_data = UserSerializer(self).data
 		user_data['url'] = "/#/" + self.username
-		user_data['imageUrl'] = "static/img/mj2.jpg"
+		user_data['imageUrl'] = self.imageUrl()
 		user_data['name'] = self.firstname + " " + self.lastname
+		user_data['places'] = True if self.places.count() >= 3 else False
 
+		user_data['work'] = self.work.name if self.work else None
+		user_data['home'] = self.home.address if self.home else None
 
 		# realated to reputation 
 		user_data['reputation'] = self.repo(viewer)

@@ -24,15 +24,32 @@
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			link: function($scope, iElm, iAttrs, controller) {
 
-				window.onscroll = function(ev) {
-					angular.element('body').height(angular.element('.global-container').height() + 50);
 
-				    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+				var content = angular.element('.khantent');
+
+				// This code is when we are using md-content in the body
+				content.on('scroll', function(ev) {
+
+				    if (($(this).innerHeight() + $(this).scrollTop() + 50) >= this.scrollHeight) {
 				        // you're at the bottom of the page
-				        
+
 				        var fetching = $scope.todo();
+
 				    }
-				};
+				});
+
+				// This code is for when we are not using md-content in the body
+				// window.onscroll = function(ev) {
+
+				// 	console.log("hello");
+				// 	angular.element('body').height(angular.element('.global-container').height() + 50);
+
+				//     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+				//         you're at the bottom of the page
+				        
+				//         var fetching = $scope.todo();
+				//     }
+				// };
 				
 			}
 		};

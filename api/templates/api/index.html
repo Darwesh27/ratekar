@@ -9,21 +9,29 @@
 
 		<link rel="stylesheet" href = "{% static 'bower_components/angular-loading-bar/src/loading-bar.css' %}">
 
+<!-- 		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+ -->
 		{% compressed_css 'core' %}
 
 
 	</head>
 
-	<body ng-controller="appController" layout = "vertical"> 
-		<rk-toolbar ng-show = "isLoggedIn"></rk-toolbar>
-		<div class="global-container" layout = "horizontal" layout-align = "start start">
-			<ui-view></ui-view>
- 			<div class = "right-pane" adjust-right-pane ng-show="isLoggedIn">
-				<ng-include src="'/static/js/app/components/right-pane/right-pane.html'"></ng-include>
-			</div>
+	<body ng-controller="appController" layout = "column"> 
+		<rk-toolbar ng-if = "isLoggedIn && isReady"></rk-toolbar>
+		<md-content class = "khantent" flex>
+			<div class="global-container" layout = "row" layout-align = "start start">
+				<div class="adjust-width"></div>
+				<ui-view ></ui-view>
+	 			<div ng-include ="'/static/js/app/components/right-pane/right-pane.html'" class = "right-pane" adjust-right-pane ng-if="isLoggedIn && isReady">
+				</div>
 
-			<div class="right-pane-bro" flex></div>
-		</div>
+				<div class="right-pane-bro" flex></div>
+			</div>
+		</md-content>
 
 		{% compressed_js 'check' %}
 

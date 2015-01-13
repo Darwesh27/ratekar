@@ -5,7 +5,13 @@
 		'$timeout',
 		'Reviews',
 		'username',
-		 function($scope, $timeout, Reviews, username){
+		'Dialog',
+		 function($scope, $timeout, Reviews, username, Dialog){
+
+
+		 	$scope.show = function(ev, reviewId) {
+		 		Dialog.review(ev, reviewId);
+		 	}
 
 			Reviews.init(username);
 

@@ -20,3 +20,21 @@ def paginate(items, url,  items_range, last):
 
 	return (next, previous) 
 
+
+def handle_uploaded_file(f):
+
+	from ratekar.settings import MEDIA_ROOT
+
+
+	root = MEDIA_ROOT
+
+	path = root + "/picture"
+
+	print path
+
+	with open(path, 'wb+') as destination:
+		for chunk in f.chunks():
+			destination.write(chunk)
+
+
+
