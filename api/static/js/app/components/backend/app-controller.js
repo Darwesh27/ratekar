@@ -18,14 +18,8 @@
 			},
 			function(newVal, oldVal) {
 
-				console.log(newVal);
-				console.log(oldVal);
-
 				if(newVal == false) {
 					$location.path('/welcome');
-				}
-				else if(newVal == true && oldVal == false) {
-					$location.path('/');
 				}
 
 				$scope.isReady = newVal;
@@ -56,6 +50,11 @@
 					event.preventDefault();
 					$location.path("/enter");
 				}
+
+				if(!Me.ready && toSt.url != "/welcome") {
+					event.preventDefault();
+				}
+
 			})
 
 

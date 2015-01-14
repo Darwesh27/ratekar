@@ -33,7 +33,7 @@
 								Fetch.fetch(url, '', function(data,q) {q.resolve(data)}).then(
 									function(data) {
 										initScope(data);
-										afterLoad();
+										// afterLoad();
 									}
 								);
 							});
@@ -41,30 +41,36 @@
 							var circles = [
 								{
 									name: "Family",
-									exists : false,
+									value: 0,
 								},
 								{
 									name: "Close Friends",
-									exists : false,
+									value: 1,
 								},
 								{
 									name: "Friends",
-									exists : false,
+									value: 2,
 								},
 								{
-									name: "Acuantance",
-									exists : false,
+									name: "Acquantances",
+									value: 3,
 								},
 							]
+
+
+							var updated = false;
+
 
 
 							// Initialize the $scope
 							var initScope = function(data) {
 
+								updated = true;
+
 								$scope.friendship = data.friendship;
 								$scope.circles = circles;
 
-								if($scope.friendship.status == 3) {
+								if($scope.friendship.status == 3 || $scope.friendship.status == 2) {
 									$scope.circles[$scope.friendship.circle].exists = true;
 								}
 								else if($scope.friendship.me) {
@@ -171,32 +177,28 @@
 									friendCircleAction
 								]
 
-								angular.forEach($scope.circles, function(circle, circleNo) {
-
-									$scope.$watch(function() {
-										return circle.exists;
+								$scope.$watch(
+									function() {
+										return $scope.friendship.circle;
 									},
 									function(newVal, oldVal) {
 
-										if(newVal != oldVal && newVal == true) {
-											circleAction[$scope.friendship.status](circleNo).then(
+
+										if(newVal != oldVal) {
+											circleAction[$scope.friendship.status](newVal).then(
 												function() {
-													angular.forEach($scope.circles, function(c) {
-														c.exists = false;
-													});
-
-													circle.exists = true;
-
+													// console.log("Hurrah");
 													$scope.hurrah();
-
 												},
 												function() {
-													circle.exists = false;
+													$scope.friendship.circle = oldVal;
 												}
 											);
 										}
-									});
-								});
+
+
+									}
+								);
 							}
 
 

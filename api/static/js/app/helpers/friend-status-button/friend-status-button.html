@@ -6,13 +6,18 @@
 
 			<dropdown trigger = "click" class = "dropdown-add-friend">
 				<div class="friend-status-tag">
-					<div class = "friend-status-circle" ng-repeat = "circle in circles">
+					<md-radio-group ng-model = "friendship.circle"> 
+						<md-radio-button ng-repeat = "circle in circles" ng-value = "circle.value" aria-label = "circle.name"> {{circle.name}} </md-radio-button>
+					</md-radio-group>
+
+
+<!-- 					<div class = "friend-status-circle" ng-repeat = "circle in circles">
 						<div class = "friend-status-circle-checkbox">
 							<md-checkbox ng-disabled = "circle.exists" ng-model = "circle.exists" aria-label = "{{cirlce.name}}">
 							{{circle.name}}</md-checkbox>
 						</div>
 					</div>
-
+ -->
 					<div ng-if = "friendship.status != 0" layout = "column" layout-align = "center" ng-click = "unfriend()" class = "unfriend dropdown-list-item">
 						<span>
 							{{cancelText}}

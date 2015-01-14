@@ -4,14 +4,20 @@
 		'$http',
 		'Urls',
 		'Fetch',
-		function($http, Urls, Fetch){
+		'$q',
+		function($http, Urls, Fetch, $q){
 
 		this.user = null;
 		var Me = this;
 
 		this.ready = true;
 
+		Me.deffered = $q.defer()
 
+
+		this.getUser = function() {
+			return Me.deffered.promise;
+		}
 
 		var getThoughtsRating = function() {
 			url = Urls.myThoughtsRating();
@@ -28,11 +34,14 @@
 		}
 
 		var initUser = function(user) {
+
 			Me.user = user;
 			Me.user.thoughtsRating = null;
+			Me.deffered.resolve(Me.user);
 			getThoughtsRating();
 
 			Me.ready = user.imageUrl != null && user.places;
+			// Me.ready = false;
 		}
 
 
@@ -40,10 +49,6 @@
 			console.log(this.user);
 		}
 
-
-		this.getUser = function() {
-			return this.user;
-		}
 
 		this.sessionInit = function(username) {
 

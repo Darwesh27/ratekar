@@ -10,6 +10,13 @@
 
 			this.register = function(Caller) {
 
+				Caller.initialized = false;
+
+				Caller.previous = null;
+				Caller.next = null;
+				Caller.items = [];
+				Caller.fetching = false;
+
 				Caller.initVars = function() {
 
 					Caller.initialized = false;
@@ -17,7 +24,9 @@
 					Caller.previous = null;
 					Caller.next = null;
 
-					Caller.items = [];
+					while(Caller.items.length) {
+						Caller.items.pop();
+					}
 
 					Caller.initUrl();
 				}
@@ -41,23 +50,29 @@
 
 					Caller.addToItems(data.items);
 
+					Caller.fetching = false;
 				}
 
 				Caller.nextDone = function(data) {
 					Caller.next = data.next;
 
 					Caller.addToItems(data.items);
+
+					Caller.fetching = false;
 				}
 
 				Caller.prevDone = function(data) {
 					Caller.previous = data.previous;
 
 					Caller.addToItems(data.items);
+
+					Caller.fetching = false;
 				}
 
 				Caller.notDone = function(error) {
 					// Some error occured while fetching the posts show it.
 
+					Caller.fetching = false;
 					console.log(error);
 				}
 
@@ -91,13 +106,15 @@
 
 				Caller.fetchNext = function() {
 
-					if(Caller.next && Caller.initialized) {
+					if(Caller.next && Caller.initialized && !Caller.fetching) {
+						Caller.fetching = true;
 						Caller.getNext();
 					}
 				}
 
 				Caller.fetchPrevious = function() {
-					if(Caller.previous) {
+					if(Caller.previous && !Caller.fetching) {
+						Caller.fetching = true;
 						Caller.getPrevious();
 						return true;
 					}

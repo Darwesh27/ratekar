@@ -7,7 +7,8 @@
 		'welcomeConsts',
 		'Me',
 		'Welcome',
-		function($scope, Urls, $http, welcomeConsts, Me, Welcome){
+		'$location',
+		function($scope, Urls, $http, welcomeConsts, Me, Welcome, $location){
 
 
 			$scope.user = {};
@@ -47,7 +48,7 @@
 
 			};
 
-			$scope.welcome.step = 2;
+			$scope.welcome.step = 0;
 
 			$scope.welcome.urls = [
 				baseUrl + 'intro.html',
@@ -67,7 +68,8 @@
 				if($scope.welcome.step == 0) {
 
 					if(Me.user.imageUrl) {
-						$scope.welcome.step = 2;
+						$scope.welcome.step = 1;
+						$scope.welcome.next();
 					}
 					else {
 						$scope.welcome.step = 1;
@@ -76,14 +78,16 @@
 				}
 				else if($scope.welcome.step == 1) {
 
-					if($scope.photo.uploaded) {
+					if($scope.photo.uploaded || Me.user.imageUrl) {
 						if(Me.user.places) {
-							$scope.welcome.step = 3;
+							$scope.welcome.step = 2;
+							$scope.welcome.next();
 						}
 						else {
 							$scope.welcome.step = 2;
 						}
 					}
+
 					// Photo is not uploaded so Shouldn't do anything..
 
 				}
@@ -91,11 +95,15 @@
 
 					if(!$scope.address.updated()) {
 						// Do nothing yet..
+						if(Me.user.places) {
+							$scope.welcome.step = 3;
+						}
 					}
 					else {
 						// Set places 
 						$scope.address.update().then(
 							function(data) {
+								Me.reload();
 								$scope.welcome.step += 1;
 							},
 							function(error) {
@@ -103,6 +111,9 @@
 							}
 						);
 					}
+				}
+				else if($scope.welcome.step == 3) {
+					$location.path('/' + Me.user.username);
 				}
 				else {
 					$scope.welcome.step += 1;

@@ -106,6 +106,7 @@ class User(AbstractBaseUser):
 
 		except Friendship.DoesNotExist:
 			result['status'] = 0 
+			result['circle'] = None
 
 		if self.username == person_username:
 			result['me'] = True

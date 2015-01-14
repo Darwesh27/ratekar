@@ -8,6 +8,7 @@
 		function(Fetch, Urls, Errors, $timeout){
 
 
+
 			// Related to stream
 			this.initialized = false;
 
@@ -15,17 +16,21 @@
 			this.previous = null;
 			this.next = null;
 			this.posts = [];
+			this.fetching = false;
 			var Stream = this;
 
 
 			var initVars = function() {
 				this.initialized = false;
 
-				this.previous = null;
-				this.next = null;
-				this.befNext = null;
-				this.befPrev = null;
-				this.posts = [];
+				Stream.previous = null;
+				Stream.next = null;
+				Stream.befNext = null;
+				Stream.befPrev = null;
+
+				while(Stream.posts.length) {
+					Stream.posts.pop();
+				}
 			}
 
 			var addToStream = function(posts) {
@@ -47,23 +52,30 @@
 
 				addToStream(data.posts);
 
+				Stream.fetching = false;
+
 			}
 
 			var nextDone = function(data) {
 				Stream.next = data.next;
 
 				addToStream(data.posts);
+
+				Stream.fetching = false;
 			}
 
 			var prevDone = function(data) {
 				Stream.previous = data.previous;
 
 				addToStream(data.posts);
+				
+				Stream.fetching = false;
 			}
 
 			var notDone = function(error) {
 				// Some error occured while fetching the posts show it.
 
+				Stream.fetching = false;
 				console.log(error);
 			}
 
@@ -95,13 +107,15 @@
 
 			this.fetchNext = function() {
 
-				if(Stream.next && Stream.initialized) {
+				if(Stream.next && Stream.initialized && !Stream.fetching) {
+					Stream.fetching = true;
 					getNext();
 				}
 			}
 
 			this.fetchPrevious = function() {
-				if(Stream.previous) {
+				if(Stream.previous && !Stream.fetching) {
+					Stream.fetching = true;
 					getPrevious();
 					return true;
 				}

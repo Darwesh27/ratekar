@@ -1,7 +1,8 @@
 *.pyc
-personality/migrations
+*/migrations/
+api/media/
+personality/migrations/
 social/migrations
 api/static/bower_components
 api/static_final/
-*/*/*.[pyc]
 *.zip

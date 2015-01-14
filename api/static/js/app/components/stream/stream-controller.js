@@ -25,6 +25,7 @@
 				$interval.cancel(fetchNextPosts);
 
 				Stream.destroy();
+
 			});
 
 			$scope.fetchPrevious = function() {

@@ -15,18 +15,20 @@
 
 				this.add = function(index) {
 
-					var sugg = $scope.suggestions[index];
+
+					// var sugg = $scope.suggestions[index];
 
 					// remove the element
 					$scope.suggestions.splice(index, 1);
+
 
 					FriendSuggestions.next($scope.exclude).then(
 						function(data) {
 							angular.forEach(data, function(suggestion){
 								$scope.suggestions.push(suggestion);
+								$scope.exclude.push(data.username);
 							});
 
-							$scope.exclude.push(data.username);
 
 						},
 						function(error) {

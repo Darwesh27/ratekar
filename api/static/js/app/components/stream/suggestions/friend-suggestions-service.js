@@ -12,7 +12,7 @@
 				var error = Errors.friendSuggestions();
 
 				return Fetch.fetch(url, error, function(data, q) {
-					q.resolve(data);
+					q.resolve(data.suggestions);
 				});
 			}
 
@@ -23,10 +23,11 @@
 
 				var data = {
 					exclude: exclude,
+					forPane: true,
 				}
 
 				return Fetch.http('post', url, data, error, function(data, q) {
-					q.resolve(data);
+					q.resolve(data.suggestions);
 				});
 			}
 		

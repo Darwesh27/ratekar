@@ -1,7 +1,7 @@
 (function() {
-	angular.module('rateker.stream').
-	directive('friendSuggestion', [
-		'streamConsts', 
+	angular.module('rateker.welcome').
+	directive('welcomeSuggestion', [
+		'welcomeConsts', 
 		function(streamConsts){
 		// Runs during compile
 		return {
@@ -13,33 +13,29 @@
 				index: "&",
 			}, // {} = isolate, true = child, false/undefined = no change
 			// controller: function($scope, $element, $attrs, $transclude) {},
-			require: '^friendSuggestions', // Array = multiple requires, ? = optional, ^ = check parent elements
+			require: '^welcomeSuggestions', // Array = multiple requires, ? = optional, ^ = check parent elements
 			// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',
-			templateUrl: streamConsts.baseTempUrl + 'suggestions/friend-suggestion.html',
+			templateUrl: streamConsts.baseTempUrl + 'welcome-suggestion.html',
 			replace: true,
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			link: function($scope, iElm, iAttrs, controller) {
-				
+
 				iElm.hover(function() {
 					iElm.find('.friend-suggestion-skip').show();
 				},
 				function() {
 					iElm.find('.friend-suggestion-skip').hide();
 				});
-				
-				$scope.check = "Hello123lsdfkjslfweeofljxlk";
-				$scope.add = function() {
 
-					// console.log($scope.index());
+				$scope.add = function() {
 					controller.add($scope.index());
 				}
 
 				$scope.skip = function() {
 					controller.skip($scope.index());
 				}
-
 				
 			}
 		};

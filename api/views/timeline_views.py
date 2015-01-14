@@ -276,6 +276,8 @@ def comment_condemners(request, cid):
 			condemners = [condemn.friend.name() for condemn in comment.commentcondemn_set.all()]
 
 			return Response({"condemners": condemners, "status": 0})
+		else:
+			return Response(unauthorized_error())
 
 
 
