@@ -50,7 +50,7 @@ INSTALLED_APPS = (
 	'timeline',
 	'api',
 	'web',
-	'south', 
+	# 'south', 
 	'rest_framework',
 	'pipeline',
 )
