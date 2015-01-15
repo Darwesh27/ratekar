@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '130.211.243.115']
 
 # Custome user model
 AUTH_USER_MODEL = "social.User"
