@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'ratekar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ratekar',
+        'NAME': 'rateker',
 		'USER': 'root',
 		'PASSWORD': DB_PWD,
 		'HOST' : DB_HOST,
