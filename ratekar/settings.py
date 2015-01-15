@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+from local_settings import *
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -22,7 +24,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = True if os.environ['DEBUG'] == 'dev' else False
+# DEBUG = True if os.environ['DEBUG'] == 'dev' else False
 
 TEMPLATE_DEBUG = True
 
@@ -75,8 +77,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ratekar',
 		'USER': 'root',
-		'PASSWORD': os.environ['DB_PASS'],
-		'HOST' : os.environ['DB_HOST'],
+		'PASSWORD': DB_PWD,
+		'HOST' : DB_HOST,
 		'PORT': '3306',
     }
 }
