@@ -17,10 +17,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6=$a&uh7q+j=4b#4)n3c3yfylz5ri5*mb5-3!=qq9k^$j9%@_u'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+
+DEBUG = True if os.environ['DEBUG'] == 'dev' else False
 
 TEMPLATE_DEBUG = True
 
@@ -73,8 +75,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ratekar',
 		'USER': 'root',
-		'PASSWORD': 'root',
-		'HOST' : 'localhost',
+		'PASSWORD': os.environ['DB_PASS'],
+		'HOST' : os.environ['DB_HOST'],
 		'PORT': '3306',
     }
 }
@@ -94,7 +96,11 @@ USE_TZ = True
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'api/media')
+
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'api/media')
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,4 +1,4 @@
 #!/bin/bash   
-mysql -u root -proot << EOF
+mysql --host=$DB_HOST --user=root --password=$DB_PASS << EOF
 create database rateker charset utf8;
 EOF
