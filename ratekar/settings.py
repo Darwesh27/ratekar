@@ -196,7 +196,7 @@ LOGGING = {
         'default': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': 'logs/mylog.log',
+            'filename': os.path.join(BASE_DIR, 'logs/mylog.log'),
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
@@ -204,7 +204,7 @@ LOGGING = {
         'request_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': 'logs/django_request.log',
+            'filename': os.path.join(BASE_DIR, 'logs/django_request.log'),
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
@@ -212,7 +212,7 @@ LOGGING = {
         'db_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': 'logs/django_db.log',
+            'filename': os.path.join(BASE_DIR, 'logs/django_db.log'),
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
