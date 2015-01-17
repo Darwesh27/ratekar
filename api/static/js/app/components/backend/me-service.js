@@ -36,7 +36,6 @@
 		var initUser = function(user) {
 
 			Me.user = user;
-			Me.user.thoughtsRating = null;
 			Me.deffered.resolve(Me.user);
 			getThoughtsRating();
 

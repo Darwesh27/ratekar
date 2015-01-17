@@ -6,6 +6,11 @@
 		function($scope, Me){
 
 			$scope.me = Me.user;
+
+			Me.getUser().then(
+				function(user) {
+					$scope.me = user;
+			});
 		
 	}]);
 })();
