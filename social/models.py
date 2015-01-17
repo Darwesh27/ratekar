@@ -71,7 +71,7 @@ class User(AbstractBaseUser):
 		if len(ratings) > 0:
 			return sum(ratings)/ float(len(ratings))
 		else:
-			return None
+			return 0
 		
 	# Defualt post privacy
 	post_privacy = models.ForeignKey('timeline.PostPrivacy', null = True)
