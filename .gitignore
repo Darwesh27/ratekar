@@ -7,3 +7,4 @@ api/static/bower_components
 api/static_final/
 *.zip
 ratekar/local_settings.py
+logs/

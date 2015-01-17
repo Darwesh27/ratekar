@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 
 import os,sys
 
-sys.path.append('/home/malik_junaid27_gmail_com/Darwesh/rateker')
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ratekar.settings")
 
 from django.core.wsgi import get_wsgi_application
