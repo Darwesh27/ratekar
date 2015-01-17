@@ -136,18 +136,6 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'check': {
         'source_filenames': (
-            'bower_components/jquery/dist/jquery.min.js',
-            'js/jquery.wookmark.js',
-            'bower_components/angular/angular.min.js',
-            'bower_components/angular-animate/angular-animate.min.js',
-            'bower_components/angular-route/angular-route.min.js',
-            'bower_components/angular-aria/angular-aria.min.js',
-            'bower_components/angular-cookies/angular-cookies.min.js',
-            'bower_components/hammerjs/hammer.min.js',
-            'bower_components/angular-material/angular-material.min.js',
-            'bower_components/angular-loading-bar/src/loading-bar.js',
-            'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-            'bower_components/angular-elastic/elastic.js',
             'js/app/components/toolbar/toolbar-module.js',
             'js/app/components/toolbar/notifications/toolbar-notifications-module.js',
             'js/app/components/stream/post/post-module.js',
