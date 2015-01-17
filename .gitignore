@@ -8,3 +8,4 @@ api/static_final/
 *.zip
 ratekar/local_settings.py
 logs/
+static/
