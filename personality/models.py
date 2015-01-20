@@ -56,7 +56,8 @@ class TraityQuestion(models.Model):
 			data = {}
 			data['question'] = self.text
 			data['id'] = self.id
-			data['rating'] = self.feedback_set.filter(user = owner).aggregate(rating = Avg('rating'))['rating']
+			data['rating'] = {}
+			data['rating']['total'] = self.feedback_set.filter(user = owner).aggregate(rating = Avg('rating'))['rating']
 
 			return data
 		else:
@@ -88,6 +89,18 @@ class Feedback(models.Model):
 	question = models.ForeignKey(TraityQuestion)
 	rating = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(5)])
 
+
+class FeedbackWrapper(models.Model):
+	"""This class encapsultes the privacy and other attributes of feedback related to a user"""
+	user = models.ForeignKey(settings.AUTH_USER_MODEL)
+	feedback = models.ForeignKey(Feedback)
+	seen = models.BooleanField(default = False)
+	sent = models.BooleanField(default = False)
+
+	from timeline.models import PostPrivacy
+	privacy = models.ForeignKey(PostPrivacy)
+
+		
 
 
 

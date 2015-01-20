@@ -202,6 +202,17 @@ class Share(models.Model):
 # 	created_on = models.DateField(auto_now_add = True)
 
 
+class Notification(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL)
+	node = models.ForeignKey(Node)
+	action = models.IntegerField()
+	type = models.IntegerField()
+	sent = models.BooleanField(default = False)
+	seen = models.BooleanField(default = False)
+	time = models.DateTimeField(auto_now_add = True)
+	
+
+
 		
 		
 		

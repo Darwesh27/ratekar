@@ -16,6 +16,8 @@
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			link: function($scope, iElm, iAttrs, controller) {
 
+				$scope.user = Me.user;
+
 				Me.getUser().then(function(user) {
 					$scope.user = user;
 				})

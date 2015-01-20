@@ -11,14 +11,14 @@
 				review: "=",
 
 			}, // {} = isolate, true = child, false/undefined = no change
-			controller: function($scope, $element, $attrs, $transclude) {
+			controller: ['$scope', function($scope) {
 				$scope.toggleLike = function() {
 					$scope.review.liked = !$scope.review.liked;
 				};
 
 
 				$scope.likeIcon = $scope.review.liked?"heart":"heart-outline";
-			},
+			}],
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',

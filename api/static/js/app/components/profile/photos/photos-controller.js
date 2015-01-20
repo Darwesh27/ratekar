@@ -4,10 +4,10 @@
 		'$scope',
 		'Photos', 
 		'Photo',
-		'data',
-		 function($scope, Thoughts, Thought, data){
+		'username',
+		 function($scope, Thoughts, Thought, username){
 
-		 	$scope.data = data;
+		 	$scope.data = username;
 		
 		}]);
 })();

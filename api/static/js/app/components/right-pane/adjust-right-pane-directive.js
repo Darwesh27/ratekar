@@ -87,7 +87,7 @@
 
 				$timeout(function() {
 					adjust();
-				}, 1000);
+				}, 200);
 
 				angular.element(window).on('resize', function(e) {
 					adjust();

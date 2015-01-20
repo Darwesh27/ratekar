@@ -11,10 +11,11 @@
 		function($scope, Urls, $http, welcomeConsts, Me, Welcome, $location){
 
 
-			$scope.user = {};
-			$scope.user.name = Me.user.name;
-
-
+			$scope.user = Me.user;
+			Me.getUser().then(function(user) {
+				$scope.user = user;
+			});
+			
 			var baseUrl = welcomeConsts.baseTempUrl;
 
 			$scope.intro = {};

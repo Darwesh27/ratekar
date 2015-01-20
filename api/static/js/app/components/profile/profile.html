@@ -19,11 +19,13 @@
 				</div>
 				<div layout = "column" layout-align = "start center" flex>
 					<div class = "profile-reputation">
-						<md-progress-linear md-mode = "determinate" value = "{{profile.reputation.total * 10}}"></md-progress-linear>
+						<rk-progress-bar rating = "profile.reputation"></rk-progress-bar>
+						<!-- <md-progress-linear md-mode = "determinate" value = "{{profile.reputation.total * 10}}"></md-progress-linear> -->
 					</div>
 
 					<div class = "profile-reputation-my" ng-if = "profile.friendship.exists">
-						<md-slider md-discrete ng-model="profile.reputation.my" step = "1" min="0" max="10" aria-label = "my rating"></md-slider>
+						<rk-slider rating = "profile.reputation" aria-label = "My Rating of this person"></rk-slider>
+						<!-- <md-slider md-discrete ng-model="profile.reputation.my" step = "1" min="0" max="10" aria-label = "my rating"></md-slider> -->
 					</div>
 
 					<div flex class = "profile-header-bottom" layout = "column" layout-align = "end">

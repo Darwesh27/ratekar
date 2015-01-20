@@ -16,13 +16,13 @@
 			scope: {
 				post: "="
 			}, // {} = isolate, true = child, false/undefined = no change
-			controller: function($scope, $element, $attrs, $transclude) {
+			controller: ['$scope', '$element', '$attrs', '$transclude', function($scope, $element, $attrs, $transclude) {
 
 				this.fetchNextCom = function() {
 					$scope.fetchNextCom();
 				}
 
-			},
+			}],
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			restrict: 'E', // E = Element, A = Attribute,  C = Class, M = Comment
 			// template: '',

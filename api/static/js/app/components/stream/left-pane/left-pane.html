@@ -11,7 +11,8 @@
 				</div>
 
 				<div class = "">
-					<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.reputation.total * 10}}"></md-progress-linear>
+					<rk-progress-bar rating = "me.reputation"></rk-progress-bar>
+					<!-- <md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.reputation.total * 10}}"></md-progress-linear> -->
 				</div>
 
 			</div>
@@ -28,7 +29,8 @@
 			</div>
 
 			<div class = "left-pane-me-reputation">
-				<md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.thoughtsRating * 10}}"></md-progress-linear>
+				<rk-progress-bar rating = "me.thoughtsRating"></rk-progress-bar>
+				<!-- <md-progress-linear md-theme = "green" md-mode = "determinate" value = "{{me.thoughtsRating * 10}}"></md-progress-linear> -->
 				
 			</div>
 

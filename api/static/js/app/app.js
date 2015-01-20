@@ -64,7 +64,10 @@
 		'$stateProvider', 
 		'$urlRouterProvider', 
 		'$httpProvider',
-		function($stateProvider, $urlRouterProvider, $httpProvider) {
+		'$locationProvider',
+		function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+
+			$locationProvider.html5Mode(true);
 			
 			$httpProvider.defaults.xsrfCookieName = 'csrftoken';
 		    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -92,9 +95,9 @@
 					templateUrl: "static/js/app/components/profile/profile.html",
 					resolve: {
 						Profile: 'Profile',
-						profile: function($stateParams, Profile, $http) {
+						profile: ['$stateParams', 'Profile', '$http', function($stateParams, Profile, $http) {
 							return Profile.init($stateParams.username);
-						}
+						}]
 					},
 					abstract: true,
 					controller: 'profileController'
@@ -114,9 +117,9 @@
 					templateUrl: "static/js/app/components/profile/feedbacks/feedbacks.html",
 					controller: 'feedbacksController',
 					resolve: {
-						username: function($stateParams) {
+						username: ['$stateParams', function($stateParams) {
 							return $stateParams.username;
-						}
+						}]
 					}
 				})
 				.state('profile.profile.reviews', {
@@ -124,9 +127,9 @@
 					templateUrl: "static/js/app/components/profile/reviews/reviews.html",
 					controller: 'reviewsController',
 					resolve: {
-						username: function($stateParams) {
+						username: ['$stateParams', function($stateParams) {
 							return $stateParams.username;
-						}
+						}]
 					}
 				})
 				.state('profile.profile.nicks', {
@@ -134,9 +137,9 @@
 					templateUrl: "static/js/app/components/profile/nicks/nicks.html",
 					controller: 'nicksController',
 					resolve: {
-						username: function($stateParams) {
+						username: ['$stateParams', function($stateParams) {
 							return $stateParams.username;
-						}
+						}]
 					}
 				})
 				.state('profile.timeline.thoughts', {
@@ -144,9 +147,9 @@
 					templateUrl: "static/js/app/components/profile/thoughts/thoughts.html",
 					controller: 'thoughtsController',
 					resolve: {
-						username: function($stateParams) {
+						username: ['$stateParams', function($stateParams) {
 							return $stateParams.username;
-						}
+						}]
 					}
 				})
 				.state('profile.timeline.photos', {
@@ -154,9 +157,9 @@
 					templateUrl: "static/js/app/components/profile/photos/photos.html",
 					controller: 'photosController',
 					resolve: {
-						data: function(Photos) {
-							return Photos.get();
-						}
+						username: ['$stateParams', function($stateParams) {
+							return $stateParams.username;
+						}]
 					}
 				})
 

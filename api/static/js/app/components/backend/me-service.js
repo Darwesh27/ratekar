@@ -12,7 +12,7 @@
 
 		this.ready = true;
 
-		Me.deffered = $q.defer()
+		this.deffered = $q.defer();
 
 
 		this.getUser = function() {
@@ -37,8 +37,6 @@
 
 			Me.user = user;
 			Me.deffered.resolve(Me.user);
-			getThoughtsRating();
-
 			Me.ready = user.imageUrl != null && user.places;
 			// Me.ready = false;
 		}
@@ -48,9 +46,9 @@
 			console.log(this.user);
 		}
 
-
 		this.sessionInit = function(username) {
 
+			Me.deffered = $q.defer();
 
 			$http.get("api/user/" + username + "/profile/", {username: username})
 			.success(function(data, status, header, config) {
@@ -59,6 +57,7 @@
 		}
 
 		this.init = function(user) {
+			Me.deffered = $q.defer();
 			initUser(user);
 		}
 

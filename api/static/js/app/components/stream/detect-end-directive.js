@@ -38,6 +38,10 @@
 				    }
 				});
 
+				$scope.$on('$destroy', function(){
+					content.unbind('scroll');
+				});
+
 				// This code is for when we are not using md-content in the body
 				// window.onscroll = function(ev) {
 

@@ -195,7 +195,7 @@ class User(AbstractBaseUser):
 			toret = []
 
 			for feedback in feedbacks:
-				if feedback['rating'] != None:
+				if feedback['rating']['total'] != None:
 					toret.append(feedback)
 
 			return toret;
@@ -295,11 +295,9 @@ class User(AbstractBaseUser):
 		else: 
 			user_data['friendship']['exists'] = False
 
-
-	# def thougths(self, viewer):
-	# 	if viewer.is_friend_of(self):
-	# 		thougths = self.posts_set.filter(privacy__level__in = [2,4])
-
+		if self == viewer:
+			user_data['thoughtsRating'] = {}
+			user_data['thoughtsRating']['total'] = self.thoughts_rating()
 
 
 		return user_data
@@ -355,6 +353,8 @@ class Friendship(models.Model):
 	lists = models.ManyToManyField(Friendslist)
 	circle = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)], default = 2)
 	nick = models.CharField(max_length=50, null = True)
+	nick_seen = models.BooleanField(default = False)
+	nick_sent = models.BooleanField(default = False)
 	status = models.IntegerField(validators = [MinValueValidator(1), MaxValueValidator(4)], default = 1)
 
 

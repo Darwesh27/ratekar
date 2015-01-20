@@ -9,12 +9,11 @@
 			// Runs during compile
 			return {
 				restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-				controller: function($scope, $element, $attrs, $transclude) {
-
+				controller: ['$scope', '$element', '$attrs', '$transclude', function($scope, $element, $attrs, $transclude) {
 					this.add = function(index) {
 						$scope.suggestions.splice(index, 1);
 					}
-				},
+				}],
 				templateUrl: welcomeConsts.baseTempUrl + "welcome-suggestions.html",
 				replace: true,
 				link: function($scope, iElm, iAttrs, controller) {

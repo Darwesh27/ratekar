@@ -1,6 +1,7 @@
 md-content.rankings {
 	background-color: #e5e5e5;
 }
+
 .rankings {
 	position: fixed;
 	width: 200px;
@@ -8,6 +9,11 @@ md-content.rankings {
 	/*background-color: white;*/
 	right: 0px;
 	margin-right: 15px;
+}
+
+.rankings .md-subheader.md-default-theme { 
+	background-color: inherit;
+	text-align: center;
 }
 
 

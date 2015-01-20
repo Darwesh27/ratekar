@@ -2,7 +2,6 @@
 	<div class = "feedback-trait" flex>
 		{{feedback.question}}
 	</div>
-	<div class="feedback-rating" layout = "row" layout-align = "center center">
-		<md-progress-linear md-mode = "determinate" value = "{{feedback.rating * 10}}"></md-progress-linear>
-	</div> 
+		<rk-progress-bar class = "feedback-rating" rating = "feedback.rating"></rk-progress-bar>
+		<!-- <md-progress-linear md-mode = "determinate" value = "{{feedback.rating.total * 10}}"></md-progress-linear> -->
 </div>
