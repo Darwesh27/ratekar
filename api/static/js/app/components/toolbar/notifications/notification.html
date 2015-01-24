@@ -1,0 +1,33 @@
+<div class="notification" layout = "row" layout-align = "start">
+	<div layout = "row" layout-align = "start" ng-click="show($event)">
+		<div class="noti-image">
+			<img ng-src = "{{notification.imageUrl()}}">
+		</div>
+		<div class="notification-inner-wrapper" layout = "column" layout-align="start">
+			<span>
+				<span>
+					{{notification.toString()}}:
+				</span>
+
+				"{{notification.text}}"
+			</span>
+
+			<div layout = "row" layout-align = "start">
+				<div class="noti-action-image">
+					<img ng-src = "{{notification.actionImageUrl()}}">
+				</div>
+
+				<div class="noti-date" layout = "column" layout-align="center">
+					<span>
+						{{notification.time|date:'MMM, d, yyyy  h:mm a'}}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div title = "Mark as read" class="read-notification-icon" ng-click = "read()">
+		<!-- <md-icon icon = "/static/img/read-noti.png"></md-icon> -->
+	</div>
+
+</div>
