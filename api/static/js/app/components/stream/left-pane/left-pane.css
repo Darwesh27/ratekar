@@ -82,9 +82,8 @@
 	opacity: 0.7;
 }
 
-.left-pane-item a {
+.left-pane-item span {
 	margin-left: 5px;
-	width: 100%;
 	color: #333;
 }
 

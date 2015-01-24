@@ -22,12 +22,14 @@
 
 		<div class = "left-pane-items-wrapper">
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/thoughts.png">
-				<a class="" ng-href="{{me.url}}">
-					Thoughts
-				</a>
-			</div>
+			<a class="" ng-href="{{me.url}}">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/thoughts.png">
+						<span>
+							Thoughts
+						</span>
+				</div>
+			</a>
 
 			<div class = "left-pane-me-reputation">
 				<rk-progress-bar rating = "me.thoughtsRating"></rk-progress-bar>
@@ -47,42 +49,52 @@
 			<div class="left-pane-separator"></div>
 
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/feedbacks.png">
-				<a ng-href="{{me.url}}/feedbacks">
-					Feedbacks
-				</a>
-			</div>
+			<a ng-href="{{me.url}}/feedbacks">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/feedbacks.png">
+					<span>
+						Feedbacks
+					</span>
+				</div>
+			</a>
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/reviews.png">
-				<a ng-href="{{me.url}}/reviews">
-					Reviews
-				</a>
-			</div>
+			<a ng-href="{{me.url}}/reviews">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/reviews.png">
+					<span>
+						Reviews
+					</span>
+				</div>
+			</a>
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/nicks.png">
-				<a ng-href="{{me.url}}/nicks">
-					Nicks
-				</a>
-			</div>
+			<a ng-href="{{me.url}}/nicks">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/nicks.png">
+					<span>
+						Nicks
+					</span>
+				</div>
+			</a>
 
 			<div class="left-pane-separator"></div>
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/friends.png">
-				<a ng-href="{{me.url}}/friends">
-					Friends
-				</a>
-			</div>
+			<a ng-href="{{me.url}}/friends">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/friends.png">
+					<span>
+						Friends
+					</span>
+				</div>
+			</a>
 
-			<div class="left-pane-item" layout = "row" layout-align = "start center">
-				<img src = "/static/img/left-pane/lists.png">
-				<a ng-href="{{me.url}}/lists">
-					Lists
-				</a>
-			</div>
+			<a ng-href="{{me.url}}/lists">
+				<div class="left-pane-item" layout = "row" layout-align = "start center">
+					<img src = "/static/img/left-pane/lists.png">
+					<span> 
+						Lists
+					</span>
+				</div>
+			</a>
 
 		</div>
 
