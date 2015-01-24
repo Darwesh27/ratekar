@@ -116,16 +116,17 @@ class Comment(models.Model):
 	time = models.DateTimeField(auto_now_add = True)
 
 	def save(self, *args, **kwargs):
-		try:
-			n = Notification.objects.get(user = self.node.owner, node = self.node, action = 2)
-			n.seen = False
-			n.sent = False
-			n.time = datetime.datetime.now()
-			n.save()
-		except Notification.DoesNotExist:
-			n = Notification(user = self.node.owner, node = self.node, type = self.node.kind, action = 2)
-			n.time = datetime.datetime.now()
-			n.save()
+		if not self.friend == self.node.owner:
+			try:
+				n = Notification.objects.get(user = self.node.owner, node = self.node, action = 2)
+				n.seen = False
+				n.sent = False
+				n.time = datetime.datetime.now()
+				n.save()
+			except Notification.DoesNotExist:
+				n = Notification(user = self.node.owner, node = self.node, type = self.node.kind, action = 2)
+				n.time = datetime.datetime.now()
+				n.save()
 
 		super(Comment, self).save(*args, **kwargs)
 
