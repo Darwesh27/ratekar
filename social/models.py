@@ -102,7 +102,7 @@ class User(AbstractBaseUser):
 		try:
 			rel = Friendship.objects.get(user = self, friend__username = person_username)
 			result['status'] = rel.status % 4
-			result['circle'] = rel.circle
+			result['circle'] = rel.circle if rel.status == 3 else None
 
 		except Friendship.DoesNotExist:
 			result['status'] = 0 

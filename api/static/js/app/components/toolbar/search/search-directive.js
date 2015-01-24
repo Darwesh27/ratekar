@@ -49,17 +49,15 @@
 											dropdown.show();
 											$scope.results = data.results;
 
-											console.log(data);
 
 											if(data.results.length <= 0) {
-												console.log("No results");
 												$scope.showMessage = true;
 											}
 											else 
 												$scope.showMessage = false;
 										},
 										function(error) {
-											console.log(error);
+											// Handle the error properly
 										}
 									);
 

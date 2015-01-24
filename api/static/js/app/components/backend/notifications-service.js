@@ -15,7 +15,9 @@
 
 				Noti.notifications = {
 					count : 0,
-					items : []
+					dict: {},
+					items : [],
+					old: {},
 				}
 
 				Noti.friendRequests = {
@@ -60,8 +62,82 @@
 				);
 			}
 
+			var arrangeNotifications = function() {
+				Noti.notifications.count = Object.keys(Noti.notifications.dict).length
+				Noti.notifications.items.splice(0, Noti.notifications.items.length);
+
+				for(key in Noti.notifications.dict) {
+					Noti.notifications.items.push(Noti.notifications.dict[key]);
+				}
+			}
+
+			var showNotifications = function(data) {
+					angular.forEach(data.notifications, function(notification) {
+
+						if(Noti.notifications.dict.hasOwnProperty(notification.id)) {
+							Noti.notifications.dict[notification.id].time = notification.time;
+						}
+						else {
+							Noti.notifications.dict[notification.id] = notification;
+							Noti.notifications.old[notification.id] = notification.id;
+						}
+
+					})
+
+					arrangeNotifications();
+			}
+
 			this.getNotifications = function() {
+
+				url = Urls.notifications();
+
+				http.get(url, '').then(showNotifications);
 				
+			}
+
+			this.updateNotifications = function() {
+				url = Urls.updateNotifications();
+
+				http.get(url, '').then(showNotifications);
+			}
+
+
+
+			this.read = function(nid) {
+
+				url = Urls.readNotification();
+
+				data = {
+					nid: nid,
+				}
+
+				http.post(url, data, '').then(
+					function() {
+						delete Noti.notifications.dict[nid];
+						delete Noti.notifications.old[nid];
+						arrangeNotifications();
+					}
+				);
+			}
+
+
+			this.readAll = function() {
+				url = Urls.readAllNotifications();
+
+				data = {
+					nids: Object.keys(Noti.notifications.old),
+				}
+
+				http.post(url, data, '').then(
+					function() {
+						for(key in Noti.notifications.dict) {
+							delete Noti.notifications.dict[key]
+							delete Noti.notifications.old[key]
+						}
+
+						arrangeNotifications();
+					}
+				);
 			}
 
 			this.init = function() {
@@ -72,6 +148,11 @@
 				Noti.getRequests();
 				Noti.getMessages();
 
+
+				var updateNotis = $interval(function(){
+					Noti.updateNotifications();
+				}, 10000);
+
 				var updatingRequests = $interval(function() {
 					Noti.getRequests();
 				}, 60000);
@@ -79,6 +160,7 @@
 
 				$rootScope.$on('logOut', function() {
 					$interval.cancel(updatingRequests);
+					$interval.cancel(updateNotis);
 				})
 			}
 

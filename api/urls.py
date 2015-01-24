@@ -89,6 +89,11 @@ urlpatterns = patterns('',
 
 	url(r'^search/$', views.search),
 
+	url(r'^notifications/$', views.notifications),
+	url(r'^notifications/read/all/$', views.read_all_notifications),
+	url(r'^notifications/read/$', views.read_notification),
+
+
 	###########################################################
 	# Profile Urls
 	###########################################################

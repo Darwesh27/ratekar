@@ -7,7 +7,8 @@
 		'$cookies',
 		'$rootScope',
 		'$mdDialog',
-		function($http, Me, $location, $cookies, $rootScope, $mdDialog){
+		'http',
+		function($http, Me, $location, $cookies, $rootScope, $mdDialog, http){
 
 			var Auth = this;
 
@@ -89,7 +90,22 @@
 				});
 			};
 
-			this.signUp = function(userData, cb) {
+			this.signUp = function(userData) {
+
+				return http.post('/api/signup/', userData, '').then(
+					function(data) {
+
+						// hide the signup panel dialog
+						$mdDialog.hide();
+
+						Auth.signUpLogIn(data.user);
+
+					},
+					function(error) {
+
+					}
+				);
+
 				$http.post('/api/signup/', userData).
 				success(function(data) {
 					if(!data.error) {

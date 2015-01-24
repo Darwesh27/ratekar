@@ -70,10 +70,7 @@
 								$scope.friendship = data.friendship;
 								$scope.circles = circles;
 
-								if($scope.friendship.status == 3 || $scope.friendship.status == 2) {
-									$scope.circles[$scope.friendship.circle].exists = true;
-								}
-								else if($scope.friendship.me) {
+								if($scope.friendship.me) {
 									iElm.hide();
 								}
 

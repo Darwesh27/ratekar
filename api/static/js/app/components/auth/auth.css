@@ -246,8 +246,15 @@ md-dialog.md-default-theme.signup-panel-wrapper {
 	
 }
 
-md-input-group .info-icon {
+md-input-container .info-icon {
 	position: absolute;
 	right: 5px;
 	bottom: 5px;
+}
+
+
+.auth-error {
+	font-size: 12px;
+	color: red;
+	text-align: left;
 }

@@ -23,6 +23,7 @@
 		'ngCookies',
 		'angular-loading-bar',
 		'monospaced.elastic',
+		'ngMessages',
 
 	]);
 
@@ -170,6 +171,9 @@
 		// 	templateUrl: "/static/js/app/components/profile/profile.html",
 		// })
 
+	}]).
+	config(['cfpLoadingBarProvider',function(cfpLoadingBarProvider) {
+		cfpLoadingBarProvider.latencyThreshold = 700;
 	}]).
 	controller('TestCtrl', ['$scope', 'searchService', function($scope, searchService){
 

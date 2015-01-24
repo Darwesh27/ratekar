@@ -4,7 +4,38 @@
 		</div>
 
 		<div class="login-panel-inner-wrapper">
-			<md-input-group layout = "column" class = "login-form-input" >
+
+			<form name = "loginForm" role = "form" novalidate>
+				<md-input-container>
+					<label> Username.. </label>
+					<input required name = "cred" ng-model = "cred" autofocus>
+
+					<ng-messages for = "loginForm.cred.$error" ng-if = "loginForm.$submitted">
+						<ng-message when = "required"> What is your Username? </ng-message>
+					</ng-messages>
+				</md-input-container>
+
+				<md-input-container>
+					<label> Password.. </label>
+					<input type = "password" md-minlength = "6" required name = "pass" ng-model = "pass">
+
+					<ng-messages for = "loginForm.pass.$error" ng-if = "loginForm.$submitted">
+						<ng-message when = "required"> What is your Pasword? </ng-message>
+					</ng-messages>
+				</md-input-container>
+
+				<div class = "auth-error" ng-if = "error"> Incorrect username or password. Please try again. </div>
+
+				<div layout = "row" layout-align = "end center">
+					<a href = "" tabindex = "-1" class = "forgot-password"> Forgot Password? </a>
+				</div>
+				<div layout = "row" layout-align="end center">
+					<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="logIn()">Login</md-button>
+				</div>
+
+			</form>
+
+<!-- 			<md-input-group layout = "column" class = "login-form-input" >
 				<label for = "login-form-cred">Username..</label>
 
 				<md-input  required id = "login-form-cred" flex type = "text" ng-model = "cred"></md-input>
@@ -14,13 +45,7 @@
 				<label for = "login-form-pass">Password..</label>
 				<md-input  required id = "login-form-pass" flex type = "password" ng-model = "pass"></md-input>
 			</md-input-group>
-
-			<div layout = "row" layout-align = "end center">
-				<a href = "" class = "forgot-password"> Forgot Password? </a>
-			</div>
-			<div layout = "row" layout-align="end center">
-				<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="logIn()">Login</md-button>
-			</div>
+ -->
 
 			<div class = "signup-instead">
 				Don't have an account? 

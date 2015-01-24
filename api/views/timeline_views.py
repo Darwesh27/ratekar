@@ -1,10 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.utils import user_info, friend_info
-from api.errors import db_error, query_error, no_resource_error, unauthorized_error
-from timeline.models import Post, Node, ThoughtDraft, Status, PostPrivacy,Comment, CommentDraft
-from timeline.models import CommentCondemn, Rating
-from api.helpers import create_parents, post_params_required, get_params_required
+from api.errors import *
+from timeline.models import *
+from api.helpers import *
 from timeline.serializers import PostPrivacySerializer
 from datetime import datetime
 
@@ -174,7 +173,10 @@ def stream(request):
 			if len(posts) != 0:
 				next = request.path + "?order=new&last=" + str(posts[0]['id'])
 			else: 
-				next = request.path + "?order=new&last=" + last
+				if last:
+					next = request.path + "?order=new&last=" + last
+				else:
+					next = request.path
 		else: 
 			previous = request.path + "?order=old&last=" + str(posts[-1]['id'])
 
@@ -346,6 +348,69 @@ def comments(request, pid):
 		}
 
 		return Response(data)
+
+
+@api_view(['GET'])
+def notifications(request):
+	update = request.GET.get('update', False)
+
+	if not update:
+		 notifications = [notification.data() for notification in request.user.notification_set.filter(seen = False)]
+	else:
+		notifications = [notification.data() for notification in request.user.notification_set.filter(sent = False)]
+
+	return Response({'status': 0, 'notifications': notifications})
+
+
+
+@api_view(['POST'])
+def read_notification(request):
+	if request.method == 'POST':
+
+		nid = request.DATA.get('nid', None)
+
+		if nid:
+			try: 
+				notification = Notification.objects.get(pk = nid)
+
+				if notification.user == request.user:
+					notification.delete()
+
+					return Response({'status': 0})
+				else:
+					return Response(unauthorized_error())
+			except:
+				return Response(no_resource_error())
+
+		else:
+			return Response(query_error())
+	else:
+		return Response("");
+
+@api_view(['POST'])
+def read_all_notifications(request):
+	if request.method == 'POST':
+
+		nids = request.DATA.get('nids', None)
+
+		if type(nids) == type([]) and len(nids) > 0:
+
+			for nid in nids:
+				try: 
+					notification = Notification.objects.get(pk = nid)
+					if notification.user == request.user:
+						notification.delete()
+				except Notification.DoesNotExist:
+					pass
+
+			return Response({"status": 0})
+
+		else:
+			return Response(query_error())
+	else:
+		return Response("");
+	
+
 
 
 

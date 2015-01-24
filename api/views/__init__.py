@@ -7,9 +7,7 @@ from index import index
 from profile_views import thoughts, photos, feedbacks, reviews, nicks 
 from profile_views import my_thoughts_rating
 from profile_views import get_review, rankings
-from timeline_views import post_status , post_privacy, stream, rate_post
-from timeline_views import condemn_comment, comment_condemners, add_comment, comments
-from timeline_views import get_post
+from timeline_views import *
 from toolbar_views import *
 
 from about_views import *

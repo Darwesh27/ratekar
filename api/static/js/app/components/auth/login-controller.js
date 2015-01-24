@@ -7,7 +7,7 @@
 		'Dialog',
 		function($scope, Auth, $mdDialog, Dialog){
 
-			$scope.error  = "";
+			$scope.error  = false;
 			$scope.cred = null;
 			$scope.pass = null;
 
@@ -21,9 +21,8 @@
 				if(formValid()) {
 					// $mdDialog.hide();
 					Auth.logIn($scope.cred, $scope.pass, function(err) {
-
 						if(err) {
-							$scope.error = err;
+							$scope.error = true;
 						}
 					});
 

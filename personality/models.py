@@ -3,6 +3,8 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from timeline.models import Node
 from django.db.models import Count,Avg
+import datetime
+
 #from social.models import Friendship
 
 class Reputation(models.Model):
@@ -15,6 +17,25 @@ class Review(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'my_reviews')
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name = 'friendsReviews')
 	time = models.DateTimeField(auto_now_add = True)
+
+	def save(self, *args, **kwargs):
+		
+		from timeline.models import Notification
+
+		if not self.id == None:
+			try:
+				n = Notification.objects.get(user = self.user, node = self.node, type = 3, action = 2)
+				n.seen = False
+				n.sent = False
+				n.time = datetime.datetime.now()
+			except:
+				n = Notification(type = 3, action = 2, user = self.user, node = self.node)
+		else:
+			n = Notification(type = 3, aciton = 1, user = self.user, node = self.node)
+
+		n.save()
+		super(Review, self).save(*args, **kwargs)
+
 
 	def data(self, viewer):
 

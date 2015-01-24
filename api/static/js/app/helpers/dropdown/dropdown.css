@@ -66,25 +66,25 @@
 
 .dropdown-toolbar-notifications .dropdown-caret {
 	left: auto;
-	right: 30px;
+	right: 250px;
 }
 
 .dropdown-toolbar-messages .dropdown-caret {
 	left: auto;
-	right: 35px;
+	right: 50px;
 }
 
 .dropdown-toolbar-requests .dropdown-caret {
 	left: auto;
-	right: 45px;
+	right: 150px;
 }
 
 .dropdown-toolbar-requests .dropdown-menu {
-	border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 2px 2px;
 }
 
 .dropdown-toolbar-messages .dropdown-menu {
-	border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 2px 2px;
 }
 
 .dropdown-toolbar-settings .dropdown-caret {

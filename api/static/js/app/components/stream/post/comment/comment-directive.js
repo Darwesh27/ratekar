@@ -83,6 +83,13 @@
 								}
 							);
 
+							var condemn = iElm.find('.comment-condemn');
+
+							//
+							iElm.hover(function() {
+								condemn.toggle();
+							});
+
 						}
 					}
 				},

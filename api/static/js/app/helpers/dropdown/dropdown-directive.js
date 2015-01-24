@@ -21,7 +21,16 @@
 				compile: function(tElement, tAttrs) {
 
 					return {
-						pre: function($scope, iElm, iAttrs, controller) {
+						pre: function($scope, iElm, iAttrs, controller, transclude) {
+
+							var Pre = this;
+
+							transclude($scope, function(clone, scope) {
+								scope.hideDropdown = function() {
+									iElm.toggleClass('show-menu');
+								}
+
+							})
 
 						},
 						post: function($scope, iElm, iAttrs, controller) {

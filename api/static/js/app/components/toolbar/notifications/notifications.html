@@ -1,4 +1,4 @@
-		<div class = "dropdown-wrapper">
+		<div class = "dropdown-wrapper no-position-relative">
 			<div class = "noti-boundry" layout = "column" layout-align = "center"> 
 				<div class = "noti-cntr" layout = "row" >
 					<div class="notification-icon-wrapper">
@@ -9,11 +9,25 @@
 						<div class="notification-type"> Notifications </div>
 					</div>
 
-					<div class = "notification-count" >{{notifications.count}}</div>
+					<div ng-if= "notifications.count > 0" class = "notification-count" >{{notifications.count}}</div>
 				</div>	
 			</div>
 			
 			<dropdown trigger = "click" class = "dropdown-toolbar dropdown-toolbar-notifications">
-				<div> Hello </div>
+				<div class="toolbar-notifications-tag" layout = "column" layout-align = "start">
+
+					<div class="toolbar-notifications-header" layout = "row" layout-align = "end center">
+						<div class="noti-all-read" ng-click = "readAll()"> Mark as Read </div>
+					</div>
+					<div ng-if = "notifications.count <= 0" class = "no-notifications" layout = "column" layout-align = "center center">
+						<span> No new Notifications. </span>
+					</div>
+
+					<md-content class = "toolbar-notifications-wrapper"> 
+						<notification ng-repeat = "notification in notifications.items|orderBy:'-time'" notification = "notification" hide-dropdown = "hideDropdown()"></notification>
+
+					</md-content>
+
+				</div>
 			</dropdown>
 		</div>

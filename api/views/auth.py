@@ -27,7 +27,7 @@ def signup(request):
 	
 	login(request, user)
 
-	return Response({"message" : "User created and logged in"})
+	return Response({"message" : "User created and logged in..", "user": request.user.profile(request.user)})
 
 
 @api_view(['POST'])

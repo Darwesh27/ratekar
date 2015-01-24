@@ -43,9 +43,9 @@
 						updateRankings();
 					}, 60000)
 
-					// $scope.$on("$destroy" , function() {
-					// 	$interval.cancel(update);
-					// });
+					$scope.$on("$destroy" , function() {
+						$interval.cancel(update);
+					});
 
 				}
 			};

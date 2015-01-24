@@ -1,4 +1,4 @@
-		<div class = "dropdown-wrapper"> 
+		<div class = "dropdown-wrapper no-position-relative"> 
 			<div class = "noti-boundry" rk-dropdown layout = "column" layout-align = "center"> 
 				<div class = "noti-cntr" layout = "row" >
 					<div class="notification-icon-wrapper">
@@ -13,7 +13,7 @@
 
 			<dropdown trigger = "click" class = "dropdown-toolbar dropdown-toolbar-requests">
 				<div layout = "column" layout-align = "start" class = "toolbar-requests-tag">
-					<div ng-if = "friendRequests.count <= 0" class = "no-requests">
+					<div ng-if = "friendRequests.count <= 0" class = "no-requests" layout = "column" layout-align = "center center">
 						<span> No new Friend Requests. </span>
 					</div>
 					<div ng-repeat="request in friendRequests.items" layout = "row" class = "friend-request">

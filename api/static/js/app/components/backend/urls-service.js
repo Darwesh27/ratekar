@@ -71,6 +71,22 @@
 				return api() + "friendship/requests/";
 			}
 
+			this.notifications = function() {
+				return api() + "notifications/";
+			}
+
+			this.updateNotifications = function() {
+				return Urls.notifications() + "?update=true";
+			}
+
+			this.readNotification = function() {
+				return Urls.notifications() + "read/";
+			}
+
+			this.readAllNotifications = function() {
+				return Urls.readNotification() + "all/"
+			}
+
 			/************************************************
 			* Friendship related Urls
 			************************************************/

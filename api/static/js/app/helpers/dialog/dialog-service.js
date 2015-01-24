@@ -27,6 +27,7 @@
 
 			this.post = function(ev, postId) {
 
+
 				url = Urls.getPost(postId);
 
 				http.get(url, "").then(

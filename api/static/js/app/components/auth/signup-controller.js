@@ -20,6 +20,8 @@
 		$scope.emailGood = false;
 		$scope.emailBad = false;
 
+		$scope.requested = false;
+
 
 		var formValid = function() {
 			angular.forEach($scope.signup, function(value, key) {
@@ -32,15 +34,29 @@
 
 
 		$scope.signUp = function() {
-			if(formValid()) {
-				console.log("Form valid");
-				Auth.signUp($scope.signup, function(err){
-					$scope.error = err;
-				});
+
+
+			if(!$scope.requested) {
+				if(formValid()) {
+
+					$scope.requested = true;
+
+					Auth.signUp($scope.signup).then(
+						function(data){
+							$scope.requested = false;
+						},
+						function(err) {
+							$scope.error = err;
+							$scope.requested = false;
+						}
+					);
+				}
+				else {
+					$scope.error = "Fill all the info please";
+				}
+
 			}
-			else {
-				$scope.error = "Fill all the info please";
-			}
+
 		}
 
 		$scope.loginInstead = function() {

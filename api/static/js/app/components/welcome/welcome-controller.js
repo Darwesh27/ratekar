@@ -12,9 +12,6 @@
 
 
 			$scope.user = Me.user;
-			Me.getUser().then(function(user) {
-				$scope.user = user;
-			});
 			
 			var baseUrl = welcomeConsts.baseTempUrl;
 
@@ -66,6 +63,8 @@
 
 			$scope.welcome.next = function() {
 
+				console.log($scope.welcome.step);
+
 				if($scope.welcome.step == 0) {
 
 					if(Me.user.imageUrl) {
@@ -114,6 +113,7 @@
 					}
 				}
 				else if($scope.welcome.step == 3) {
+					console.log(Me.user.username);
 					$location.path('/' + Me.user.username);
 				}
 				else {

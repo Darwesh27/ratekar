@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from timeline.models import Node, ThoughtDraft, PostPrivacy, CommentDraft
+from timeline.models import *
 
 class NodeSerializer(serializers.ModelSerializer):
 	"""
@@ -29,6 +29,12 @@ class CommentDraftSerializer(serializers.ModelSerializer):
 		model = CommentDraft
 		fields = ('time', 'text')
 
+
+class NotificationS(serializers.ModelSerializer):
+
+	class Meta:
+		model = Notification
+		fields = ('id', 'action', 'type', 'time')
 
 		
 

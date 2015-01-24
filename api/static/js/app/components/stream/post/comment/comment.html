@@ -10,14 +10,6 @@
 					<div layout = "row" layout-align = "start">
 						<div class = "comment-time"> {{comment.time|date:'MMM, d, yyyy  h:mm a'}} </div>
 
-						<div class="comment-footer-space">-</div>
-
-						<div class="comment-condemn">
-							<a href="" ng-click="condemn.procedure()">
-									{{condemn.text}}
-								<md-tooltip> {{condemn.tooltip}} this comment </md-tooltip>
-							</a>
-						</div>
 						<div class="comment-footer-space" ng-if = "comment.condemns > 0">-</div>
 						<div class="comment-condemns-count" ng-if = "comment.condemns > 0">
 						Condemned by {{comment.condemns}}..
@@ -28,5 +20,10 @@
 							</md-tooltip>
 						</div>
 					</div>
+				</div>
+
+				<div class="comment-condemn">
+					<img src = "/static/img/gavel.png" ng-click="condemn.procedure()">
+					<md-tooltip> {{condemn.tooltip}} this comment </md-tooltip>
 				</div>
 			</div>

@@ -9,3 +9,4 @@ api/static_final/
 ratekar/local_settings.py
 logs/
 static/
+bin/

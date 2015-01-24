@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from social.models import Friendslist
 from django.db.models import Avg, Count
+import datetime
 
 
 
@@ -95,12 +96,38 @@ class Rating(models.Model):
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL)
 	rating = models.IntegerField(null = True, validators = [MinValueValidator(1), MaxValueValidator(10)])
 
+	def save(self, *args, **kwargs):
+		try:
+			n = Notification.objects.get(user = self.node.owner, node = self.node, action = 1)
+			n.seen = False
+			n.sent = False
+			n.save()
+		except Notification.DoesNotExist:
+			n = Notification(user = self.node.owner, node = self.node, type = self.node.kind, action = 1)
+			n.save()
+
+		super(Rating, self).save(*args, **kwargs)
+
 
 class Comment(models.Model):
 	node = models.ForeignKey(Node)
 	friend = models.ForeignKey(settings.AUTH_USER_MODEL)
 	edited = models.BooleanField(default = False)
 	time = models.DateTimeField(auto_now_add = True)
+
+	def save(self, *args, **kwargs):
+		try:
+			n = Notification.objects.get(user = self.node.owner, node = self.node, action = 2)
+			n.seen = False
+			n.sent = False
+			n.time = datetime.datetime.now()
+			n.save()
+		except Notification.DoesNotExist:
+			n = Notification(user = self.node.owner, node = self.node, type = self.node.kind, action = 2)
+			n.time = datetime.datetime.now()
+			n.save()
+
+		super(Comment, self).save(*args, **kwargs)
 
 
 	def condemns(self):
@@ -210,6 +237,19 @@ class Notification(models.Model):
 	sent = models.BooleanField(default = False)
 	seen = models.BooleanField(default = False)
 	time = models.DateTimeField(auto_now_add = True)
+
+	def data(self):
+		from timeline.serializers import NotificationS
+		noti_data = NotificationS(self).data
+		noti_data['pid'] = self.node.id
+
+		self.sent = True 
+		self.save()
+
+		return noti_data
+
+
+
 	
 
 

@@ -7,50 +7,83 @@
 
 		<div class="signup-panel-inner-wrapper">
 
-			<div layout = "row">
-				<md-input-group flex class = " login-form-input md-input-group-theme-green" >
-					<label for = "signup-form-first-name">First Name</label>
+			<form role = "form" name = "signupForm" novalidate autocomplete = "off">
 
-					<md-input  id = "signup-form-firstname" type = "text" ng-model = "signup.firstname"></md-input>
-				</md-input-group>
+				<div layout = "row">
 
-				<md-input-group flex class = " login-form-input md-input-group-theme-green" >
-					<label for = "signup-form-cred">Last Name</label>
+					<md-input-container>
+						<label> First Name </label>
+						<input required name = "firstname" ng-model = "signup.firstname" autocomplete = "off" autofocus>
+						<div ng-messages = "signupForm.firstname.$error" ng-if = "signupForm.$submitted"> 
+							<div ng-message = "required"> Don't you have a Firstname </div>
+						</div>
+					</md-input-container>
 
-					<md-input  id = "signup-form-lastname" type = "text" ng-model = "signup.lastname"></md-input>
-				</md-input-group>
-			</div>
+					<md-input-container>
+						<label> Last Name </label>
+						<input required name = "lastname" ng-model = "signup.lastname" autocomplete = "off">
+						<div ng-messages = "signupForm.lastname.$error" ng-if = "signupForm.$submitted"> 
+							<div ng-message = "required"> Don't you have a Lastname </div>
+						</div>
+					</md-input-container>
 
-			<md-input-group check-username layout = "column" class = " login-form-input md-input-group-theme-green" >
-				<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "uNameGood" class = "info-icon"></md-icon>
-				<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "uNameBad" class = "info-icon"></md-icon>
-				<label for = "signup-form-username">Username..</label>
-				<md-input  id = "signup-form-username" flex type = "text" ng-model = "signup.username"></md-input>
-			</md-input-group>
+ 				</div>
 
-			<md-input-group check-email layout = "column" class = "login-form-input md-input-group-theme-green" >
-				<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "emailGood" class = "info-icon"></md-icon>
-				<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "emailBad" class = "info-icon"></md-icon>
-				<label for = "signup-form-email">Email</label>
-				<md-input  id = "signup-form-email" flex type = "text" ng-model = "signup.email"></md-input>
-			</md-input-group>
+				<md-input-container check-username>
+					<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "uNameGood" class = "info-icon">
+						<md-tooltip> Username Good. </md-tooltip>
+					</md-icon>
+					<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "uNameBad" class = "info-icon">
+						<md-tooltip> 
+							This Username is already taken.
+						</md-tooltip>
+					</md-icon>
+					<label> Username </label>
+					<input flex required minlength = "3" name = "username" ng-model = "signup.username" autocomplete = "off">
+					<div ng-messages = "signupForm.username.$error" ng-if = "signupForm.$submitted">
+						<div ng-message = "required"> Please choose a username. </div>
+						<div ng-message = "minlength"> Username must be alteast 3 characters long.</div>
+					</div>
+				</md-input-container>
 
+				<md-input-container check-email>
+					<md-icon icon = "/static/img/check/svg/check.svg" ng-show = "emailGood" class = "info-icon">
+						<md-tooltip> 
+							Email Good. 
+						</md-tooltip>
+					</md-icon>
+					<md-icon icon = "/static/img/cancel/svg/cancel.svg" ng-show = "emailBad" class = "info-icon">
+						<md-tooltip>
+							There is already an account registered with this email.
+						</md-tooltip>
+					</md-icon>
+					<label> Email </label>
+					<input type = "email" flex required name = "email" ng-model = "signup.email"autocomplete = "off">
+					<div ng-messages = "signupForm.email.$error" ng-if = "signupForm.$submitted">
+						<div ng-message = "required"> Email Address is required in case you forget your password. </div>
+						<div ng-message = "email"> Please enter a valid email address. </div>
+					</div>
+				</md-input-container>
 
-			<md-input-group layout = "column" class = " login-form-input md-input-group-theme-green" >
-				<label for = "signup-form-password">Password</label>
-				<md-input  id = "signup-form-password" flex type = "password" ng-model = "signup.password"></md-input>
-			</md-input-group>
+				<md-input-container>
+					<label> Password</label>
+					<input type = "password" minlength = "6" required name = "password" ng-model = "signup.password" autocomplete = "off">
+					<div ng-messages = "signupForm.password.$error" ng-if = "signupForm.$submitted"> 
+						<div ng-message = "required"> You must set a password. </div>
+						<ng-message when = "minlength"> Password must be alteast 6 digits long.</ng-message>
+					</div>
+				</md-input-container>
 
-			<span> {{error}} </span>
+				<div layout = "row" layout-align="end center">
+					<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="signUp()">Signup</md-button>
+				</div>
 
-			<div layout = "row" layout-align="end center">
-				<md-button md-theme = "green" class= "md-raised md-primary login-button" ng-click="signUp()">Signup</md-button>
-			</div>
+				<div class = "signup-instead">
+					Already have an account? 
+					<a href = "" ng-click = "loginInstead()"> Login</a>
+				</div>
 
-			<div class = "signup-instead">
-				Already have an account? 
-				<a href = "" ng-click = "loginInstead()"> Login</a>
-			</div>
+			</form>
 			
 		</div>
 
