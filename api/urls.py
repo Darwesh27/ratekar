@@ -15,7 +15,10 @@ profile_patterns = patterns('',
 	# url(r'^nick/$', views.nick),
 	# url(r'^feedback/$', views.feedback),
 
-	url(r'^profile/', views.profile),
+	url(r'^friends/$', views.friends),
+	url(r'^lists/$', views.lists),
+
+	url(r'^profile/$', views.profile),
 	url(r'^thoughts/$', views.thoughts),
 	url(r'^photos/$', views.photos),
 	url(r'^feedbacks/$', views.feedbacks),

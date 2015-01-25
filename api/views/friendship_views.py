@@ -179,5 +179,30 @@ def friend_requests(request):
 
 	return Response(data)
 
+@api_view(['GET'])
+def friends(request, username):
+
+	if username == request.user.username:
+
+		user = request.user
+		friends = [rel.friend.data_for_post() for rel in user.my_friends()]
+
+		return Response({"status": 0, 'friends': friends})
+	else:
+
+		return Response(unauthorized_error())
+
+
+@api_view(['GET'])
+def lists(request, username):
+
+	if username == request.user.username:
+
+		user = request.user
+		lists = [rel.friend.data_for_post(user) for rel in user.my_friends()]
+
+		return Response({"status": 0, 'lists': lists})
+	else:
+		return Response(unauthorized_error())
 
 	

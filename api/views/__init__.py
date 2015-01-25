@@ -1,5 +1,4 @@
-from friendship_views import friendship, friendship_details, friendship_circle, friendship_list, friendslist, profile
-from friendship_views import unfriend, friend_requests
+from friendship_views import *
 from auth import signup, signin, signout, check_email, check_username
 from personality_views import reputation, review, nick, feedback, like_review
 from personality_views import new_feedback 
